@@ -1,0 +1,179 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvvtem71k2ld0"]
+
+[ext_resource type="Script" path="res://scripts/MovimientoJugador.gd" id="1_2d7qd"]
+[ext_resource type="Texture2D" uid="uid://dimcvuwqbykxu" path="res://assets/PJS/Amolenth/Amolent skeletal parts.png" id="1_jopt8"]
+
+[node name="Amolenth" type="Node2D"]
+script = ExtResource("1_2d7qd")
+
+[node name="ContenedorEsqueleto" type="Node2D" parent="."]
+
+[node name="AmolenthPiernaTrasera" type="Sprite2D" parent="."]
+position = Vector2(365, 415)
+texture = ExtResource("1_jopt8")
+region_enabled = true
+region_rect = Rect2(350, 400, 60, 90)
+
+[node name="AmolenthPieTrasera" type="Sprite2D" parent="AmolenthPiernaTrasera"]
+position = Vector2(25, 90)
+texture = ExtResource("1_jopt8")
+region_enabled = true
+region_rect = Rect2(360, 520, 70, 110)
+
+[node name="AmolenthCabeza" type="Sprite2D" parent="."]
+position = Vector2(335, 245)
+texture = ExtResource("1_jopt8")
+region_enabled = true
+region_rect = Rect2(220, 20, 160, 160)
+
+[node name="AmolenthBrazoTrasero" type="Sprite2D" parent="."]
+position = Vector2(385, 320)
+texture = ExtResource("1_jopt8")
+region_enabled = true
+region_rect = Rect2(380, 210, 60, 70)
+
+[node name="AmolenthAntebrazoTrasero" type="Sprite2D" parent="AmolenthBrazoTrasero"]
+position = Vector2(25, 48)
+texture = ExtResource("1_jopt8")
+region_enabled = true
+region_rect = Rect2(410, 280, 50, 70)
+
+[node name="AmolenthManoTrasero" type="Sprite2D" parent="AmolenthBrazoTrasero/AmolenthAntebrazoTrasero"]
+position = Vector2(5, 40)
+texture = ExtResource("1_jopt8")
+region_enabled = true
+region_rect = Rect2(410, 360, 60, 50)
+
+[node name="AmolenthPiernaFrontal" type="Sprite2D" parent="."]
+position = Vector2(310, 411)
+texture = ExtResource("1_jopt8")
+region_enabled = true
+region_rect = Rect2(200, 400, 70, 100)
+
+[node name="AmolenthPieFrontal" type="Sprite2D" parent="AmolenthPiernaFrontal"]
+position = Vector2(-20, 94)
+texture = ExtResource("1_jopt8")
+region_enabled = true
+region_rect = Rect2(180, 520, 70, 110)
+
+[node name="AmolenthCuerpo" type="Sprite2D" parent="."]
+position = Vector2(340, 330)
+texture = ExtResource("1_jopt8")
+region_enabled = true
+region_rect = Rect2(260, 210, 110, 110)
+
+[node name="AmolenthCadera" type="Sprite2D" parent="AmolenthCuerpo"]
+position = Vector2(-5, 55)
+texture = ExtResource("1_jopt8")
+region_enabled = true
+region_rect = Rect2(260, 330, 100, 60)
+
+[node name="AmolenthBrazoFrontal" type="Sprite2D" parent="."]
+position = Vector2(295, 325)
+texture = ExtResource("1_jopt8")
+region_enabled = true
+region_rect = Rect2(160, 200, 80, 100)
+
+[node name="AmolenthAntebrazoFrontal" type="Sprite2D" parent="AmolenthBrazoFrontal"]
+position = Vector2(-25, 50)
+texture = ExtResource("1_jopt8")
+region_enabled = true
+region_rect = Rect2(130, 310, 50, 60)
+
+[node name="AmolenthManoFrontal" type="Sprite2D" parent="AmolenthBrazoFrontal/AmolenthAntebrazoFrontal"]
+position = Vector2(5, 45)
+texture = ExtResource("1_jopt8")
+region_enabled = true
+region_rect = Rect2(130, 390, 60, 50)
+
+[node name="Esqueleto" type="Skeleton2D" parent="."]
+
+[node name="Base" type="Bone2D" parent="Esqueleto"]
+position = Vector2(350, 400)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Esqueleto/Base"]
+position = Vector2(-15, -15)
+remote_path = NodePath("../../../AmolenthCuerpo/AmolenthCadera")
+
+[node name="Cuerpo" type="Bone2D" parent="Esqueleto/Base"]
+position = Vector2(0, -82)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Esqueleto/Base/Cuerpo"]
+position = Vector2(-10, 12)
+remote_path = NodePath("../../../../AmolenthCuerpo")
+
+[node name="Cabeza" type="Bone2D" parent="Esqueleto/Base/Cuerpo"]
+position = Vector2(-5, -60)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Esqueleto/Base/Cuerpo/Cabeza"]
+position = Vector2(-10, -13)
+remote_path = NodePath("../../../../../AmolenthCabeza")
+
+[node name="BrazoFrontal" type="Bone2D" parent="Esqueleto/Base/Cuerpo"]
+position = Vector2(-50, -16)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Esqueleto/Base/Cuerpo/BrazoFrontal"]
+position = Vector2(-5, 23)
+remote_path = NodePath("../../../../../AmolenthBrazoFrontal")
+
+[node name="AntebrazoFrontal" type="Bone2D" parent="Esqueleto/Base/Cuerpo/BrazoFrontal"]
+position = Vector2(-40, 41)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Esqueleto/Base/Cuerpo/BrazoFrontal/AntebrazoFrontal"]
+position = Vector2(10, 32)
+remote_path = NodePath("../../../../../../AmolenthBrazoFrontal/AmolenthAntebrazoFrontal")
+
+[node name="ManoFrontal" type="Bone2D" parent="Esqueleto/Base/Cuerpo/BrazoFrontal/AntebrazoFrontal"]
+position = Vector2(10, 64)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Esqueleto/Base/Cuerpo/BrazoFrontal/AntebrazoFrontal/ManoFrontal"]
+position = Vector2(5, 13)
+remote_path = NodePath("../../../../../../../AmolenthBrazoFrontal/AmolenthAntebrazoFrontal/AmolenthManoFrontal")
+
+[node name="BrazoTrasero" type="Bone2D" parent="Esqueleto/Base/Cuerpo"]
+position = Vector2(31, -16)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Esqueleto/Base/Cuerpo/BrazoTrasero"]
+position = Vector2(4, 18)
+remote_path = NodePath("../../../../../AmolenthBrazoTrasero")
+
+[node name="AntebrazoTrasero" type="Bone2D" parent="Esqueleto/Base/Cuerpo/BrazoTrasero"]
+position = Vector2(29, 66)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Esqueleto/Base/Cuerpo/BrazoTrasero/AntebrazoTrasero"]
+remote_path = NodePath("../../../../../../AmolenthBrazoTrasero/AmolenthAntebrazoTrasero")
+
+[node name="ManoTrasera" type="Bone2D" parent="Esqueleto/Base/Cuerpo/BrazoTrasero/AntebrazoTrasero"]
+position = Vector2(5, 44)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Esqueleto/Base/Cuerpo/BrazoTrasero/AntebrazoTrasero/ManoTrasera"]
+position = Vector2(0, -4)
+remote_path = NodePath("../../../../../../../AmolenthBrazoTrasero/AmolenthAntebrazoTrasero/AmolenthManoTrasero")
+
+[node name="MusloTrasero" type="Bone2D" parent="Esqueleto/Base"]
+position = Vector2(15, 20)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Esqueleto/Base/MusloTrasero"]
+position = Vector2(0, -5)
+remote_path = NodePath("../../../../AmolenthPiernaTrasera")
+
+[node name="PiernaTrasero" type="Bone2D" parent="Esqueleto/Base/MusloTrasero"]
+position = Vector2(20, 79)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Esqueleto/Base/MusloTrasero/PiernaTrasero"]
+position = Vector2(5, 6)
+remote_path = NodePath("../../../../../AmolenthPiernaTrasera/AmolenthPieTrasera")
+
+[node name="MusloFrontal" type="Bone2D" parent="Esqueleto/Base"]
+position = Vector2(-40, 23)
+
+[node name="RemoteTransform2D2" type="RemoteTransform2D" parent="Esqueleto/Base/MusloFrontal"]
+position = Vector2(0, -12)
+remote_path = NodePath("../../../../AmolenthPiernaFrontal")
+
+[node name="PiernaFrontal" type="Bone2D" parent="Esqueleto/Base/MusloFrontal"]
+position = Vector2(-15, 72)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Esqueleto/Base/MusloFrontal/PiernaFrontal"]
+position = Vector2(-5, 10)
+remote_path = NodePath("../../../../../AmolenthPiernaFrontal/AmolenthPieFrontal")
