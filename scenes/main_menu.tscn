@@ -1,0 +1,144 @@
+[gd_scene load_steps=21 format=3 uid="uid://cdfhd4vcmrqbs"]
+
+[ext_resource type="Shader" path="res://assets/scroll.gdshader" id="1_1pd6g"]
+[ext_resource type="Texture2D" uid="uid://dv7nwuh0mmsc8" path="res://assets/Escenarios/Main Menu.png" id="1_12iol"]
+[ext_resource type="Texture2D" uid="uid://doq54p0gwnmho" path="res://assets/Escenarios/Pantalla principal.png" id="2_cum5h"]
+[ext_resource type="FontFile" uid="uid://ctgf5qs6g1evf" path="res://assets/Escenarios/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="3_17nh6"]
+[ext_resource type="Texture2D" uid="uid://c7ivoiw42k4yp" path="res://assets/Escenarios/Boton.png" id="4_lcadq"]
+[ext_resource type="Texture2D" uid="uid://cwcgrc7aihbcb" path="res://assets/Escenarios/BotonPulsado.png" id="5_svqtn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pdgh0"]
+shader = ExtResource("1_1pd6g")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ioro7"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("4_lcadq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aectu"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("4_lcadq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a5wbs"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("5_svqtn")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xw7a6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_po5if"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("4_lcadq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3nvrb"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("4_lcadq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jkcf4"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("5_svqtn")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xp2xh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ch3ct"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("4_lcadq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_suf5x"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("4_lcadq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m4ftn"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("5_svqtn")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fp5vu"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_42nju"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_pdgh0")
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 640.0
+texture = ExtResource("1_12iol")
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(640, 179)
+scale = Vector2(2, 2)
+texture = ExtResource("2_cum5h")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -392.0
+offset_top = -129.0
+offset_right = 392.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 200
+
+[node name="BotonJugar" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_17nh6")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_ioro7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_aectu")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_a5wbs")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xw7a6")
+text = "Jugar
+"
+
+[node name="BotonAjustes" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_17nh6")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_po5if")
+theme_override_styles/hover = SubResource("StyleBoxTexture_3nvrb")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_jkcf4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xp2xh")
+text = "Opciones"
+
+[node name="BotonSalir" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_17nh6")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_ch3ct")
+theme_override_styles/hover = SubResource("StyleBoxTexture_suf5x")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_m4ftn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_fp5vu")
+theme_override_styles/focus = SubResource("StyleBoxTexture_42nju")
+text = "Salir"
