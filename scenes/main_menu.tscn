@@ -1,11 +1,19 @@
-[gd_scene load_steps=21 format=3 uid="uid://cdfhd4vcmrqbs"]
+[gd_scene load_steps=47 format=3 uid="uid://b45eyfvnep5ci"]
 
 [ext_resource type="Shader" path="res://assets/scroll.gdshader" id="1_1pd6g"]
 [ext_resource type="Texture2D" uid="uid://dv7nwuh0mmsc8" path="res://assets/Escenarios/Main Menu.png" id="1_12iol"]
-[ext_resource type="Texture2D" uid="uid://doq54p0gwnmho" path="res://assets/Escenarios/Pantalla principal.png" id="2_cum5h"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_kmyl3"]
+[ext_resource type="Texture2D" uid="uid://doq54p0gwnmho" path="res://assets/theme/iconos/Pantalla principal.png" id="2_cum5h"]
 [ext_resource type="FontFile" uid="uid://ctgf5qs6g1evf" path="res://assets/Escenarios/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="3_17nh6"]
-[ext_resource type="Texture2D" uid="uid://c7ivoiw42k4yp" path="res://assets/Escenarios/Boton.png" id="4_lcadq"]
-[ext_resource type="Texture2D" uid="uid://cwcgrc7aihbcb" path="res://assets/Escenarios/BotonPulsado.png" id="5_svqtn"]
+[ext_resource type="Texture2D" uid="uid://c7ivoiw42k4yp" path="res://assets/theme/iconos/Boton.png" id="4_lcadq"]
+[ext_resource type="Texture2D" uid="uid://e8x6a5cd1m7r" path="res://assets/theme/iconos/tablaLarga.png" id="4_thi3y"]
+[ext_resource type="Texture2D" uid="uid://cwcgrc7aihbcb" path="res://assets/theme/iconos/BotonPulsado.png" id="5_svqtn"]
+[ext_resource type="Theme" uid="uid://cjkmwoyjf2bu5" path="res://assets/theme/WordsNSwords.tres" id="6_pa6ep"]
+[ext_resource type="Script" path="res://scripts/controladores_menu.gd" id="10_027hu"]
+[ext_resource type="AudioStream" uid="uid://cyn5nwcwloa7o" path="res://assets/Musica/main_menu.ogg" id="11_lvfvv"]
+[ext_resource type="Script" path="res://scripts/loop_cancion.gd" id="12_g5w4g"]
+[ext_resource type="Texture2D" uid="uid://m3bo6tuo0gq5" path="res://assets/theme/iconos/icono selector.png" id="12_v87e6"]
+[ext_resource type="Script" path="res://scripts/slider_sonido.gd" id="13_10n71"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pdgh0"]
 shader = ExtResource("1_1pd6g")
@@ -65,6 +73,82 @@ texture = ExtResource("5_svqtn")
 content_margin_left = 20.0
 content_margin_right = 20.0
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rxds1"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("4_lcadq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k2um0"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("4_lcadq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pehgx"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("5_svqtn")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uhdp5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0f2bi"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("4_lcadq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mj5pj"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("4_lcadq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bx5w5"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("5_svqtn")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t6av7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qpbjs"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("4_lcadq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qe0oo"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("4_lcadq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_juora"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("5_svqtn")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ixidq"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fe2hh"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_67v7f"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("4_lcadq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sjicd"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("4_lcadq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1rpde"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("5_svqtn")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7d0fp"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ghwdb"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -72,41 +156,51 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_kmyl3")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_pdgh0")
 layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 640.0
+offset_right = 1282.0
+offset_bottom = 720.0
+scale = Vector2(0.998744, 1)
 texture = ExtResource("1_12iol")
 
 [node name="Logo" type="Sprite2D" parent="."]
-position = Vector2(640, 179)
-scale = Vector2(2, 2)
+position = Vector2(641.222, 70)
+scale = Vector2(1.55556, 1.55556)
 texture = ExtResource("2_cum5h")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -392.0
-offset_top = -129.0
-offset_right = 392.0
-offset_bottom = -64.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 200
+[node name="TablaLarga" type="Sprite2D" parent="."]
+position = Vector2(641, 422)
+scale = Vector2(4, 4)
+texture = ExtResource("4_thi3y")
 
-[node name="BotonJugar" type="Button" parent="HBoxContainer"]
+[node name="MenuPrincipal" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.412
+anchor_top = 0.282
+anchor_right = 0.588
+anchor_bottom = 0.875
+offset_left = -7.35999
+offset_top = 56.96
+offset_right = -10.923
+offset_bottom = -75.359
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.08, 1.08)
+theme = ExtResource("6_pa6ep")
+theme_override_constants/separation = 60
+
+[node name="BotonJugar" type="Button" parent="MenuPrincipal"]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
-size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("3_17nh6")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxTexture_ioro7")
@@ -115,8 +209,10 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_a5wbs")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_xw7a6")
 text = "Jugar
 "
+icon_alignment = 1
 
-[node name="BotonAjustes" type="Button" parent="HBoxContainer"]
+[node name="BotonAjustes" type="Button" parent="MenuPrincipal"]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
@@ -129,7 +225,8 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_jkcf4")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_xp2xh")
 text = "Opciones"
 
-[node name="BotonSalir" type="Button" parent="HBoxContainer"]
+[node name="BotonSalir" type="Button" parent="MenuPrincipal"]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
@@ -142,3 +239,261 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_m4ftn")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_fp5vu")
 theme_override_styles/focus = SubResource("StyleBoxTexture_42nju")
 text = "Salir"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_lvfvv")
+autoplay = true
+bus = &"Musica"
+script = ExtResource("12_g5w4g")
+
+[node name="MenuContenedor" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("6_pa6ep")
+script = ExtResource("10_027hu")
+
+[node name="MenuOpciones" type="VBoxContainer" parent="MenuContenedor"]
+layout_mode = 0
+offset_left = 520.0
+offset_top = 248.0
+offset_right = 760.0
+offset_bottom = 619.0
+theme = ExtResource("6_pa6ep")
+theme_override_constants/separation = 60
+
+[node name="BotonAudio" type="Button" parent="MenuContenedor/MenuOpciones"]
+custom_minimum_size = Vector2(240, 64)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_17nh6")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_rxds1")
+theme_override_styles/hover = SubResource("StyleBoxTexture_k2um0")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_pehgx")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_uhdp5")
+text = "Audio"
+
+[node name="BotonResolucion" type="Button" parent="MenuContenedor/MenuOpciones"]
+custom_minimum_size = Vector2(240, 64)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_constants/h_separation = 0
+theme_override_fonts/font = ExtResource("3_17nh6")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_0f2bi")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mj5pj")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_bx5w5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_t6av7")
+text = "Vídeo
+"
+
+[node name="BotonSalir" type="Button" parent="MenuContenedor/MenuOpciones"]
+custom_minimum_size = Vector2(240, 64)
+layout_mode = 2
+text = "Volver
+"
+
+[node name="MenuAudio" type="VBoxContainer" parent="MenuContenedor"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 5.6
+anchor_top = 5.25
+anchor_right = 26.2
+anchor_bottom = 15.625
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("6_pa6ep")
+theme_override_constants/separation = 15
+metadata/_edit_use_anchors_ = true
+
+[node name="MasterContainer" type="VBoxContainer" parent="MenuContenedor/MenuAudio"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="MasterLabel" type="Label" parent="MenuContenedor/MenuAudio/MasterContainer"]
+custom_minimum_size = Vector2(410, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("6_pa6ep")
+theme_override_font_sizes/font_size = 24
+text = "General"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MasterSlider" type="HSlider" parent="MenuContenedor/MenuAudio/MasterContainer"]
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("12_v87e6")
+theme_override_icons/grabber_highlight = ExtResource("12_v87e6")
+theme_override_icons/grabber_disabled = ExtResource("12_v87e6")
+max_value = 1.0
+step = 0.001
+script = ExtResource("13_10n71")
+bus_name = "Master"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuContenedor/MenuAudio"]
+layout_mode = 2
+
+[node name="MusicaContainer" type="VBoxContainer" parent="MenuContenedor/MenuAudio/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_pa6ep")
+
+[node name="MusicaLabel" type="Label" parent="MenuContenedor/MenuAudio/HBoxContainer/MusicaContainer"]
+custom_minimum_size = Vector2(410, 64)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_17nh6")
+theme_override_font_sizes/font_size = 24
+text = "Música"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MusicaSlider" type="HSlider" parent="MenuContenedor/MenuAudio/HBoxContainer/MusicaContainer"]
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("12_v87e6")
+theme_override_icons/grabber_highlight = ExtResource("12_v87e6")
+theme_override_icons/grabber_disabled = ExtResource("12_v87e6")
+max_value = 1.0
+step = 0.001
+script = ExtResource("13_10n71")
+bus_name = "Musica"
+
+[node name="SFXContainer" type="VBoxContainer" parent="MenuContenedor/MenuAudio/HBoxContainer"]
+layout_mode = 2
+
+[node name="SFXLabel" type="Label" parent="MenuContenedor/MenuAudio/HBoxContainer/SFXContainer"]
+custom_minimum_size = Vector2(410, 64)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_17nh6")
+theme_override_font_sizes/font_size = 24
+text = "Sonido"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SFXSlider" type="HSlider" parent="MenuContenedor/MenuAudio/HBoxContainer/SFXContainer"]
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("12_v87e6")
+theme_override_icons/grabber_highlight = ExtResource("12_v87e6")
+theme_override_icons/grabber_disabled = ExtResource("12_v87e6")
+max_value = 1.0
+step = 0.001
+script = ExtResource("13_10n71")
+bus_name = "SFX"
+
+[node name="BotonVolver" type="Button" parent="MenuContenedor/MenuAudio"]
+custom_minimum_size = Vector2(240, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_17nh6")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_qpbjs")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qe0oo")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_juora")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ixidq")
+theme_override_styles/focus = SubResource("StyleBoxTexture_fe2hh")
+text = "Volver"
+
+[node name="MenuVideo" type="VBoxContainer" parent="MenuContenedor"]
+visible = false
+layout_mode = 2
+offset_left = 413.0
+offset_top = 206.0
+offset_right = 867.0
+offset_bottom = 711.0
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MenuContenedor/MenuVideo"]
+layout_mode = 2
+
+[node name="FullscreenLabel" type="Label" parent="MenuContenedor/MenuVideo/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Pantalla completa"
+
+[node name="Fullscreen" type="CheckBox" parent="MenuContenedor/MenuVideo/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MenuContenedor/MenuVideo"]
+layout_mode = 2
+
+[node name="BorderlessLabel" type="Label" parent="MenuContenedor/MenuVideo/HBoxContainer2"]
+custom_minimum_size = Vector2(410, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Sin bordes"
+horizontal_alignment = 1
+
+[node name="Borderless" type="CheckBox" parent="MenuContenedor/MenuVideo/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MenuContenedor/MenuVideo"]
+layout_mode = 2
+
+[node name="VSyncLabel" type="Label" parent="MenuContenedor/MenuVideo/HBoxContainer3"]
+custom_minimum_size = Vector2(410, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "VSync
+"
+horizontal_alignment = 1
+
+[node name="VSync" type="CheckBox" parent="MenuContenedor/MenuVideo/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="BotonVolver" type="Button" parent="MenuContenedor/MenuVideo"]
+custom_minimum_size = Vector2(240, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_17nh6")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxTexture_67v7f")
+theme_override_styles/hover = SubResource("StyleBoxTexture_sjicd")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1rpde")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_7d0fp")
+theme_override_styles/focus = SubResource("StyleBoxTexture_ghwdb")
+text = "Volver"
+
+[node name="TextPausa" type="Label" parent="MenuContenedor"]
+layout_mode = 2
+offset_left = 474.0
+offset_top = 57.0
+offset_right = 917.0
+offset_bottom = 171.0
+scale = Vector2(0.75, 0.75)
+theme = ExtResource("6_pa6ep")
+text = "PAUSA"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[connection signal="pressed" from="MenuPrincipal/BotonJugar" to="." method="_on_boton_jugar_pressed"]
+[connection signal="pressed" from="MenuPrincipal/BotonAjustes" to="." method="_on_boton_ajustes_pressed"]
+[connection signal="pressed" from="MenuPrincipal/BotonSalir" to="." method="_on_boton_salir_pressed"]
+[connection signal="pressed" from="MenuContenedor/MenuOpciones/BotonAudio" to="MenuContenedor" method="_on_boton_audio_pressed" flags=18]
+[connection signal="pressed" from="MenuContenedor/MenuOpciones/BotonResolucion" to="MenuContenedor" method="_on_boton_resolucion_pressed" flags=18]
+[connection signal="pressed" from="MenuContenedor/MenuOpciones/BotonSalir" to="MenuContenedor" method="_on_boton_salir_pressed" flags=18]
+[connection signal="pressed" from="MenuContenedor/MenuAudio/BotonVolver" to="MenuContenedor" method="_on_boton_volver_pressed" flags=18]
+[connection signal="pressed" from="MenuContenedor/MenuVideo/HBoxContainer/Fullscreen" to="MenuContenedor" method="_on_fullscreen_pressed" flags=18]
+[connection signal="pressed" from="MenuContenedor/MenuVideo/HBoxContainer2/Borderless" to="MenuContenedor" method="_on_borderless_pressed" flags=18]
+[connection signal="pressed" from="MenuContenedor/MenuVideo/HBoxContainer3/VSync" to="MenuContenedor" method="_on_v_sync_pressed" flags=18]
+[connection signal="pressed" from="MenuContenedor/MenuVideo/BotonVolver" to="MenuContenedor" method="_on_boton_volver_pressed" flags=18]
