@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xdfnrbvtshxb"
-path="res://.godot/imported/Attack Up-Sheet.png-1986c38a5b5192a7298beaacde321d84.ctex"
+uid="uid://dimcvuwqbykxu"
+path="res://.godot/imported/Amolenth skeletal parts.png-40c28eded02b5b6f3cac378ddbceed9a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/PJS/PJ 1/Attacks/Attack_up_air/Attack Up-Sheet.png"
-dest_files=["res://.godot/imported/Attack Up-Sheet.png-1986c38a5b5192a7298beaacde321d84.ctex"]
+source_file="res://assets/PJS/Amolenth/Amolenth skeletal parts.png"
+dest_files=["res://.godot/imported/Amolenth skeletal parts.png-40c28eded02b5b6f3cac378ddbceed9a.ctex"]
 
 [params]
 

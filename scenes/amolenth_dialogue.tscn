@@ -1,12 +1,12 @@
-[gd_scene load_steps=11 format=3]
+[gd_scene load_steps=11 format=3 uid="uid://cipkij5ijbqj4"]
 
 [ext_resource type="Texture2D" uid="uid://dgrhusqhn3ut8" path="res://assets/Escenarios/Nubes dia.png" id="1_2pbsw"]
 [ext_resource type="Script" path="res://scripts/amolenth_dialogue.gd" id="1_uvtav"]
 [ext_resource type="Texture2D" uid="uid://rf6j4c3qmupj" path="res://assets/PJS/Amolenth/Amolenth.png" id="2_u7xtf"]
-[ext_resource type="Theme" path="res://assets/theme/WordsNSwords.tres" id="4_inv3k"]
+[ext_resource type="Theme" uid="uid://cjkmwoyjf2bu5" path="res://assets/theme/WordsNSwords.tres" id="4_inv3k"]
 [ext_resource type="FontFile" uid="uid://ctgf5qs6g1evf" path="res://assets/Escenarios/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="4_xphsx"]
 [ext_resource type="Texture2D" uid="uid://du18bk1hy4o5i" path="res://assets/theme/iconos/Caja texto.png" id="5_suekk"]
-[ext_resource type="PackedScene" uid="uid://dodk5pbbgnf5b" path="res://scenes/menu_pausa.tscn" id="9_8m2yt"]
+[ext_resource type="PackedScene" uid="uid://bg3qlae7pdaw3" path="res://scenes/menu_pausa.tscn" id="9_8m2yt"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8k8h4"]
 
@@ -19,11 +19,12 @@ script = ExtResource("1_uvtav")
 
 [node name="Fondo" type="Sprite2D" parent="."]
 position = Vector2(640, 360)
+scale = Vector2(4, 4)
 texture = ExtResource("1_2pbsw")
 
 [node name="PJ" type="Sprite2D" parent="."]
 position = Vector2(625, 353)
-scale = Vector2(0.724, 0.724)
+scale = Vector2(8, 8)
 texture = ExtResource("2_u7xtf")
 
 [node name="HUD" type="Control" parent="."]

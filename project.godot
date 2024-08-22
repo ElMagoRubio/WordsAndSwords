@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Words N Swords"
-run/main_scene="res://Escena/escena_inicial.tscn"
+run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.0", "Mobile")
 config/icon="res://icon.svg"
 

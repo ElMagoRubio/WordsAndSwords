@@ -22,8 +22,7 @@ script = ExtResource("1_r4do7")
 [node name="Animaciones" type="AnimatedSprite2D" parent="CharacterBody2D"]
 scale = Vector2(5, 5)
 sprite_frames = ExtResource("2_4qibs")
-animation = &"attack_up"
-frame_progress = 0.683537
+animation = &"attack_down_air_fall"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(0, 18)
@@ -40,6 +39,22 @@ one_shot = true
 [node name="AtaqueAscendente" type="Timer" parent="CharacterBody2D"]
 one_shot = true
 
+[node name="AtaqueAereoAscendente" type="Timer" parent="CharacterBody2D"]
+wait_time = 0.5
+one_shot = true
+
+[node name="AtaqueAereoDescendente" type="Timer" parent="CharacterBody2D"]
+wait_time = 0.5
+one_shot = true
+
+[node name="AtaqueAereoDescendenteSuelo" type="Timer" parent="CharacterBody2D"]
+wait_time = 0.5
+one_shot = true
+
+[node name="AtaqueAereoFrontal" type="Timer" parent="CharacterBody2D"]
+wait_time = 0.5
+one_shot = true
+
 [node name="Hurtbox" parent="CharacterBody2D" instance=ExtResource("3_7reph")]
 visible = false
 collision_mask = 6
@@ -52,5 +67,9 @@ shape = SubResource("CapsuleShape2D_e8let")
 [connection signal="timeout" from="CharacterBody2D/AtaqueDescendente" to="CharacterBody2D" method="_on_ataque_descendente_timeout"]
 [connection signal="timeout" from="CharacterBody2D/AtaqueFrontal" to="CharacterBody2D" method="_on_ataque_frontal_timeout"]
 [connection signal="timeout" from="CharacterBody2D/AtaqueAscendente" to="CharacterBody2D" method="_on_ataque_ascendente_timeout"]
+[connection signal="timeout" from="CharacterBody2D/AtaqueAereoAscendente" to="CharacterBody2D" method="_on_ataque_aereo_ascendente_timeout"]
+[connection signal="timeout" from="CharacterBody2D/AtaqueAereoDescendente" to="CharacterBody2D" method="_on_ataque_aereo_descendente_timeout"]
+[connection signal="timeout" from="CharacterBody2D/AtaqueAereoDescendenteSuelo" to="CharacterBody2D" method="_on_ataque_aereo_descendente_suelo_timeout"]
+[connection signal="timeout" from="CharacterBody2D/AtaqueAereoFrontal" to="CharacterBody2D" method="_on_ataque_aereo_frontal_timeout"]
 
 [editable path="CharacterBody2D/Hurtbox"]

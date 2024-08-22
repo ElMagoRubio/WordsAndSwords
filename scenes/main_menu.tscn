@@ -240,13 +240,8 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_fp5vu")
 theme_override_styles/focus = SubResource("StyleBoxTexture_42nju")
 text = "Salir"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_lvfvv")
-autoplay = true
-bus = &"Musica"
-script = ExtResource("12_g5w4g")
-
 [node name="MenuContenedor" type="Control" parent="."]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -485,6 +480,12 @@ text = "PAUSA"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MenuContenedor"]
+stream = ExtResource("11_lvfvv")
+autoplay = true
+bus = &"Musica"
+script = ExtResource("12_g5w4g")
 
 [connection signal="pressed" from="MenuPrincipal/BotonJugar" to="." method="_on_boton_jugar_pressed"]
 [connection signal="pressed" from="MenuPrincipal/BotonAjustes" to="." method="_on_boton_ajustes_pressed"]

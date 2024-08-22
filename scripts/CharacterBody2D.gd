@@ -3,13 +3,17 @@ extends CharacterBody2D
 const MAX_VELOCIDAD = 400
 const ACELERACION_SALTO = 650
 const ACELERACION_SALTO_BAJO = 400
-const GRAVEDAD = 1500
+const GRAVEDAD = 1300
 const MAX_SALTOS = 2
 
 @onready var animaciones = $Animaciones
 @onready var timer_atk_descendente = $AtaqueDescendente
 @onready var timer_atk_frontal = $AtaqueFrontal
 @onready var timer_atk_ascendente = $AtaqueAscendente
+@onready var timer_atk_aereo_descendente = $AtaqueAereoDescendente
+@onready var timer_atk_aereo_descendente_suelo = $AtaqueAereoDescendenteSuelo
+@onready var timer_atk_aereo_frontal = $AtaqueAereoFrontal
+@onready var timer_atk_aereo_ascendente = $AtaqueAereoAscendente
 
 @onready var esta_atacando = false
 @onready var num_saltos = 0
@@ -18,6 +22,12 @@ func _ready():
 	inicializa_timer(timer_atk_descendente, "attack_down")
 	inicializa_timer(timer_atk_frontal, "attack_front")
 	inicializa_timer(timer_atk_ascendente, "attack_up")
+	inicializa_timer(timer_atk_aereo_descendente, "attack_down_air")
+	inicializa_timer(timer_atk_aereo_descendente_suelo, "attack_down_air_fall")
+	inicializa_timer(timer_atk_aereo_frontal, "attack_front_air")
+	inicializa_timer(timer_atk_aereo_ascendente, "attack_up_air")
+	
+	animaciones.play("idle")
 
 func _physics_process(delta):
 	var direccion = Input.get_axis("ui_move_left", "ui_move_right")
@@ -72,6 +82,8 @@ func _physics_process(delta):
 					velocity = velocity.limit_length(ACELERACION_SALTO)
 					velocity.y -= ACELERACION_SALTO
 		else:
+			if (animaciones.animation == "attack_down_air"):
+				jugador_ataque_aereo_descendente_suelo()
 			velocity.x = 0
 	
 	#Si el PJ no está en el suelo
@@ -96,24 +108,26 @@ func _physics_process(delta):
 					if Input.is_action_pressed("ui_left_atk_direction"):
 						jugador_bloqueo()
 					elif Input.is_action_just_pressed("ui_right_atk_direction"):
-						jugador_ataque_frontal()
+						jugador_ataque_aereo_frontal()
 					elif Input.is_action_just_pressed("ui_upward_atk_direction"):
-						jugador_ataque_ascendente()
+						jugador_ataque_aereo_ascendente()
 					elif Input.is_action_just_pressed("ui_downward_atk_direction"):
-						jugador_ataque_descendente()
+						velocity.y = 0
+						jugador_ataque_aereo_descendente()
 				elif animaciones.flip_h == true:
 					if Input.is_action_just_pressed("ui_left_atk_direction"):
-						jugador_ataque_frontal()
+						jugador_ataque_aereo_frontal()
 					elif Input.is_action_pressed("ui_right_atk_direction"):
 						jugador_bloqueo()
 					elif Input.is_action_just_pressed("ui_upward_atk_direction"):
-						jugador_ataque_ascendente()
+						jugador_ataque_aereo_ascendente()
 					elif Input.is_action_just_pressed("ui_downward_atk_direction"):
-						jugador_ataque_descendente()
+						velocity.y = 0
+						jugador_ataque_aereo_descendente()
 			elif num_saltos == 0:
 				animaciones.play("fall")
 			
-			velocity.y += GRAVEDAD * delta
+		velocity.y += GRAVEDAD * delta
 	
 	
 	move_and_slide()
@@ -156,6 +170,32 @@ func jugador_ataque_ascendente():
 	timer_atk_ascendente.start()
 	
 
+func jugador_ataque_aereo_descendente():
+	print("Ataque descendente aereo comienza")
+	animaciones.play("attack_down_air")
+	esta_atacando = true
+	timer_atk_aereo_descendente.start()
+
+func jugador_ataque_aereo_descendente_suelo():
+	print("Ataque descendente aereo en suelo comienza")
+	animaciones.play("attack_down_air_fall")
+	esta_atacando = true
+	timer_atk_aereo_descendente_suelo.start()
+
+
+func jugador_ataque_aereo_frontal():
+	print("Ataque frontal aereo comienza")
+	animaciones.play("attack_front_air")
+	esta_atacando = true
+	timer_atk_aereo_frontal.start()
+
+
+func jugador_ataque_aereo_ascendente():
+	print("Ataque ascendente comienza")
+	animaciones.play("attack_up_air")
+	esta_atacando = true
+	timer_atk_aereo_ascendente.start()
+
 
 func _on_ataque_descendente_timeout():
 	esta_atacando = false
@@ -170,3 +210,25 @@ func _on_ataque_frontal_timeout():
 func _on_ataque_ascendente_timeout():
 	esta_atacando = false
 	print("ataque ascendente over")
+
+
+func _on_ataque_aereo_descendente_timeout():
+	esta_atacando = false
+	print("ataque descendente aereo over")
+
+
+func _on_ataque_aereo_descendente_suelo_timeout():
+	esta_atacando = false
+	print("ataque descendente aereo en suelo over")
+
+
+func _on_ataque_aereo_frontal_timeout():
+	esta_atacando = false
+	print("ataque frontal aereo over")
+	animaciones.play("fall")
+
+
+func _on_ataque_aereo_ascendente_timeout():
+	esta_atacando = false
+	print("ataque ascendente aereo over")
+	animaciones.play("fall")

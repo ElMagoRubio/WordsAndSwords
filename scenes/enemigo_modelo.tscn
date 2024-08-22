@@ -34,14 +34,12 @@ wait_time = 0.963
 wait_time = 0.757
 
 [node name="Hurtbox" parent="CharacterBody2D" instance=ExtResource("17_bjvfq")]
-modulate = Color(1, 1, 1, 1)
 visibility_layer = 6
 
 [node name="CollisionShape2D" parent="CharacterBody2D/Hurtbox" index="0"]
 modulate = Color(1, 0, 0, 0.501961)
 position = Vector2(-27.7778, 11.1111)
 shape = SubResource("CapsuleShape2D_ss7kp")
-debug_color = Color(1, 0, 0, 0.501961)
 
 [connection signal="timeout" from="CharacterBody2D/AtaqueDescendente" to="CharacterBody2D" method="_on_ataque_descendente_timeout"]
 [connection signal="timeout" from="CharacterBody2D/AtaqueFrontal" to="CharacterBody2D" method="_on_ataque_frontal_timeout"]

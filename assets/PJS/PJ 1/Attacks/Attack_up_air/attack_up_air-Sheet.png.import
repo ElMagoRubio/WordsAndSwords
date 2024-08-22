@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjw0hdi1jcxv8"
-path="res://.godot/imported/Attack Down-Sheet.png-fc0dc65a933733596639906cd20d1c0b.ctex"
+uid="uid://hsohe3t5buig"
+path="res://.godot/imported/attack_up_air-Sheet.png-c8de87636a22b919a4c37f02ac887694.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/PJS/PJ 1/Attacks/Attack_down_air/Attack Down-Sheet.png"
-dest_files=["res://.godot/imported/Attack Down-Sheet.png-fc0dc65a933733596639906cd20d1c0b.ctex"]
+source_file="res://assets/PJS/PJ 1/Attacks/Attack_up_air/attack_up_air-Sheet.png"
+dest_files=["res://.godot/imported/attack_up_air-Sheet.png-c8de87636a22b919a4c37f02ac887694.ctex"]
 
 [params]
 
