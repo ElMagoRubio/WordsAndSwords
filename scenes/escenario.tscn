@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://df286bg8imtfy"]
+
+[ext_resource type="Texture2D" uid="uid://dgrhusqhn3ut8" path="res://assets/Escenarios/Nubes dia.png" id="1_wmiuc"]
+[ext_resource type="PackedScene" uid="uid://cgubfxfoa2htg" path="res://scenes/jugador_modelo.tscn" id="3_e22p7"]
+[ext_resource type="PackedScene" uid="uid://bg3qlae7pdaw3" path="res://scenes/menu_pausa.tscn" id="3_jyy7a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wfe0v"]
+size = Vector2(2497, 73)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v5rme"]
+size = Vector2(104, 39.5)
+
+[node name="Node2D" type="Node2D"]
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -4
+offset_right = 320.0
+offset_bottom = 180.0
+scale = Vector2(4, 4)
+texture = ExtResource("1_wmiuc")
+
+[node name="MenuJuego" parent="." instance=ExtResource("3_jyy7a")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(648.5, 711.5)
+shape = SubResource("RectangleShape2D_wfe0v")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(632, 616)
+shape = SubResource("RectangleShape2D_v5rme")
+
+[node name="Jugador" parent="." instance=ExtResource("3_e22p7")]
+position = Vector2(308, 419)
