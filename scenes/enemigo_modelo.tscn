@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3 uid="uid://bgmeso2tvcsdf"]
+
+[ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="1_vj64o"]
+[ext_resource type="SpriteFrames" uid="uid://dopie36inu3np" path="res://assets/PJS/PJ 2/pj2_spriteframe.tres" id="2_6wodw"]
+[ext_resource type="PackedScene" uid="uid://c3c43lk2rjn4i" path="res://scenes/hurtbox.tscn" id="17_bjvfq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ss7kp"]
+radius = 34.4444
+height = 155.556
+
+[node name="PJ2" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+scale = Vector2(0.9, 0.9)
+collision_mask = 3
+script = ExtResource("1_vj64o")
+
+[node name="Animaciones" type="AnimatedSprite2D" parent="CharacterBody2D"]
+scale = Vector2(5, 5)
+sprite_frames = ExtResource("2_6wodw")
+animation = &"fall"
+frame_progress = 0.788886
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(-38, 22.5)
+
+[node name="AtaqueDescendente" type="Timer" parent="CharacterBody2D"]
+wait_time = 1.188
+
+[node name="AtaqueFrontal" type="Timer" parent="CharacterBody2D"]
+wait_time = 0.963
+
+[node name="AtaqueAscendente" type="Timer" parent="CharacterBody2D"]
+wait_time = 0.757
+
+[node name="Hurtbox" parent="CharacterBody2D" instance=ExtResource("17_bjvfq")]
+modulate = Color(1, 1, 1, 1)
+visibility_layer = 6
+
+[node name="CollisionShape2D" parent="CharacterBody2D/Hurtbox" index="0"]
+modulate = Color(1, 0, 0, 0.501961)
+position = Vector2(-27.7778, 11.1111)
+shape = SubResource("CapsuleShape2D_ss7kp")
+debug_color = Color(1, 0, 0, 0.501961)
+
+[connection signal="timeout" from="CharacterBody2D/AtaqueDescendente" to="CharacterBody2D" method="_on_ataque_descendente_timeout"]
+[connection signal="timeout" from="CharacterBody2D/AtaqueFrontal" to="CharacterBody2D" method="_on_ataque_frontal_timeout"]
+[connection signal="timeout" from="CharacterBody2D/AtaqueAscendente" to="CharacterBody2D" method="_on_ataque_ascendente_timeout"]
+
+[editable path="CharacterBody2D/Hurtbox"]
