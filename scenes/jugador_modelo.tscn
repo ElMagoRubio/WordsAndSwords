@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://cgubfxfoa2htg"]
+
+[ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="1_r4do7"]
+[ext_resource type="SpriteFrames" uid="uid://d2w1v5udetyky" path="res://assets/PJS/PJ 1/pj1_spriteframe.tres" id="2_4qibs"]
+[ext_resource type="PackedScene" uid="uid://c3c43lk2rjn4i" path="res://scenes/hurtbox.tscn" id="3_7reph"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_og7np"]
+radius = 29.0
+height = 144.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e8let"]
+radius = 36.0
+height = 85.9999
+
+[node name="Jugador" type="Node2D"]
+position = Vector2(540, 299)
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+collision_mask = 6
+script = ExtResource("1_r4do7")
+
+[node name="Animaciones" type="AnimatedSprite2D" parent="CharacterBody2D"]
+scale = Vector2(5, 5)
+sprite_frames = ExtResource("2_4qibs")
+animation = &"attack_up"
+frame_progress = 0.683537
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, 18)
+shape = SubResource("CapsuleShape2D_og7np")
+
+[node name="AtaqueDescendente" type="Timer" parent="CharacterBody2D"]
+wait_time = 0.887
+one_shot = true
+
+[node name="AtaqueFrontal" type="Timer" parent="CharacterBody2D"]
+wait_time = 0.828
+one_shot = true
+
+[node name="AtaqueAscendente" type="Timer" parent="CharacterBody2D"]
+one_shot = true
+
+[node name="Hurtbox" parent="CharacterBody2D" instance=ExtResource("3_7reph")]
+visible = false
+collision_mask = 6
+
+[node name="CollisionShape2D" parent="CharacterBody2D/Hurtbox" index="0"]
+position = Vector2(-13, 52)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_e8let")
+
+[connection signal="timeout" from="CharacterBody2D/AtaqueDescendente" to="CharacterBody2D" method="_on_ataque_descendente_timeout"]
+[connection signal="timeout" from="CharacterBody2D/AtaqueFrontal" to="CharacterBody2D" method="_on_ataque_frontal_timeout"]
+[connection signal="timeout" from="CharacterBody2D/AtaqueAscendente" to="CharacterBody2D" method="_on_ataque_ascendente_timeout"]
+
+[editable path="CharacterBody2D/Hurtbox"]
