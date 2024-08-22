@@ -1,0 +1,144 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Texture2D" uid="uid://dgrhusqhn3ut8" path="res://assets/Escenarios/Nubes dia.png" id="1_2pbsw"]
+[ext_resource type="Script" path="res://scripts/amolenth_dialogue.gd" id="1_uvtav"]
+[ext_resource type="Texture2D" uid="uid://rf6j4c3qmupj" path="res://assets/PJS/Amolenth/Amolenth.png" id="2_u7xtf"]
+[ext_resource type="Theme" path="res://assets/theme/WordsNSwords.tres" id="4_inv3k"]
+[ext_resource type="FontFile" uid="uid://ctgf5qs6g1evf" path="res://assets/Escenarios/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="4_xphsx"]
+[ext_resource type="Texture2D" uid="uid://du18bk1hy4o5i" path="res://assets/theme/iconos/Caja texto.png" id="5_suekk"]
+[ext_resource type="PackedScene" uid="uid://dodk5pbbgnf5b" path="res://scenes/menu_pausa.tscn" id="9_8m2yt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8k8h4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v3hgm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xq5t7"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_uvtav")
+
+[node name="Fondo" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+texture = ExtResource("1_2pbsw")
+
+[node name="PJ" type="Sprite2D" parent="."]
+position = Vector2(625, 353)
+scale = Vector2(0.724, 0.724)
+texture = ExtResource("2_u7xtf")
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 24.0
+offset_right = 40.0
+offset_bottom = 64.0
+theme = ExtResource("4_inv3k")
+
+[node name="CajaTexto" type="Sprite2D" parent="HUD"]
+position = Vector2(672, 601)
+scale = Vector2(0.746667, 0.735)
+texture = ExtResource("5_suekk")
+
+[node name="Texto" type="TextEdit" parent="HUD/CajaTexto"]
+anchors_preset = -1
+anchor_left = 0.057
+anchor_top = 0.175
+anchor_right = 0.94
+anchor_bottom = 0.803
+offset_left = -600.0
+offset_top = -100.0
+offset_right = -600.0
+offset_bottom = -100.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_readonly_color = Color(0.286275, 0.286275, 0.286275, 1)
+theme_override_colors/font_placeholder_color = Color(0.286275, 0.286275, 0.286275, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/caret_background_color = Color(0.807843, 0.752941, 0.576471, 1)
+theme_override_constants/caret_width = 2
+theme_override_fonts/font = ExtResource("4_xphsx")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8k8h4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_v3hgm")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_xq5t7")
+placeholder_text = "Pulsa aquí para hablar"
+wrap_mode = 1
+scroll_v_scroll_speed = 20.0
+text_direction = 1
+
+[node name="Label" type="Label" parent="HUD"]
+clip_contents = true
+layout_mode = 0
+offset_left = 492.0
+offset_top = -16.0
+offset_right = 788.0
+offset_bottom = 60.0
+theme = ExtResource("4_inv3k")
+theme_type_variation = &"HeaderMedium"
+text = "Amolenth"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
+[node name="Hablar" type="Button" parent="HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 977.0
+offset_top = 8.0
+offset_right = 1176.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Hablar"
+icon_alignment = 1
+
+[node name="Enviar" type="Button" parent="HUD"]
+layout_mode = 0
+offset_left = 977.0
+offset_top = 8.0
+offset_right = 1216.0
+offset_bottom = 72.0
+text = "Enviar"
+
+[node name="Retar" type="Button" parent="HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 977.0
+offset_top = 112.0
+offset_right = 1176.0
+offset_bottom = 136.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Retar"
+icon_alignment = 1
+
+[node name="Rendirse" type="Button" parent="HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 977.0
+offset_top = 216.0
+offset_right = 1176.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Rendirse
+"
+icon_alignment = 1
+
+[node name="MenuJuego" parent="." instance=ExtResource("9_8m2yt")]
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="focus_entered" from="HUD/CajaTexto/Texto" to="." method="_on_texto_focus_entered"]
+[connection signal="pressed" from="HUD/Hablar" to="." method="_on_hablar_pressed"]
+[connection signal="pressed" from="HUD/Enviar" to="." method="_on_enviar_pressed"]
+[connection signal="pressed" from="HUD/Retar" to="." method="_on_retar_pressed"]
+[connection signal="pressed" from="HUD/Rendirse" to="." method="_on_rendirse_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
