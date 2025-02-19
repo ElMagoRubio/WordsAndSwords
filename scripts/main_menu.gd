@@ -3,11 +3,13 @@ extends Control
 @onready var logo = $Logo
 @onready var menuPrincipal = $MenuPrincipal
 @onready var menuContenedor = $MenuContenedor
+@onready var textAjustes = $MenuContenedor/TextAjustes
 
 func _ready():
 	logo.visible = true
 	menuPrincipal.visible = true
 	menuContenedor.visible = false
+	textAjustes.visible = false
 
 func _on_boton_jugar_pressed():
 	get_tree().change_scene_to_file("res://scenes/amolenth_dialogue.tscn")
@@ -17,6 +19,7 @@ func _on_boton_ajustes_pressed():
 	logo.visible = false
 	menuPrincipal.visible = false
 	menuContenedor.visible = true
+	textAjustes.visible = true
 
 func _on_boton_salir_pressed():
 	get_tree().quit()

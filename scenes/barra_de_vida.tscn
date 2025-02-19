@@ -1,0 +1,133 @@
+[gd_scene load_steps=13 format=3 uid="uid://b5bgu1twcy5bm"]
+
+[ext_resource type="Texture2D" uid="uid://bqxykjq8h2y52" path="res://assets/theme/iconos/CrimsonFantasyGUI/AnimationSheets/HealthRegeneration/LifeHealing-Sheet.png" id="1_56c57"]
+[ext_resource type="Script" path="res://scripts/barra_de_vida.gd" id="1_pnkej"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_861d1"]
+atlas = ExtResource("1_56c57")
+region = Rect2(0, 0, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s865l"]
+atlas = ExtResource("1_56c57")
+region = Rect2(0, 16, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0aam8"]
+atlas = ExtResource("1_56c57")
+region = Rect2(0, 32, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4lcv"]
+atlas = ExtResource("1_56c57")
+region = Rect2(0, 48, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmixu"]
+atlas = ExtResource("1_56c57")
+region = Rect2(0, 64, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fxymc"]
+atlas = ExtResource("1_56c57")
+region = Rect2(0, 80, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfq5v"]
+atlas = ExtResource("1_56c57")
+region = Rect2(0, 96, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jh54g"]
+atlas = ExtResource("1_56c57")
+region = Rect2(0, 112, 64, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17e8f"]
+atlas = ExtResource("1_56c57")
+region = Rect2(0, 128, 64, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8o2hb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_861d1")
+}],
+"loop": true,
+"name": &"hp_0",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s865l")
+}],
+"loop": true,
+"name": &"hp_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0aam8")
+}],
+"loop": true,
+"name": &"hp_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4lcv")
+}],
+"loop": true,
+"name": &"hp_3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmixu")
+}],
+"loop": true,
+"name": &"hp_4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fxymc")
+}],
+"loop": true,
+"name": &"hp_5",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfq5v")
+}],
+"loop": true,
+"name": &"hp_6",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jh54g")
+}],
+"loop": true,
+"name": &"hp_7",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17e8f")
+}],
+"loop": true,
+"name": &"hp_8",
+"speed": 5.0
+}]
+
+[node name="Barra de vida" type="Node2D"]
+script = ExtResource("1_pnkej")
+
+[node name="Estados" type="AnimatedSprite2D" parent="."]
+position = Vector2(192, 48)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_8o2hb")
+animation = &"hp_7"
+
+[node name="Button" type="Button" parent="Estados"]
+offset_left = -32.0
+offset_top = -8.0
+offset_right = 32.0
+offset_bottom = 8.0
+flat = true
+
+[connection signal="pressed" from="Estados/Button" to="." method="recibe_golpe"]

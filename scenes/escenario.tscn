@@ -1,17 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://df286bg8imtfy"]
+[gd_scene load_steps=9 format=3 uid="uid://b47du5f718d30"]
 
+[ext_resource type="Script" path="res://scenes/escenario.gd" id="1_35b3m"]
 [ext_resource type="Texture2D" uid="uid://dgrhusqhn3ut8" path="res://assets/Escenarios/Nubes dia.png" id="1_wmiuc"]
-[ext_resource type="PackedScene" uid="uid://cgubfxfoa2htg" path="res://scenes/jugador_modelo.tscn" id="3_e22p7"]
+[ext_resource type="PackedScene" uid="uid://de2cwflcp20in" path="res://scenes/jugador_modelo.tscn" id="3_e22p7"]
 [ext_resource type="PackedScene" uid="uid://bg3qlae7pdaw3" path="res://scenes/menu_pausa.tscn" id="3_jyy7a"]
+[ext_resource type="PackedScene" uid="uid://b5bgu1twcy5bm" path="res://scenes/barra_de_vida.tscn" id="4_y3bbn"]
+[ext_resource type="PackedScene" uid="uid://bkoosg13vjtn5" path="res://scenes/enemigo_modelo.tscn" id="5_p707k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfe0v"]
 size = Vector2(2497, 73)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v5rme"]
-size = Vector2(104, 39.5)
+size = Vector2(208, 39.5)
 
 [node name="Node2D" type="Node2D"]
-metadata/_edit_lock_ = true
+script = ExtResource("1_35b3m")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -4
@@ -21,6 +24,10 @@ scale = Vector2(4, 4)
 texture = ExtResource("1_wmiuc")
 
 [node name="MenuJuego" parent="." instance=ExtResource("3_jyy7a")]
+offset_left = -72.0
+offset_top = -16.0
+offset_right = -32.0
+offset_bottom = 24.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 4
@@ -31,8 +38,23 @@ position = Vector2(648.5, 711.5)
 shape = SubResource("RectangleShape2D_wfe0v")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(632, 616)
+position = Vector2(640, 595)
 shape = SubResource("RectangleShape2D_v5rme")
 
 [node name="Jugador" parent="." instance=ExtResource("3_e22p7")]
 position = Vector2(308, 419)
+
+[node name="Enemigo" parent="." instance=ExtResource("5_p707k")]
+position = Vector2(960, 400)
+
+[node name="VidaJugador" parent="." instance=ExtResource("4_y3bbn")]
+position = Vector2(53, 3)
+
+[node name="VidaEnemigo" parent="." instance=ExtResource("4_y3bbn")]
+position = Vector2(896, 8)
+
+[node name="Estados" parent="VidaEnemigo" index="0"]
+position = Vector2(139, 43)
+flip_h = true
+
+[editable path="VidaEnemigo"]

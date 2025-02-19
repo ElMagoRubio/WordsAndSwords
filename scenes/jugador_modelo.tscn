@@ -1,16 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cgubfxfoa2htg"]
+[gd_scene load_steps=4 format=3 uid="uid://de2cwflcp20in"]
 
 [ext_resource type="Script" path="res://scripts/CharacterBody2D.gd" id="1_r4do7"]
-[ext_resource type="SpriteFrames" uid="uid://d2w1v5udetyky" path="res://assets/PJS/PJ 1/pj1_spriteframe.tres" id="2_4qibs"]
-[ext_resource type="PackedScene" uid="uid://c3c43lk2rjn4i" path="res://scenes/hurtbox.tscn" id="3_7reph"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_og7np"]
-radius = 29.0
-height = 144.0
+[ext_resource type="SpriteFrames" uid="uid://b0r6qnfpcjkkj" path="res://assets/PJS/PJ 3/pj3_spriteframes.tres" id="2_nveqd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e8let"]
-radius = 36.0
-height = 85.9999
+resource_local_to_scene = true
+radius = 19.0
+height = 84.0
 
 [node name="Jugador" type="Node2D"]
 position = Vector2(540, 299)
@@ -20,13 +16,12 @@ collision_mask = 6
 script = ExtResource("1_r4do7")
 
 [node name="Animaciones" type="AnimatedSprite2D" parent="CharacterBody2D"]
-scale = Vector2(5, 5)
-sprite_frames = ExtResource("2_4qibs")
-animation = &"attack_down_air_fall"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(0, 18)
-shape = SubResource("CapsuleShape2D_og7np")
+position = Vector2(3.02271, -40)
+scale = Vector2(4.68182, 4.68182)
+sprite_frames = ExtResource("2_nveqd")
+animation = &"slide"
+frame = 3
+frame_progress = 1.0
 
 [node name="AtaqueDescendente" type="Timer" parent="CharacterBody2D"]
 wait_time = 0.887
@@ -48,21 +43,24 @@ wait_time = 0.5
 one_shot = true
 
 [node name="AtaqueAereoDescendenteSuelo" type="Timer" parent="CharacterBody2D"]
-wait_time = 0.5
 one_shot = true
 
 [node name="AtaqueAereoFrontal" type="Timer" parent="CharacterBody2D"]
 wait_time = 0.5
 one_shot = true
 
-[node name="Hurtbox" parent="CharacterBody2D" instance=ExtResource("3_7reph")]
-visible = false
-collision_mask = 6
+[node name="Golpe" type="Timer" parent="CharacterBody2D"]
+wait_time = 0.5
+one_shot = true
 
-[node name="CollisionShape2D" parent="CharacterBody2D/Hurtbox" index="0"]
-position = Vector2(-13, 52)
-rotation = 1.5708
+[node name="Muerte" type="Timer" parent="CharacterBody2D"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Hurtbox" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(3, -35)
 shape = SubResource("CapsuleShape2D_e8let")
+debug_color = Color(1, 0, 0, 0.247059)
 
 [connection signal="timeout" from="CharacterBody2D/AtaqueDescendente" to="CharacterBody2D" method="_on_ataque_descendente_timeout"]
 [connection signal="timeout" from="CharacterBody2D/AtaqueFrontal" to="CharacterBody2D" method="_on_ataque_frontal_timeout"]
@@ -71,5 +69,5 @@ shape = SubResource("CapsuleShape2D_e8let")
 [connection signal="timeout" from="CharacterBody2D/AtaqueAereoDescendente" to="CharacterBody2D" method="_on_ataque_aereo_descendente_timeout"]
 [connection signal="timeout" from="CharacterBody2D/AtaqueAereoDescendenteSuelo" to="CharacterBody2D" method="_on_ataque_aereo_descendente_suelo_timeout"]
 [connection signal="timeout" from="CharacterBody2D/AtaqueAereoFrontal" to="CharacterBody2D" method="_on_ataque_aereo_frontal_timeout"]
-
-[editable path="CharacterBody2D/Hurtbox"]
+[connection signal="timeout" from="CharacterBody2D/Golpe" to="CharacterBody2D" method="_on_ataque_aereo_frontal_timeout"]
+[connection signal="timeout" from="CharacterBody2D/Muerte" to="CharacterBody2D" method="_on_ataque_aereo_frontal_timeout"]
