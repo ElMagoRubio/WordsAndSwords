@@ -241,7 +241,6 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_42nju")
 text = "Salir"
 
 [node name="MenuContenedor" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -476,7 +475,20 @@ offset_right = 917.0
 offset_bottom = 171.0
 scale = Vector2(0.75, 0.75)
 theme = ExtResource("6_pa6ep")
-text = "PAUSA"
+text = "OPCIONES"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="TextAjustes" type="Label" parent="MenuContenedor"]
+layout_mode = 0
+offset_left = 474.0
+offset_top = 57.0
+offset_right = 917.0
+offset_bottom = 171.0
+scale = Vector2(0.75, 0.75)
+theme = ExtResource("6_pa6ep")
+text = "OPCIONES"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true

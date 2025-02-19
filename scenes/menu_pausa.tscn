@@ -379,6 +379,7 @@ offset_left = 86.0
 offset_top = 27.0
 offset_right = 181.0
 offset_bottom = 122.0
+scale = Vector2(0.75, 0.75)
 theme_override_styles/normal = SubResource("StyleBoxTexture_tjugc")
 theme_override_styles/hover = SubResource("StyleBoxTexture_lwp0t")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_wc8qa")
