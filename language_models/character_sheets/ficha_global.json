@@ -1,0 +1,82 @@
+[
+  {
+    "nombre": "Torneo de Sucesión",
+    "tipo": "Evento",
+    "descripción": "Un torneo organizado por el rey Vilgard para seleccionar a su sucesor. Atrae a los mejores combatientes del reino de Feirun, con la promesa de que el ganador será el próximo rey, sin importar su procedencia. Además de ser una competencia física, es también un espacio de intriga política y ambición personal, ya que muchos participantes tienen agendas ocultas."
+  },
+  {
+    "nombre": "Guerra del Reino de Feirun",
+    "tipo": "Evento",
+    "descripción": "Un conflicto militar que sumió al reino en una cruenta guerra civil. El conflicto estalló tras años de represión por parte del antiguo rey, Telme IV el Destronado. Tras dos largos años en los que la guerra se había enquistado, un joven noble llamado Vilgard desertó del ejército y consiguió reunir a las divididas fuerzas opuestas al rey bajo su mando. Reavivada la llama de la rebelión, el ejército leal al rey fue incapaz de defender su posición, y finalmente se capturó al rey Telme tras un asedio a la capital. El desenlace del conflicto supuso la ejecución del antiguo rey Telme y la coronación de Vilgard como nuevo rey."
+  },
+  {
+    "nombre": "La Pacificación",
+    "tipo": "Evento",
+    "descripción": "Una campaña militar en la que se sofocaron con dureza unas revueltas campesinas en la frontera occidental del reino de Feirun. La campaña llevó al ejército a destruir y arrasar varios pueblos y aldeas, que culminó con la Quema de Brenforte. Las gentes del Oeste, sin embargo, afirman que las revueltas campesinas jamás se produjeron."
+  },
+  {
+    "nombre": "Quema de Brenforte",
+    "tipo": "Evento",
+    "descripción": "También conocida como la Matanza de Brenforte, supuso el fin de La Pacificación. Esta maniobra militar supuso el asedio y destrucción de la ciudad de Brenforte, además de las masivas ejecuciones de campesinos."
+  },
+  {
+    "nombre": "Ascenso de Vilgard al trono",
+    "tipo": "Evento",
+    "descripción": "Tras erigirse como líder de la rebelión y derrocar al antiguo rey, Telme IV el Destronado, Vilgard fue coronado como rey de Feirun. En su juventud, fue aclamado como un hábil espadachín y un líder fuerte, pero tras asumir el poder, su enfoque cambió hacia los placeres y lujos que acompañan la vida real. A pesar de su pasado glorioso, su reinado se ha caracterizado por una creciente decadencia."
+  },
+  {
+    "nombre": "Palacio Real de Feirun",
+    "tipo": "Lugar",
+    "descripción": "El centro del poder del reino de Feirun, donde reside el rey Vilgard. Es un espacio opulento, lleno de intrigas cortesanas y donde se toman las decisiones políticas más importantes. El palacio es conocido por sus fastuosos banquetes, eventos y torneos, que reflejan el estilo de vida hedonista del monarca. No es raro que el rey participe en dichos torneos, en los cuáles se encuentra aún invicto."
+  },
+  {
+    "nombre": "Corte de Feirun",
+    "tipo": "Lugar",
+    "descripción": "El lugar donde los nobles del reino se reúnen para discutir política, formar alianzas y orquestar intrigas. La corte es un espacio clave en el sistema político de Feirun, y aquellos que buscan poder o influencia pasan mucho tiempo aquí. Las lealtades en la corte son volátiles, y los nobles están constantemente buscando su ventaja."
+  },
+  {
+    "nombre": "Campos del Torneo de Sucesión",
+    "tipo": "Lugar",
+    "descripción": "Un vasto escenario construido específicamente para las pruebas del Torneo de Sucesión. Aquí, los competidores se miden en una serie de desafíos diseñados para probar sus habilidades físicas y estratégicas. Los campos son un punto de encuentro para los habitantes del reino, quienes asisten como espectadores de los combates."
+  },
+  {
+    "nombre": "Brenforte",
+    "tipo": "Lugar",
+    "descripción": "Antaño una gran ciudad y capital de la región del Oeste, ahora se encuentra en ruinas. Fue reducida a cenizas por el ejército real en la Quema de Brenforte, como medio para aplacar finalmente las revueltas campesinas de la región."
+  },
+  {
+    "nombre": "Monte Laidaho",
+    "tipo": "Lugar",
+    "descripción": "Un gran monte que da nombre a la región de Laidaho, al norte de Feirun."
+  },
+  {
+    "nombre": "Laidaho",
+    "tipo": "Lugar",
+    "descripción": "Región que se encuentra al norte del reino, delimitada por el Monte Laidaho y sus alrededores. Esta región es conocida por sus fértiles tierras, su producción agrícola y su indómita belleza."
+  },
+  {
+    "nombre": "Vilgard",
+    "tipo": "Personaje",
+    "descripción": "Rey de Feirun. Aunque alguna vez fue un líder y guerrero admirado, Vilgard ahora se dedica a los lujos y placeres de la realeza. Ha organizado el Torneo de Sucesión en busca de un sucesor digno. También se le conoce como El Destello de Acero por su gran habilidad con la espada."
+  },
+  {
+    "nombre": "Galeth",
+    "tipo": "Personaje",
+    "descripción": "General del ejército de Feirun y mano derecha de Vilgard. Galeth es temido por haber sido el líder militar de La Pacificación."
+  },
+  {
+    "nombre": "Easttain",
+    "tipo": "Personaje",
+    "descripción": "Un aspirante de la nobleza que participa en el Torneo de Sucesión como favorito del pueblo. Easttain es conocido por su encanto y su rápida ascensión en los puestos de la corte. Es joven, educado y posee un aura de nobleza inmaculada."
+  },
+  {
+    "nombre": "Amolenth",
+    "tipo": "Personaje",
+    "descripción": "Una joven prodigio del mandoble, conocida por su orgullo y confianza en su habilidad."
+  },
+  {
+    "nombre": "Baspiek",
+    "tipo": "Personaje",
+    "descripción": "Una joven promesa que se ha hecho un nombre en las arenas de combate ilegales. Gracias a esto, ha conseguido una invitación para participar en el Torneo de Sucesión."
+  }
+]
