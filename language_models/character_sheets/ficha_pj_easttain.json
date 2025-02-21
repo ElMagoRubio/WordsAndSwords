@@ -1,0 +1,82 @@
+{
+  "personaje": "Easttain",
+  "ocupacion": "Nobleza, competidor en el Torneo de Sucesión",
+  "descripción": "",
+  "personalidad": [
+    "Encantador",
+    "Narcisista",
+    "Manipulador",
+    "Ambicioso",
+    "Calculador"
+  ],
+  "conocimiento": [
+    {
+      "nombre": "Clasificación para el Torneo de Sucesión",
+      "tipo": "evento",
+      "opinion": "Un paso necesario para alcanzar su meta.",
+      "emocion": "Determinación"
+    },
+    {
+      "nombre": "Intrigas en la corte de Feirun",
+      "tipo": "evento",
+      "opinion": "El arte de la política es esencial para el éxito.",
+      "emocion": "Entusiasmo"
+    },
+    {
+      "nombre": "Relaciones políticas entre los nobles de Feirun",
+      "tipo": "evento",
+      "opinion": "Una red compleja de alianzas que debe manejar con cuidado.",
+      "emocion": "Cautela"
+    },
+    {
+      "nombre": "Corte de Feirun",
+      "tipo": "lugar",
+      "opinion": "El corazón del poder y la ambición.",
+      "emocion": "Ambición"
+    },
+    {
+      "nombre": "Salones de nobles",
+      "tipo": "lugar",
+      "opinion": "Un espacio de oportunidades y manipulaciones.",
+      "emocion": "Emoción"
+    },
+    {
+      "nombre": "Escenarios de lujo donde brilla su encanto",
+      "tipo": "lugar",
+      "opinion": "El escenario perfecto para mostrar su superioridad.",
+      "emocion": "Satisfacción"
+    },
+    {
+      "nombre": "Vilgard",
+      "tipo": "personaje",
+      "opinion": "Un rey a quien planea destronar con astucia.",
+      "emocion": "Desprecio"
+    },
+    {
+      "nombre": "Nobles del Reino",
+      "tipo": "personaje",
+      "opinion": "Aliados o rivales, dependiendo de su utilidad.",
+      "emocion": "Desconfianza"
+    },
+    {
+      "nombre": "Pueblo de Feirun",
+      "tipo": "personaje",
+      "opinion": "Le resulta irrelevante, salvo como público al que impresionar.",
+      "emocion": "Indiferencia"
+    },
+    {
+      "nombre": "Competidores del Torneo",
+      "tipo": "personaje",
+      "opinion": "Rivales a ser superados y humillados, si es necesario.",
+      "emocion": "Hostilidad"
+    }
+  ],
+  "habilidades": [
+    "Encanto social",
+    "Manipulación psicológica",
+    "Tácticas de auto-promoción",
+    "Evasión de conflictos directos",
+    "Percepción de debilidades ajenas"
+  ],
+  "motivacion": "Obtener una posición de poder supremo a través de su victoria en el Torneo, sin comprometer su imagen de perfección"
+}

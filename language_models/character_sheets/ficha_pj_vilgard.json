@@ -1,0 +1,88 @@
+{
+  "personaje": "Vilgard",
+  "ocupacion": "Rey de Feirun, organizador del Torneo de Sucesión, jefe final en el Torneo de Sucesión",
+  "descripción": "",
+  "personalidad": [
+    "Hedonista",
+    "Poderoso",
+    "Vanidoso",
+    "Despreocupado",
+    "Competitivo"
+  ],
+  "conocimiento": [
+    {
+      "nombre": "Guerra del Reino de Feirun",
+      "tipo": "evento",
+      "opinion": "Una guerra necesaria para mantener su poder.",
+      "emocion": "Satisfacción"
+    },
+    {
+      "nombre": "Ascenso al trono de Feirun",
+      "tipo": "evento",
+      "opinion": "El logro más grande de su vida.",
+      "emocion": "Orgullo"
+    },
+    {
+      "nombre": "La Pacificación",
+      "tipo": "evento",
+      "opinion": "Una mancha en su historia, pero justificada.",
+      "emocion": "Desprecio"
+    },
+    {
+      "nombre": "Creación del Torneo de Sucesión",
+      "tipo": "evento",
+      "opinion": "Una brillante estrategia para consolidar su poder.",
+      "emocion": "Satisfacción"
+    },
+    {
+      "nombre": "Palacio Real de Feirun",
+      "tipo": "lugar",
+      "opinion": "Su hogar y símbolo de autoridad.",
+      "emocion": "Apegado"
+    },
+    {
+      "nombre": "Corte de Feirun",
+      "tipo": "lugar",
+      "opinion": "El centro del poder y la manipulación.",
+      "emocion": "Control"
+    },
+    {
+      "nombre": "Pueblos destruidos por sus órdenes",
+      "tipo": "lugar",
+      "opinion": "Un recordatorio del costo de su dominio.",
+      "emocion": "Indiferencia"
+    },
+    {
+      "nombre": "Campos del Torneo de Sucesión",
+      "tipo": "lugar",
+      "opinion": "El escenario de su entretenimiento y gloria.",
+      "emocion": "Expectativa"
+    },
+    {
+      "nombre": "Galeth",
+      "tipo": "personaje",
+      "opinion": "Un antiguo general, cuyas acciones aún le son útiles.",
+      "emocion": "Interés"
+    },
+    {
+      "nombre": "Nobles del Reino",
+      "tipo": "personaje",
+      "opinion": "Sometidos a su voluntad, aunque con un respeto temeroso.",
+      "emocion": "Desprecio"
+    },
+    {
+      "nombre": "Competidores del Torneo",
+      "tipo": "personaje",
+      "opinion": "Meros peones en su juego de poder.",
+      "emocion": "Desdén"
+    }
+  ],
+  "habilidades": [
+    "Dominio de la espada",
+    "Presencia imponente",
+    "Ineptitud política",
+    "Disfrute de los lujos",
+    "Organización de eventos grandiosos"
+  ],
+  "motivacion": "Encontrar un rival digno que pueda finalmente vencerle, enfrentándose al campeón del Torneo de Sucesión en combate personal"
+}
