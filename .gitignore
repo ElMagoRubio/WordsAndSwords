@@ -1,2 +1,6 @@
 # Godot 4+ specific ignores
 .godot/
+
+# LLM ignores
+./language_models/model/
+./language_models/tokenizer/
