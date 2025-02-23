@@ -1,5 +1,6 @@
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 import torch
+import torch.nn.functional as F  # Importamos para aplicar softmax
 
 # Ruta local donde descargaste el modelo
 model_path = "./model/michellejieli_emotion_text_classifier"
@@ -10,15 +11,10 @@ tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
 model = AutoModelForSequenceClassification.from_pretrained(model_path)
 
 # Texto a analizar
-texts = [
-    "What the hell is that?",
-    "I cried for hours.",
-    "Hello there.",
-    "Yay!",
-    "Please, don't kill me!",
-    "You disgust me.",
-    "I'm gonna murder you."
-]
+texts = ["Holy Mother of Christ"]
+
+# Etiquetas de emoción (según la documentación del modelo)
+labels = ["ira", "asco", "miedo", "alegría", "neutral", "tristeza", "sorpresa"]
 
 for text in texts:
     # Tokenizar el texto
@@ -28,14 +24,17 @@ for text in texts:
     with torch.no_grad():
         outputs = model(**inputs)
 
-    # Obtener la emoción predicha
+    # Obtener las logits y aplicar softmax para obtener probabilidades
     logits = outputs.logits
-    predicted_class = torch.argmax(logits, dim=1).item()
+    probabilities = F.softmax(logits, dim=1).squeeze().tolist()
 
-    # Etiquetas de emoción (según la documentación del modelo)
-    labels = ["anger", "disgust", "fear", "joy", "neutral", "sadness", "surprise"]
+    # Mostrar todas las probabilidades
+    print(f"Texto: {text}")
+    for label, prob in zip(labels, probabilities):
+        print(f"{label}: {prob:.4f}")
+    
+    # Obtener la emoción con mayor probabilidad
+    predicted_class = torch.argmax(logits, dim=1).item()
     predicted_emotion = labels[predicted_class]
 
-    # Mostrar resultado
-    print(f"Texto: {text}")
     print(f"Emoción predicha: {predicted_emotion}\n")
