@@ -9,11 +9,14 @@ tokenizer_path = "./tokenizer/google_flan-t5-base"
 tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
 model = AutoModelForSeq2SeqLM.from_pretrained(model_path)
 
-# Definir el prompt
-prompt = "Hello? What is your name?"
+# Definir el prompt y contexto
+context = "You are a medieval peasant called Emerick"
+prompt = "And what is thy name, servant?"
+
+input_text = f"Contexto: {context} Pregunta: {prompt}"
 
 # Tokenizar la entrada
-inputs = tokenizer(prompt, return_tensors="pt")
+inputs = tokenizer(input_text, return_tensors="pt")
 
 # Generar la respuesta del modelo
 with torch.no_grad():
@@ -21,5 +24,6 @@ with torch.no_grad():
     response = tokenizer.decode(outputs[0], skip_special_tokens=True)
 
 # Mostrar la respuesta
+print("Contexto:", context)
 print("Pregunta:", prompt)
 print("Respuesta:", response)
