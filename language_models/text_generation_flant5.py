@@ -24,8 +24,6 @@ input_text = f"Context: {context}\nPrompt: {prompt}"
 # Tokenizar la entrada
 inputs = tokenizer(input_text, return_tensors="pt")
 
-total_time = 0
-
 start_time = time.time()
     
 with torch.no_grad():
@@ -41,9 +39,9 @@ with torch.no_grad():
 # Decodificar la respuesta
 response = tokenizer.decode(outputs[0], skip_special_tokens=True)
 
-end_time = time.time()
-total_time += (end_time - start_time)
+#Calcular el tiempo de respuesta
+total_time = time.time() - start_time
 
-# Mostrar la respuesta y el tiempo medio
+# Mostrar la respuesta y el tiempo de respuesta
 print(f"Respuesta generada: {response}")
-print(f"Tiempo medio por respuesta: {total_time:.4f} segundos")
+print(f"Tiempo de respuesta: {total_time:.4f} segundos")
