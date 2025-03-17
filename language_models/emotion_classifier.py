@@ -1,10 +1,13 @@
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
-import torch
+import os, time, torch
 import torch.nn.functional as F  # Importamos para aplicar softmax
 
-# Ruta local donde descargaste el modelo
-model_path = "./model/michellejieli_emotion_text_classifier"
-tokenizer_path = "./tokenizer/michellejieli_emotion_text_classifier"
+# Obtener la ruta absoluta del directorio donde está este script
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Rutas locales del modelo y el tokenizador
+model_path = os.path.join(BASE_DIR, "model/michellejieli_emotion_text_classifier")
+tokenizer_path = os.path.join(BASE_DIR, "tokenizer/michellejieli_emotion_text_classifier")
 
 # Cargar el modelo y el tokenizador
 tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
