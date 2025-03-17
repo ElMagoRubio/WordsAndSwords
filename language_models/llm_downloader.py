@@ -6,6 +6,10 @@ from transformers import (
     AutoModelForCausalLM, 
     AutoModelForSeq2SeqLM
 )
+import os
+
+# Obtener la ruta absoluta del directorio donde está este script
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 model_list = [
     ("michellejieli/emotion_text_classifier", AutoModelForSequenceClassification), 
@@ -22,10 +26,10 @@ for model_name, ModelClass in model_list:
 
     #Descarga y guardado del tokenizador
     tokenizer = AutoTokenizer.from_pretrained(model_name)
-    tokenizer.save_pretrained("./tokenizer/" + safe_model_name)
+    tokenizer.save_pretrained(os.path.join(BASE_DIR,"tokenizer", safe_model_name))
     
     #Descarga y guardado del modelo con su tipo específico
     model = ModelClass.from_pretrained(model_name)
-    model.save_pretrained(f"./model/{safe_model_name}")
+    model.save_pretrained(os.path.join(BASE_DIR, "model/", safe_model_name))
 
     print(f"Modelo {model_name} guardado en './model/{safe_model_name}' y su tokenizador en './tokenizer/{safe_model_name}'\n")

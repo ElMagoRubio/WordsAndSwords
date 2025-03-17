@@ -8,32 +8,37 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 model_path = os.path.join(BASE_DIR, "model/deepset_tinyroberta-squad2")
 tokenizer_path = os.path.join(BASE_DIR, "tokenizer/deepset_tinyroberta-squad2")
 
-# Cargar el modelo y el tokenizador desde las carpetas locales
+# Cargar modelo y tokenizador
 tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
 model = AutoModelForQuestionAnswering.from_pretrained(model_path)
 
-# Definir el prompt (pregunta) y el contexto
-context = "You are a medieval peasant called Robert. You must answer to your king. End each utterance with ', your Majesty'."
-prompt = "What is your craft?"
+# Definir el contexto y la pregunta
+context = ("You are a medieval peasant called Robert. You must answer to your king. "
+           "Robert speaks in a respectful manner, in a humble and ancient tone. "
+           "Robert ends his sentences with ', your Majesty'")
 
-# Tokenizar la entrada
+#Texto base
+#prompt = "[King]: What is your craft?"
+
+# Introducir entrada de texto: 
+prompt = input("Ingresa un texto que analizar: ").strip()
+
+# Crear el input combinando contexto y pregunta
 inputs = tokenizer(prompt, context, return_tensors="pt")
 
+# Inicio de medición del tiempo de generación de respuesta
 start_time = time.time()
+
+# Generar respuesta
 with torch.no_grad():
     outputs = model(**inputs)
     answer_start = torch.argmax(outputs.start_logits)
     answer_end = torch.argmax(outputs.end_logits) + 1
-    answer = tokenizer.convert_tokens_to_string(
+    response = tokenizer.convert_tokens_to_string(
         tokenizer.convert_ids_to_tokens(inputs["input_ids"][0][answer_start:answer_end])
     )
 
-# Decodificar la respuesta
-response = tokenizer.convert_tokens_to_string(
-    tokenizer.convert_ids_to_tokens(inputs["input_ids"][0][answer_start:answer_end])
-)
-
-#Calcular el tiempo de respuesta
+# Calcular el tiempo de respuesta
 total_time = time.time() - start_time
 
 # Mostrar la respuesta y el tiempo de respuesta

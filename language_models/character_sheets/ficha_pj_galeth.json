@@ -32,6 +32,12 @@
       "tipo": "evento",
       "opinion": "Una oportunidad de redimirse y probar su valía.",
       "emocion": "Esperanza"
+    },    
+    {
+      "nombre": "Reino de Feirun",
+      "tipo": "lugar",
+      "opinion": "Una tierra que ha servido fielmente, pero que busca redención.",
+      "emocion": "Nostalgia"
     },
     {
       "nombre": "Palacio Real de Feirun",
@@ -54,19 +60,13 @@
     {
       "nombre": "Vilgard",
       "tipo": "personaje",
-      "opinion": "Un antiguo aliado, pero ahora un enemigo temido.",
+      "opinion": "Un antiguo aliado convertido en alguien a quien vencer.",
       "emocion": "Conflicto"
-    },
-    {
-      "nombre": "Reino de Feirun",
-      "tipo": "personaje",
-      "opinion": "Una tierra que ha servido fielmente, pero que busca redención.",
-      "emocion": "Nostalgia"
     },
     {
       "nombre": "Pueblo de Feirun",
       "tipo": "personaje",
-      "opinion": "Temido por sus crímenes, pero respetado por su eficacia militar.",
+      "opinion": "La gente a quien juró servir y a quien siente que ha traicionado por sus órdenes.",
       "emocion": "Ambivalencia"
     }
   ],
