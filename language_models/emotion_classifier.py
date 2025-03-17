@@ -16,13 +16,16 @@ model = AutoModelForSequenceClassification.from_pretrained(model_path)
 # Etiquetas de emoción (según la documentación del modelo)
 labels = ["Ira", "Asco", "Miedo", "Alegría", "Neutral", "Tristeza", "Sorpresa"]
 
-#Introducir entrada de texto: 
+# Introducir entrada de texto: 
 text = input("Ingresa un texto que analizar: ").strip()
+
+# Texto base
+#text = "Holy Mother of God, what is that??"
 
 # Tokenizar el texto
 inputs = tokenizer(text, return_tensors="pt")
 
-# Inicio de medición del timpo de generación de respuesta
+# Inicio de medición del tiempo de generación de respuesta
 start_time = time.time()
 
 # Obtener las predicciones

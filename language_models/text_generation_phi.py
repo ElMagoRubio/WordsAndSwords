@@ -13,6 +13,7 @@ model = Phi3ForCausalLM.from_pretrained(
     model_path,
     device_map="auto",
     torch_dtype="auto",
+    trust_remote_code=True
 )
 
 # Si se usa PyTorch 2.0+, compilamos el modelo para mayor eficiencia en GPU
@@ -30,20 +31,19 @@ pipe = pipeline(
 )
 
 generation_args = {
-    "max_new_tokens": 100,
+    "max_new_tokens": 50,  # Reducimos la longitud máxima
     "return_full_text": False,
-    "temperature": 0.5,
-    "do_sample": True,
+    "temperature": 0.3,  # Más bajo para respuestas más precisas
+    "do_sample": False,   # Desactiva sampling para respuestas más controladas
 }
 
-# Mensajes ajustados para obtener solo la respuesta sin generar preguntas adicionales
-messages = [
-    {"role": "system", "content": "Eres un aldeano medieval llamado Phineas. Te diriges a tu rey. La respuesta debe ser concisa y tener menos de 100 tokens."},
-    {"role": "user", "content": "Cuál es tu oficio, Phineas?"},  # Aquí se define la pregunta directa
-]
+# Mensaje ajustado al formato del modelo
+#input_text = f"<|user|>\nCuál es tu oficio, Phineas?\n<|assistant|>"
 
-# Convertir mensajes a texto
-input_text = "\n".join([msg["content"] for msg in messages])
+# Introducir entrada de texto
+input_text = input("Ingresa un texto que analizar: ").strip()
+input_text = f"<|user|>\n{input_text}\n<|assistant|>"
+
 
 # Medir tiempo de respuesta
 if torch.cuda.is_available():
@@ -54,18 +54,21 @@ if torch.cuda.is_available():
 else:
     start_time = time.time()
 
-with torch.inference_mode():  # Más eficiente que no_grad()
+with torch.inference_mode():
     output = pipe(input_text, **generation_args)
-    response = output[0]['generated_text']
+    response = output[0]['generated_text'].strip()
+
+# Filtrar la respuesta para evitar generación adicional
+response = response.split("\n")[0]  # Cortamos en la primera línea para evitar que genere preguntas
 
 if torch.cuda.is_available():
     end_time.record()
     torch.cuda.synchronize()
-    elapsed_time = start_time.elapsed_time(end_time) / 1000  # Tiempo en s
+    elapsed_time = start_time.elapsed_time(end_time) / 1000
 else:
-    elapsed_time = time.time() - start_time  # Medición en CPU
+    elapsed_time = time.time() - start_time
 
-# Liberar memoria de GPU y CPU para evitar acumulación y fragmentación
+# Liberar memoria de GPU y CPU
 torch.cuda.empty_cache()
 torch.cuda.ipc_collect()
 gc.collect()

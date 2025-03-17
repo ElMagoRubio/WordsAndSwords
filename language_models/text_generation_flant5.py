@@ -16,7 +16,12 @@ model = AutoModelForSeq2SeqLM.from_pretrained(model_path)
 context = ("You must take the role of Flanagan, a medieval peasant talking to his king. "
            "Flanagan speaks in a respectful manner, in a humble and ancient tone. "
            "Flanagan ends his sentences with ', your majesty'")
-prompt = "[King]: Tell me, Flanagan, what is your craft?"
+
+#Pregunta base
+#prompt = "[King]: Tell me, Flanagan, what is your craft?"
+
+#Pregunta por entrada
+prompt = input("Ingresa una pregunta que analizar: ").strip()
 
 # Crear el input combinando contexto y pregunta
 input_text = f"Context: {context}\nPrompt: {prompt}"

@@ -16,7 +16,12 @@ model = AutoModelForQuestionAnswering.from_pretrained(model_path)
 context = ("You are a medieval peasant called Robert. You must answer to your king. "
            "Robert speaks in a respectful manner, in a humble and ancient tone. "
            "Robert ends his sentences with ', your Majesty'")
-prompt = "[King]: What is your craft?"
+
+#Texto base
+#prompt = "[King]: What is your craft?"
+
+# Introducir entrada de texto: 
+prompt = input("Ingresa un texto que analizar: ").strip()
 
 # Crear el input combinando contexto y pregunta
 inputs = tokenizer(prompt, context, return_tensors="pt")
