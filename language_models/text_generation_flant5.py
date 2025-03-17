@@ -24,12 +24,14 @@ input_text = f"Context: {context}\nPrompt: {prompt}"
 # Tokenizar la entrada
 inputs = tokenizer(input_text, return_tensors="pt")
 
+#Inicio de medición del tiempo de generación de respuesta
 start_time = time.time()
-    
+
+#Generar respuesta
 with torch.no_grad():
     outputs = model.generate(
         **inputs,
-        max_length=100,
+        max_new_tokens=100,
         do_sample=True,
         temperature=0.9,
         top_p=0.92,

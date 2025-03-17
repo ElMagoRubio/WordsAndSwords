@@ -13,7 +13,6 @@ model = Phi3ForCausalLM.from_pretrained(
     model_path,
     device_map="auto",
     torch_dtype="auto",
-    trust_remote_code=True
 )
 
 # Si se usa PyTorch 2.0+, compilamos el modelo para mayor eficiencia en GPU
