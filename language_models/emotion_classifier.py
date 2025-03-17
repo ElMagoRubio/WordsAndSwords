@@ -13,31 +13,38 @@ tokenizer_path = os.path.join(BASE_DIR, "tokenizer/michellejieli_emotion_text_cl
 tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
 model = AutoModelForSequenceClassification.from_pretrained(model_path)
 
-# Texto a analizar
-texts = ["Holy Mother of Christ"]
-
 # Etiquetas de emoción (según la documentación del modelo)
-labels = ["ira", "asco", "miedo", "alegría", "neutral", "tristeza", "sorpresa"]
+labels = ["Ira", "Asco", "Miedo", "Alegría", "Neutral", "Tristeza", "Sorpresa"]
 
-for text in texts:
-    # Tokenizar el texto
-    inputs = tokenizer(text, return_tensors="pt")
+#Introducir entrada de texto: 
+text = input("Ingresa un texto que analizar: ").strip()
 
-    # Pasar por el modelo para obtener las predicciones
-    with torch.no_grad():
-        outputs = model(**inputs)
+# Tokenizar el texto
+inputs = tokenizer(text, return_tensors="pt")
 
-    # Obtener las logits y aplicar softmax para obtener probabilidades
-    logits = outputs.logits
-    probabilities = F.softmax(logits, dim=1).squeeze().tolist()
+# Inicio de medición del timpo de generación de respuesta
+start_time = time.time()
 
-    # Mostrar todas las probabilidades
-    print(f"Texto: {text}")
-    for label, prob in zip(labels, probabilities):
-        print(f"{label}: {prob:.4f}")
-    
-    # Obtener la emoción con mayor probabilidad
-    predicted_class = torch.argmax(logits, dim=1).item()
-    predicted_emotion = labels[predicted_class]
+# Obtener las predicciones
+with torch.no_grad():
+    outputs = model(**inputs)
 
-    print(f"Emoción predicha: {predicted_emotion}\n")
+# Obtener las logits y aplicar softmax para obtener probabilidades
+logits = outputs.logits
+probabilities = F.softmax(logits, dim=1).squeeze().tolist()
+
+#Calcular el tiempo de respuesta
+total_time = time.time() - start_time
+
+# Mostrar todas las probabilidades
+print(f"Texto: {text}")
+for label, prob in zip(labels, probabilities):
+    print(f"{label}: {prob:.4f}")
+
+# Obtener la emoción con mayor probabilidad
+predicted_class = torch.argmax(logits, dim=1).item()
+predicted_emotion = labels[predicted_class]
+
+#Mostrar la respuesta y el tiempo de respuesta
+print(f"Emoción predicha: {predicted_emotion}\n")
+print(f"Tiempo de respuesta: {total_time:.4f} segundos")
