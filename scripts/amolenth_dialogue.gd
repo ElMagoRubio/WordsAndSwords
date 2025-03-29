@@ -6,7 +6,6 @@ extends Node2D
 @onready var boton_retar = $HUD/Retar
 @onready var boton_rendirse = $HUD/Rendirse
 @onready var procesando_texto = false
-@onready var http_request = $HTTPRequest
 
 func _ready():
 	entrada_texto.scroll_horizontal = true
@@ -44,7 +43,7 @@ func _on_texto_focus_entered():
 
 func _on_enviar_pressed():
 	boton_hablar.visible = true
-	boton_enviar_texto.visible = false	
+	boton_enviar_texto.visible = false
 	var texto_envio = entrada_texto.text
 	entrada_texto.text = "..."
 	boton_hablar.disabled = true
@@ -52,36 +51,29 @@ func _on_enviar_pressed():
 	boton_rendirse.disabled = true
 	entrada_texto.editable = false
 	
-	enviar_texto_a_api(texto_envio)
+	enviar_texto_a_script(texto_envio)
 
 
-func enviar_texto_a_api(texto):
-	var url = "https://api.tuapi.com/endpoint" # Cambia esto por la URL de tu API
-	var json_data = {
-	"texto": texto
-	}
-	var json = JSON.new()
-	var json_string = json.print(json_data)
+func enviar_texto_a_script(texto):
+	print("Iniciando generación de texto. Prompt: " + texto)
+	var python_cmd = "python"
+	var script_path = "res://language_models/text_generation_flant5.py"
+	var global_path = ProjectSettings.globalize_path(script_path)
+	var args = [global_path, texto]
+	var output = []
 	
-	var headers = ["Content-Type: application/json"]
+	print(OS.execute(python_cmd, args, output, true, true))
+	var exit_code = OS.execute(python_cmd, args, output, true, true)
 	
-	var error = http_request.request(url, headers, false, HTTPClient.METHOD_POST, json_string)
-	if error != OK:
-		print("Error al enviar la solicitud: %s" % error)
-
-
-func _on_http_request_request_completed(result, response_code, headers, body):
-	if response_code == 200:
-		var json = JSON.new()
-		var response_json = json.parse(body.get_string_from_utf8())
-		if response_json.error == OK:
-			var response_data = response_json.result
-			print("Respuesta de la API: %s" % response_data)
-			entrada_texto.text = response_data
-			boton_hablar.disabled = false
-			boton_retar.disabled = false
-			boton_rendirse.disabled = false
-		else:
-			print("Error en la respuesta de la API: %s" % response_json.error_string)
+	if exit_code == 0:
+		var response = output[0].strip_edges() # Limpia espacios innecesarios
+		print("Respuesta del script: ", response)
+		entrada_texto.text = response
 	else:
-		print("Error en la solicitud HTTP: %s" % response_code)
+		print("Error al ejecutar el script")
+		entrada_texto.text = "Error al procesar"
+	
+	#Habilitar botones tras hablar
+	boton_hablar.disabled = false
+	boton_retar.disabled = false
+	boton_rendirse.disabled = false

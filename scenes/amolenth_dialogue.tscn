@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cipkij5ijbqj4"]
 
-[ext_resource type="Texture2D" uid="uid://dgrhusqhn3ut8" path="res://assets/Escenarios/Nubes dia.png" id="1_2pbsw"]
 [ext_resource type="Script" path="res://scripts/amolenth_dialogue.gd" id="1_uvtav"]
+[ext_resource type="Texture2D" uid="uid://dgrhusqhn3ut8" path="res://assets/Escenarios/Nubes dia.png" id="2_hf0lq"]
 [ext_resource type="Texture2D" uid="uid://rf6j4c3qmupj" path="res://assets/PJS/Amolenth/Amolenth.png" id="2_u7xtf"]
 [ext_resource type="Theme" uid="uid://cjkmwoyjf2bu5" path="res://assets/theme/WordsNSwords.tres" id="4_inv3k"]
 [ext_resource type="FontFile" uid="uid://ctgf5qs6g1evf" path="res://assets/Escenarios/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="4_xphsx"]
@@ -20,7 +20,7 @@ script = ExtResource("1_uvtav")
 [node name="Fondo" type="Sprite2D" parent="."]
 position = Vector2(640, 360)
 scale = Vector2(4, 4)
-texture = ExtResource("1_2pbsw")
+texture = ExtResource("2_hf0lq")
 
 [node name="PJ" type="Sprite2D" parent="."]
 position = Vector2(625, 353)
@@ -67,7 +67,7 @@ wrap_mode = 1
 scroll_v_scroll_speed = 20.0
 text_direction = 1
 
-[node name="Label" type="Label" parent="HUD"]
+[node name="NombrePJ" type="Label" parent="HUD"]
 clip_contents = true
 layout_mode = 0
 offset_left = 492.0
