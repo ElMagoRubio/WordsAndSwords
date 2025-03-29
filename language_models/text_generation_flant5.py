@@ -1,5 +1,8 @@
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
-import os, time, torch
+import os
+import time
+import torch
+import sys
 
 # Obtener la ruta absoluta del directorio donde está este script
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -12,43 +15,41 @@ tokenizer_path = os.path.join(BASE_DIR, "tokenizer/google_flan-t5-base")
 tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
 model = AutoModelForSeq2SeqLM.from_pretrained(model_path)
 
-# Definir el contexto y la pregunta
-context = ("You must take the role of Flanagan, a medieval peasant talking to his king. "
-           "Flanagan speaks in a respectful manner, in a humble and ancient tone. "
-           "Flanagan ends his sentences with ', your majesty'")
+# Verificar que se recibió un argumento válido
+if len(sys.argv) < 2:
+    print("Error: No se recibió una pregunta como argumento.", flush=True)
+    sys.exit(1)
 
-#Pregunta base
-#prompt = "[King]: Tell me, Flanagan, what is your craft?"
+# Obtener la pregunta desde los argumentos
+prompt = sys.argv[1]
 
-#Pregunta por entrada
-prompt = input("Ingresa una pregunta que analizar: ").strip()
+# Definir el contexto y crear la entrada
+context = ("You are talking to your King. He will give you his name. Greet him like this: 'Hello, *name*, I'm here to serve your every need.'")
 
-# Crear el input combinando contexto y pregunta
 input_text = f"Context: {context}\nPrompt: {prompt}"
 
 # Tokenizar la entrada
 inputs = tokenizer(input_text, return_tensors="pt")
 
-#Inicio de medición del tiempo de generación de respuesta
+# Inicio de medición del tiempo de generación de respuesta
 start_time = time.time()
 
-#Generar respuesta
+# Generar respuesta
 with torch.no_grad():
     outputs = model.generate(
         **inputs,
         max_new_tokens=100,
         do_sample=True,
-        temperature=0.9,
+        temperature=1.0,
         top_p=0.92,
-        repetition_penalty=1.2
+        repetition_penalty=1.5
     )
 
 # Decodificar la respuesta
 response = tokenizer.decode(outputs[0], skip_special_tokens=True)
 
-#Calcular el tiempo de respuesta
+# Calcular el tiempo de respuesta
 total_time = time.time() - start_time
 
-# Mostrar la respuesta y el tiempo de respuesta
-print(f"Respuesta generada: {response}")
-print(f"Tiempo de respuesta: {total_time:.4f} segundos")
+# Imprimir solo la respuesta generada (sin texto adicional)
+print(response, flush=True)
