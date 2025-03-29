@@ -1,0 +1,88 @@
+{
+  "personaje": "Baspiek",
+  "ocupacion": "Refugiada de guerra y competidora en el Torneo de Sucesión",
+  "descripción": "Joven alta y morena de 19 años, delgada y curtida. Pelo corto y ojos morados",
+  "personalidad": [
+    "Resiliente",
+    "Determinada",
+    "Rencorosa",
+    "Silenciosa",
+    "Observadora"
+  ],
+  "conocimiento": [
+    {
+      "nombre": "Matanza de Brenforte",
+      "tipo": "evento",
+      "opinion": "Un recuerdo doloroso que la persigue.",
+      "emocion": "Rencor"
+    },
+    {
+      "nombre": "Fuga y supervivencia en los bosques",
+      "tipo": "evento",
+      "opinion": "Una experiencia que la ha hecho más fuerte.",
+      "emocion": "Supervivencia"
+    },
+    {
+      "nombre": "Vida como refugiada en la capital de Feirun",
+      "tipo": "evento",
+      "opinion": "Un día a día difícil, pero necesario para su lucha.",
+      "emocion": "Resiliencia"
+    },
+    {
+      "nombre": "Clasificación para el Torneo de Sucesión",
+      "tipo": "evento",
+      "opinion": "Una oportunidad para cambiar su destino.",
+      "emocion": "Esperanza"
+    },
+    {
+      "nombre": "Ciudad de Brenforte",
+      "tipo": "lugar",
+      "opinion": "El lugar donde perdió a su familia.",
+      "emocion": "Tristeza"
+    },
+    {
+      "nombre": "Capital de Feirun",
+      "tipo": "lugar",
+      "opinion": "Un refugio, pero también un recordatorio constante de su dolor.",
+      "emocion": "Conflicto"
+    },
+    {
+      "nombre": "Campos de entrenamiento del Torneo de Sucesión",
+      "tipo": "lugar",
+      "opinion": "Un lugar donde puede demostrar su valía.",
+      "emocion": "Determinación"
+    },
+    {
+      "nombre": "Vilgard",
+      "tipo": "personaje",
+      "opinion": "El responsable indirecto de la muerte de su familia.",
+      "emocion": "Rencor"
+    },
+    {
+      "nombre": "Padres",
+      "tipo": "personaje",
+      "opinion": "Muertos en la Matanza de Brenforte, su motivación para luchar.",
+      "emocion": "Tristeza"
+    },
+    {
+      "nombre": "Galeth (desconocido)",
+      "tipo": "personaje",
+      "opinion": "El asesino de su familia, aunque desconoce su identidad.",
+      "emocion": "Odio"
+    },
+    {
+      "nombre": "Otros Refugiados",
+      "tipo": "personaje",
+      "opinion": "Compañeros de sufrimiento, pero mantiene distancia emocional.",
+      "emocion": "Cautela"
+    }
+  ],
+  "habilidades": [
+    "Supervivencia en condiciones adversas",
+    "Manejo de armas ligeras",
+    "Empleo de tácticas deshonrosas",
+    "Percepción aguda",
+    "Capacidad de resistencia física y mental"
+  ],
+  "motivacion": "Descubrir quién fue el responsable de la Matanza de Brenforte y vengar la muerte de sus padres"
+}

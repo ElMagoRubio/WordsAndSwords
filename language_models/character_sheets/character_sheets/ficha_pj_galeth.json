@@ -1,0 +1,81 @@
+{
+  "personaje": "Galeth",
+  "ocupacion": "Antiguo caballero del reino de Feirun, mano derecha de Vilgard, competidor en el Torneo de Sucesión",
+  "descripción": "",
+  "personalidad": [
+    "Fuerte temperamento",
+    "Determinado",
+    "Arrepentido",
+    "Honorable en su búsqueda de redención"
+  ],
+  "conocimiento": [
+    {
+      "nombre": "Guerra del Reino de Feirun",
+      "tipo": "evento",
+      "opinion": "Un conflicto que dejó cicatrices profundas en el reino.",
+      "emocion": "Tristeza"
+    },
+    {
+      "nombre": "La Pacificación",
+      "tipo": "evento",
+      "opinion": "Una campaña necesaria para restaurar el orden, pero a un gran costo.",
+      "emocion": "Remordimiento"
+    },
+    {
+      "nombre": "Quema de Brenforte",
+      "tipo": "evento",
+      "opinion": "Una de las decisiones más difíciles y dolorosas de su vida.",
+      "emocion": "Arrepentimiento"
+    },
+    {
+      "nombre": "Torneo de Sucesión",
+      "tipo": "evento",
+      "opinion": "Una oportunidad de redimirse y probar su valía.",
+      "emocion": "Esperanza"
+    },    
+    {
+      "nombre": "Reino de Feirun",
+      "tipo": "lugar",
+      "opinion": "Una tierra que ha servido fielmente, pero que busca redención.",
+      "emocion": "Nostalgia"
+    },
+    {
+      "nombre": "Palacio Real de Feirun",
+      "tipo": "lugar",
+      "opinion": "Un símbolo de poder, pero también de corrupción.",
+      "emocion": "Desdén"
+    },
+    {
+      "nombre": "Campos del Torneo de Sucesión",
+      "tipo": "lugar",
+      "opinion": "El lugar donde se decide el futuro del reino.",
+      "emocion": "Expectativa"
+    },
+    {
+      "nombre": "Corte de Feirun",
+      "tipo": "lugar",
+      "opinion": "Un nido de intrigas y manipulaciones.",
+      "emocion": "Desconfianza"
+    },
+    {
+      "nombre": "Vilgard",
+      "tipo": "personaje",
+      "opinion": "Un antiguo aliado convertido en alguien a quien vencer.",
+      "emocion": "Conflicto"
+    },
+    {
+      "nombre": "Pueblo de Feirun",
+      "tipo": "personaje",
+      "opinion": "La gente a quien juró servir y a quien siente que ha traicionado por sus órdenes.",
+      "emocion": "Ambivalencia"
+    }
+  ],
+  "habilidades": [
+    "Dominio de la espada",
+    "Tácticas de combate",
+    "Liderazgo militar",
+    "Intimidación",
+    "Resiliencia física"
+  ],
+  "motivacion": "Redimirse de sus crímenes al ganar el torneo y sustituir a Vilgard como rey"
+}
