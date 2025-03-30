@@ -2,20 +2,20 @@ from huggingface_hub import login
 from transformers import (
     AutoTokenizer, 
     AutoModelForSequenceClassification, 
-    AutoModelForQuestionAnswering, 
     AutoModelForCausalLM, 
     AutoModelForSeq2SeqLM
 )
 import os
 
+
 # Obtener la ruta absoluta del directorio donde está este script
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 model_list = [
-    ("michellejieli/emotion_text_classifier", AutoModelForSequenceClassification), 
-    ("deepset/tinyroberta-squad2", AutoModelForQuestionAnswering),
-    ("microsoft/Phi-3.5-mini-instruct", AutoModelForCausalLM),
-    ("google/flan-t5-base", AutoModelForSeq2SeqLM)
+    ("lxyuan/distilbert-base-multilingual-cased-sentiments-student", AutoModelForSequenceClassification), 
+    ("HuggingFaceTB/SmolLM2-360M-Instruct", AutoModelForCausalLM),
+    ("microsoft/Phi-4-mini-instruct", AutoModelForCausalLM),
+    ("google/flan-t5-large", AutoModelForSeq2SeqLM)
 ]
 
 for model_name, ModelClass in model_list:

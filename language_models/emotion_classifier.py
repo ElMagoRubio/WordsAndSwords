@@ -6,15 +6,15 @@ import torch.nn.functional as F  # Importamos para aplicar softmax
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Rutas locales del modelo y el tokenizador
-model_path = os.path.join(BASE_DIR, "model/michellejieli_emotion_text_classifier")
-tokenizer_path = os.path.join(BASE_DIR, "tokenizer/michellejieli_emotion_text_classifier")
+model_path = os.path.join(BASE_DIR, "model/lxyuan_distilbert-base-multilingual-cased-sentiments-student")
+tokenizer_path = os.path.join(BASE_DIR, "tokenizer/lxyuan_distilbert-base-multilingual-cased-sentiments-student")
 
 # Cargar el modelo y el tokenizador
 tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
 model = AutoModelForSequenceClassification.from_pretrained(model_path)
 
 # Etiquetas de emoción (según la documentación del modelo)
-labels = ["Ira", "Asco", "Miedo", "Alegría", "Neutral", "Tristeza", "Sorpresa"]
+labels = ["Positivo", "Neutral", "Negativo"]
 
 # Introducir entrada de texto: 
 text = input("Ingresa un texto que analizar: ").strip()
