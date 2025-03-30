@@ -1,5 +1,9 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
-import os, time, torch
+import os, sys, time, torch
+
+if (len(sys.argv) != 2):
+    print("ERROR: Número de argumentos incorrecto.\nFormato: (./text_generation_smol.py) (texto_entrada_usuario)")
+    exit(1)
 
 # Obtener la ruta absoluta del directorio donde está este script
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -13,13 +17,13 @@ tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
 model = AutoModelForCausalLM.from_pretrained(model_path)
 
 # Definir el contexto y la pregunta
-context = "Responde como un aldeano medieval llamado Smol"
+context = "Responde como un aldeano medieval llamado Smol. Genera una sola respuesta de menos de 50 palabras en español."
 
 # Pregunta por entrada
-prompt = input("Ingresa una pregunta que analizar: ").strip()
+prompt = sys.argv[1].strip()
 
 # Crear el input combinando contexto y pregunta
-input_text = f"Context: {context}\nPrompt: {prompt}\nResponse:"  # Indica al modelo que debe generar una respuesta
+input_text = f"Contexto: {context}\nPrompt: {prompt}\nRespuesta:"  # Indica al modelo que debe generar una respuesta
 
 # Tokenizar la entrada
 inputs = tokenizer(input_text, return_tensors="pt")
@@ -31,7 +35,8 @@ start_time = time.time()
 with torch.no_grad():
     outputs = model.generate(
         **inputs,
-        max_new_tokens=100
+        max_new_tokens=50,
+        do_sample=False
     )
 
 # Decodificar la respuesta

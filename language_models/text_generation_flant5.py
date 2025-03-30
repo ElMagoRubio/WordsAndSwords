@@ -1,5 +1,9 @@
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
-import os, time, torch
+import os, sys, time, torch
+
+if (len(sys.argv) != 2):
+    print("ERROR: Número de argumentos incorrecto.\nFormato: (./text_generation_flant5.py) (texto_entrada_usuario)")
+    exit(1)
 
 # Obtener la ruta absoluta del directorio donde está este script
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -19,7 +23,7 @@ context = ("Responde como un aldeano medieval llamado Flanagan")
 #prompt = "[King]: Tell me, Flanagan, what is your craft?"
 
 #Pregunta por entrada
-prompt = input("Ingresa una pregunta que analizar: ").strip()
+prompt = sys.argv[1].strip()
 
 # Crear el input combinando contexto y pregunta
 input_text = f"Context: {context}\nPrompt: {prompt}"
