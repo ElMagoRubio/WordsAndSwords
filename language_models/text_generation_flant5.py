@@ -19,28 +19,24 @@ model = AutoModelForSeq2SeqLM.from_pretrained(model_path)
 # Definir el contexto y la pregunta
 context = ("Responde como un aldeano medieval llamado Flanagan")
 
-#Pregunta base
-#prompt = "[King]: Tell me, Flanagan, what is your craft?"
-
-#Pregunta por entrada
+# Obtener la pregunta desde los argumentos
 prompt = sys.argv[1].strip()
 
-# Crear el input combinando contexto y pregunta
 input_text = f"Context: {context}\nPrompt: {prompt}"
 
 # Tokenizar la entrada
 inputs = tokenizer(input_text, return_tensors="pt")
 
-#Inicio de medición del tiempo de generación de respuesta
+# Inicio de medición del tiempo de generación de respuesta
 start_time = time.time()
 
-#Generar respuesta
+# Generar respuesta
 with torch.no_grad():
     outputs = model.generate(
         **inputs,
         max_new_tokens=100,
         do_sample=True,
-        temperature=0.9,
+        temperature=1.0,
         top_p=0.92,
         repetition_penalty=1.0
     )
@@ -48,9 +44,8 @@ with torch.no_grad():
 # Decodificar la respuesta
 response = tokenizer.decode(outputs[0], skip_special_tokens=True)
 
-#Calcular el tiempo de respuesta
+# Calcular el tiempo de respuesta
 total_time = time.time() - start_time
 
-# Mostrar la respuesta y el tiempo de respuesta
-print(f"Respuesta generada: {response}")
-print(f"Tiempo de respuesta: {total_time:.4f} segundos")
+# Imprimir solo la respuesta generada (sin texto adicional)
+print(response, flush=True)

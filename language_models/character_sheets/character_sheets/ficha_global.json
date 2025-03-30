@@ -12,7 +12,7 @@
   {
     "nombre": "La Pacificación",
     "tipo": "Evento",
-    "descripción": "Una campaña militar en la que se sofocaron con dureza unas revueltas campesinas en la frontera occidental del reino de Feirun. La campaña llevó al ejército a destruir y arrasar varios pueblos y aldeas, que culminó con la Quema de Brenforte. Las gentes del Oeste, sin embargo, afirman que las revueltas campesinas jamás se produjeron."
+    "descripción": "Una campaña militar en la que se sofocaron con dureza unas violentas revueltas campesinas en la frontera occidental del reino de Feirun. La campaña llevó al ejército a destruir y arrasar varios pueblos y aldeas, y culminó con la Quema de Brenforte. Las gentes del Oeste, sin embargo, afirman que las revueltas campesinas jamás se produjeron."
   },
   {
     "nombre": "Quema de Brenforte",
@@ -32,7 +32,7 @@
   {
     "nombre": "Corte de Feirun",
     "tipo": "Lugar",
-    "descripción": "El lugar donde los nobles del reino se reúnen para discutir política, formar alianzas y orquestar intrigas. La corte es un espacio clave en el sistema político de Feirun, y aquellos que buscan poder o influencia pasan mucho tiempo aquí. Las lealtades en la corte son volátiles, y los nobles están constantemente buscando su ventaja."
+    "descripción": "El lugar donde los nobles del reino se reúnen para discutir política, formar alianzas y orquestar intrigas. La corte es un espacio clave en el sistema político de Feirun, y aquellos que buscan poder o influencia pasan mucho tiempo aquí. Las lealtades en la corte son volátiles, y los nobles están constantemente buscando aventajar su posición frente al resto."
   },
   {
     "nombre": "Campos del Torneo de Sucesión",
