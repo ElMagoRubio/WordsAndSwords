@@ -35,12 +35,78 @@ offset_right = 40.0
 offset_bottom = 64.0
 theme = ExtResource("4_inv3k")
 
-[node name="CajaTexto" type="Sprite2D" parent="HUD"]
-position = Vector2(672, 601)
-scale = Vector2(0.746667, 0.735)
+[node name="CajaTexto1" type="Sprite2D" parent="HUD"]
+position = Vector2(624, 601)
+scale = Vector2(0.735, 0.735)
 texture = ExtResource("5_suekk")
 
-[node name="Texto" type="TextEdit" parent="HUD/CajaTexto"]
+[node name="Texto" type="TextEdit" parent="HUD/CajaTexto1"]
+anchors_preset = -1
+anchor_left = 0.057
+anchor_top = 0.175
+anchor_right = 0.94
+anchor_bottom = 0.803
+offset_left = -600.0
+offset_top = -100.0
+offset_right = -600.0
+offset_bottom = -100.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_readonly_color = Color(0.286275, 0.286275, 0.286275, 1)
+theme_override_colors/font_placeholder_color = Color(0.286275, 0.286275, 0.286275, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/caret_background_color = Color(0.807843, 0.752941, 0.576471, 1)
+theme_override_constants/caret_width = 2
+theme_override_fonts/font = ExtResource("4_xphsx")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8k8h4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_v3hgm")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_xq5t7")
+placeholder_text = "Pulsa aquí para hablar"
+wrap_mode = 1
+scroll_v_scroll_speed = 20.0
+text_direction = 1
+
+[node name="CajaTexto2" type="Sprite2D" parent="HUD"]
+visible = false
+position = Vector2(624, 459)
+scale = Vector2(0.735, 0.735)
+texture = ExtResource("5_suekk")
+
+[node name="Texto" type="TextEdit" parent="HUD/CajaTexto2"]
+anchors_preset = -1
+anchor_left = 0.057
+anchor_top = 0.175
+anchor_right = 0.94
+anchor_bottom = 0.803
+offset_left = -600.0
+offset_top = -100.0
+offset_right = -600.0
+offset_bottom = -100.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_readonly_color = Color(0.286275, 0.286275, 0.286275, 1)
+theme_override_colors/font_placeholder_color = Color(0.286275, 0.286275, 0.286275, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/caret_background_color = Color(0.807843, 0.752941, 0.576471, 1)
+theme_override_constants/caret_width = 2
+theme_override_fonts/font = ExtResource("4_xphsx")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_8k8h4")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_v3hgm")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_xq5t7")
+placeholder_text = "Pulsa aquí para hablar"
+wrap_mode = 1
+scroll_v_scroll_speed = 20.0
+text_direction = 1
+
+[node name="CajaTexto3" type="Sprite2D" parent="HUD"]
+visible = false
+position = Vector2(624, 312)
+scale = Vector2(0.735, 0.735)
+texture = ExtResource("5_suekk")
+
+[node name="Texto" type="TextEdit" parent="HUD/CajaTexto3"]
 anchors_preset = -1
 anchor_left = 0.057
 anchor_top = 0.175
@@ -133,13 +199,35 @@ text = "Rendirse
 "
 icon_alignment = 1
 
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
+layout_mode = 0
+offset_left = 171.0
+offset_top = 3.0
+offset_right = 658.0
+offset_bottom = 110.0
+scale = Vector2(0.632335, 0.632335)
+
+[node name="DevModeLabel" type="Label" parent="HUD/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Modo desarrollador"
+
+[node name="DevMode" type="CheckBox" parent="HUD/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
 [node name="MenuJuego" parent="." instance=ExtResource("9_8m2yt")]
+offset_left = 1.0
+offset_right = 41.0
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
-[connection signal="focus_entered" from="HUD/CajaTexto/Texto" to="." method="_on_texto_focus_entered"]
+[connection signal="focus_entered" from="HUD/CajaTexto1/Texto" to="." method="_on_texto_focus_entered"]
+[connection signal="text_changed" from="HUD/CajaTexto1/Texto" to="." method="_on_texto_text_changed"]
 [connection signal="pressed" from="HUD/Hablar" to="." method="_on_hablar_pressed"]
 [connection signal="pressed" from="HUD/Enviar" to="." method="_on_enviar_pressed"]
 [connection signal="pressed" from="HUD/Retar" to="." method="_on_retar_pressed"]
 [connection signal="pressed" from="HUD/Rendirse" to="." method="_on_rendirse_pressed"]
+[connection signal="toggled" from="HUD/HBoxContainer/DevMode" to="." method="_on_dev_mode_toggled"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
