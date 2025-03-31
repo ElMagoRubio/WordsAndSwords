@@ -292,7 +292,6 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_fe2hh")
 text = "Volver"
 
 [node name="MenuVideo" type="VBoxContainer" parent="MenuContenedor"]
-visible = false
 layout_mode = 2
 offset_left = 413.0
 offset_top = 206.0

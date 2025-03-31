@@ -19,8 +19,14 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/resizable=false
 window/stretch/mode="viewport"
-window/stretch/aspect="ignore"
+
+[importer_defaults]
+
+texture={
+"roughness/mode": 1
+}
 
 [input]
 
@@ -74,4 +80,9 @@ ui_right_atk_direction={
 [rendering]
 
 renderer/rendering_method="mobile"
+textures/lossless_compression/force_png=true
+2d/shadow_atlas/size=1280
+anti_aliasing/screen_space_roughness_limiter/amount=0.01
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true
 textures/canvas_textures/default_texture_filter=3
