@@ -16,8 +16,12 @@ tokenizer_path = os.path.join(BASE_DIR, "tokenizer/google_flan-t5-large")
 tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
 model = AutoModelForSeq2SeqLM.from_pretrained(model_path)
 
-# Definir el contexto y la pregunta
-context = ("Responde como un aldeano medieval llamado Flanagan")
+# Verificar que se recibió un argumento válido
+if len(sys.argv) < 2:
+    print("Error: No se recibió una pregunta como argumento.", flush=True)
+    sys.exit(1)
+
+context = "Responde como un aldeano medieval llamado Flanagan."
 
 # Obtener la pregunta desde los argumentos
 prompt = sys.argv[1].strip()
@@ -49,3 +53,4 @@ total_time = time.time() - start_time
 
 # Imprimir solo la respuesta generada (sin texto adicional)
 print(response, flush=True)
+sys.stdout.flush()
