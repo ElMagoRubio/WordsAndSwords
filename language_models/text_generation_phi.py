@@ -1,15 +1,19 @@
-from transformers import Phi3ForCausalLM, AutoTokenizer, pipeline
-import gc, os, time, torch
+from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
+import gc, os, sys, time, torch
+
+if (len(sys.argv) != 2):
+    print("ERROR: Número de argumentos incorrecto.\nFormato: (./text_generation_phi.py) (texto_entrada_usuario)")
+    exit(1)
 
 # Obtener la ruta absoluta del directorio donde está este script
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Rutas locales del modelo y el tokenizador
-model_path = os.path.join(BASE_DIR, "model/microsoft_Phi-3.5-mini-instruct")
-tokenizer_path = os.path.join(BASE_DIR, "tokenizer/microsoft_Phi-3.5-mini-instruct")
+model_path = os.path.join(BASE_DIR, "model/microsoft_Phi-4-mini-instruct")
+tokenizer_path = os.path.join(BASE_DIR, "tokenizer/microsoft_Phi-4-mini-instruct")
 
 # Cargar modelo en GPU con dtype automático y código remoto confiable
-model = Phi3ForCausalLM.from_pretrained(
+model = AutoModelForCausalLM.from_pretrained(
     model_path,
     device_map="auto",
     torch_dtype="auto",
@@ -34,14 +38,14 @@ generation_args = {
     "max_new_tokens": 50,  # Reducimos la longitud máxima
     "return_full_text": False,
     "temperature": 0.3,  # Más bajo para respuestas más precisas
-    "do_sample": False,   # Desactiva sampling para respuestas más controladas
+    "do_sample": True,   # Desactiva sampling para respuestas más controladas
 }
 
 # Mensaje ajustado al formato del modelo
 #input_text = f"<|user|>\nCuál es tu oficio, Phineas?\n<|assistant|>"
 
 # Introducir entrada de texto
-input_text = input("Ingresa un texto que analizar: ").strip()
+input_text = sys.argv[1].strip()
 input_text = f"<|user|>\n{input_text}\n<|assistant|>"
 
 

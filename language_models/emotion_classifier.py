@@ -1,23 +1,27 @@
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
-import os, time, torch
+import os, sys, time, torch
 import torch.nn.functional as F  # Importamos para aplicar softmax
+
+if (len(sys.argv) != 2):
+    print("ERROR: Número de argumentos incorrecto.\nFormato: (./emotion_classifier.py) (texto_entrada_usuario)")
+    exit(1)
 
 # Obtener la ruta absoluta del directorio donde está este script
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Rutas locales del modelo y el tokenizador
-model_path = os.path.join(BASE_DIR, "model/michellejieli_emotion_text_classifier")
-tokenizer_path = os.path.join(BASE_DIR, "tokenizer/michellejieli_emotion_text_classifier")
+model_path = os.path.join(BASE_DIR, "model/lxyuan_distilbert-base-multilingual-cased-sentiments-student")
+tokenizer_path = os.path.join(BASE_DIR, "tokenizer/lxyuan_distilbert-base-multilingual-cased-sentiments-student")
 
 # Cargar el modelo y el tokenizador
 tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
 model = AutoModelForSequenceClassification.from_pretrained(model_path)
 
 # Etiquetas de emoción (según la documentación del modelo)
-labels = ["Ira", "Asco", "Miedo", "Alegría", "Neutral", "Tristeza", "Sorpresa"]
+labels = ["Positivo", "Neutral", "Negativo"]
 
 # Introducir entrada de texto: 
-text = input("Ingresa un texto que analizar: ").strip()
+text = sys.argv[1].strip()
 
 # Texto base
 #text = "Holy Mother of God, what is that??"

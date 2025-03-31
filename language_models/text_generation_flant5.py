@@ -1,30 +1,26 @@
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
-import os
-import time
-import torch
-import sys
+import os, sys, time, torch
+
+if (len(sys.argv) != 2):
+    print("ERROR: Número de argumentos incorrecto.\nFormato: (./text_generation_flant5.py) (texto_entrada_usuario)")
+    exit(1)
 
 # Obtener la ruta absoluta del directorio donde está este script
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Rutas locales del modelo y el tokenizador
-model_path = os.path.join(BASE_DIR, "model/google_flan-t5-base")
-tokenizer_path = os.path.join(BASE_DIR, "tokenizer/google_flan-t5-base")
+model_path = os.path.join(BASE_DIR, "model/google_flan-t5-large")
+tokenizer_path = os.path.join(BASE_DIR, "tokenizer/google_flan-t5-large")
 
 # Cargar modelo y tokenizador
 tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
 model = AutoModelForSeq2SeqLM.from_pretrained(model_path)
 
-# Verificar que se recibió un argumento válido
-if len(sys.argv) < 2:
-    print("Error: No se recibió una pregunta como argumento.", flush=True)
-    sys.exit(1)
+# Definir el contexto y la pregunta
+context = ("Responde como un aldeano medieval llamado Flanagan")
 
 # Obtener la pregunta desde los argumentos
-prompt = sys.argv[1]
-
-# Definir el contexto y crear la entrada
-context = ("You are talking to your King. He will give you his name. Greet him like this: 'Hello, *name*, I'm here to serve your every need.'")
+prompt = sys.argv[1].strip()
 
 input_text = f"Context: {context}\nPrompt: {prompt}"
 
@@ -42,7 +38,7 @@ with torch.no_grad():
         do_sample=True,
         temperature=1.0,
         top_p=0.92,
-        repetition_penalty=1.5
+        repetition_penalty=1.0
     )
 
 # Decodificar la respuesta
