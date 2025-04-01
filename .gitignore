@@ -4,3 +4,6 @@
 # LLM ignores
 ./language_models/model/
 ./language_models/tokenizer/
+
+#Python ignores
+__pycache__/
