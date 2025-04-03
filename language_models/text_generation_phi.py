@@ -1,31 +1,16 @@
-from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
+from llm_loader import get_model_and_tokenizer_from_index
+from transformers import pipeline
 import gc, os, sys, time, torch
 
 if (len(sys.argv) != 2):
     print("ERROR: Número de argumentos incorrecto.\nFormato: (./text_generation_phi.py) (texto_entrada_usuario)")
     exit(1)
 
-# Obtener la ruta absoluta del directorio donde está este script
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
 # Rutas locales del modelo y el tokenizador
-model_path = os.path.join(BASE_DIR, "model/microsoft_Phi-4-mini-instruct")
-tokenizer_path = os.path.join(BASE_DIR, "tokenizer/microsoft_Phi-4-mini-instruct")
+tokenizer, model = get_model_and_tokenizer_from_index(3)
 
-# Cargar modelo en GPU con dtype automático y código remoto confiable
-model = AutoModelForCausalLM.from_pretrained(
-    model_path,
-    device_map="auto",
-    torch_dtype="auto",
-    trust_remote_code=True
-)
-
-# Si se usa PyTorch 2.0+, compilamos el modelo para mayor eficiencia en GPU
-if torch.__version__ >= "2.0":
-    model = torch.compile(model)
-
-# Cargar tokenizador
-tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
+print(f"Modelo: {model}")
+print(f"Tokenizador: {tokenizer}")
 
 # Crear pipeline una sola vez
 pipe = pipeline(
