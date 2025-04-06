@@ -1,6 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://t2vm7rtlbttv"]
+[gd_scene load_steps=17 format=3 uid="uid://bis7c8pdtnqax"]
 
-[ext_resource type="Script" path="res://scenes/menu_seleccion_pj.gd" id="1_kx8qs"]
+[ext_resource type="Script" path="res://scripts/menu_seleccion_pj.gd" id="1_lw8jn"]
 [ext_resource type="Shader" path="res://assets/scroll.gdshader" id="2_3xgeh"]
 [ext_resource type="Texture2D" uid="uid://dv7nwuh0mmsc8" path="res://assets/Escenarios/Main Menu.png" id="3_wacx0"]
 [ext_resource type="Texture2D" uid="uid://doq54p0gwnmho" path="res://assets/theme/iconos/Pantalla principal.png" id="4_tqu2c"]
@@ -9,36 +9,23 @@
 [ext_resource type="Theme" uid="uid://cjkmwoyjf2bu5" path="res://assets/theme/WordsNSwords.tres" id="6_nukc8"]
 [ext_resource type="Texture2D" uid="uid://c1kf45u0h4ble" path="res://assets/theme/iconos/boton_lado.png" id="7_147l0"]
 [ext_resource type="Texture2D" uid="uid://x8xrmck5cf1x" path="res://assets/theme/iconos/boton_lado_pulsado.png" id="8_y8i53"]
+[ext_resource type="Texture2D" uid="uid://ckwc0ui2dicf3" path="res://assets/theme/iconos/boton_lado_hover.png" id="9_0k72i"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_olddq"]
 shader = ExtResource("2_3xgeh")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tsj3g"]
-texture = ExtResource("7_147l0")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ubg2"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o1wts"]
-texture = ExtResource("7_147l0")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h713e"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wtq4d"]
-texture = ExtResource("8_y8i53")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1ql8f"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_23tfd"]
-texture = ExtResource("8_y8i53")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w31rs"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_75h1i"]
-texture = ExtResource("7_147l0")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tckyq"]
-texture = ExtResource("7_147l0")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cle5g"]
-texture = ExtResource("8_y8i53")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m8iqh"]
-texture = ExtResource("7_147l0")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rtkvc"]
 
 [node name="menu_seleccion_pj" type="Node2D"]
-script = ExtResource("1_kx8qs")
+script = ExtResource("1_lw8jn")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_repeat = 2
@@ -53,6 +40,22 @@ position = Vector2(641.222, 70)
 scale = Vector2(1.55556, 1.55556)
 texture = ExtResource("4_tqu2c")
 
+[node name="NombrePJ" type="Label" parent="."]
+top_level = true
+clip_contents = true
+offset_left = 494.0
+offset_top = 200.0
+offset_right = 790.0
+offset_bottom = 309.0
+size_flags_horizontal = 4
+theme = ExtResource("6_nukc8")
+theme_type_variation = &"HeaderMedium"
+text = "Amolenth"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+uppercase = true
+
 [node name="TablaLarga" type="Sprite2D" parent="."]
 position = Vector2(641, 422)
 scale = Vector2(4, 4)
@@ -60,42 +63,74 @@ texture = ExtResource("5_v1hen")
 
 [node name="Control" type="Control" parent="TablaLarga"]
 layout_mode = 3
-anchors_preset = 0
-offset_left = -121.0
-offset_top = -57.0
-offset_right = 121.0
-offset_bottom = 57.0
+anchor_left = 0.184
+anchor_top = 0.273
+anchor_right = 0.82
+anchor_bottom = 0.727
+offset_left = -128.104
+offset_top = -63.944
+offset_right = -127.92
+offset_bottom = -63.944
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource("6_nukc8")
 
-[node name="ButtonPjAnterior" type="Button" parent="TablaLarga/Control"]
-offset_left = 43.5
-offset_top = 41.25
-offset_right = 75.5
-offset_bottom = 73.25
-theme_override_styles/normal = SubResource("StyleBoxTexture_tsj3g")
-theme_override_styles/hover = SubResource("StyleBoxTexture_o1wts")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_wtq4d")
-theme_override_styles/focus = SubResource("StyleBoxTexture_23tfd")
-action_mode = 0
+[node name="ButtonPjAnterior" type="TextureButton" parent="TablaLarga/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.25
+anchor_bottom = 0.75
+offset_top = -1.5
+offset_right = 64.0
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("7_147l0")
+texture_pressed = ExtResource("8_y8i53")
+texture_hover = ExtResource("9_0k72i")
 
 [node name="PJSeleccionado" type="Sprite2D" parent="TablaLarga/Control"]
-position = Vector2(120, 60)
+position = Vector2(82.75, 27.5)
+scale = Vector2(1.25, 1.25)
 texture = ExtResource("6_k6vr0")
 region_enabled = true
-region_rect = Rect2(1, 3, 29, 43)
+region_rect = Rect2(103, 1, 21, 46)
 
-[node name="ButtonPjSiguiente" type="Button" parent="TablaLarga/Control"]
-layout_mode = 0
-offset_left = 201.0
-offset_top = 73.25
-offset_right = 233.0
-offset_bottom = 105.25
-rotation = -3.14159
-theme_override_styles/normal = SubResource("StyleBoxTexture_75h1i")
-theme_override_styles/hover = SubResource("StyleBoxTexture_tckyq")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_cle5g")
-theme_override_styles/focus = SubResource("StyleBoxTexture_m8iqh")
-action_mode = 0
+[node name="ButtonPjSeleccion" type="Button" parent="TablaLarga/Control/PJSeleccionado"]
+offset_left = -16.0
+offset_top = -22.0
+offset_right = 14.0
+offset_bottom = 24.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_0ubg2")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_h713e")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_1ql8f")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_w31rs")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_rtkvc")
+flat = true
+
+[node name="ButtonPjSiguiente" type="TextureButton" parent="TablaLarga/Control"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -16.0
+offset_right = 32.0
+offset_bottom = 48.0
+grow_horizontal = 0
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture_normal = ExtResource("7_147l0")
+texture_pressed = ExtResource("8_y8i53")
+texture_hover = ExtResource("9_0k72i")
+flip_h = true
 
 [connection signal="pressed" from="TablaLarga/Control/ButtonPjAnterior" to="." method="_on_button_pj_anterior_pressed"]
+[connection signal="button_down" from="TablaLarga/Control/PJSeleccionado/ButtonPjSeleccion" to="." method="_on_button_pj_seleccion_button_down"]
+[connection signal="mouse_entered" from="TablaLarga/Control/PJSeleccionado/ButtonPjSeleccion" to="." method="_on_button_pj_seleccion_mouse_entered"]
+[connection signal="mouse_exited" from="TablaLarga/Control/PJSeleccionado/ButtonPjSeleccion" to="." method="_on_button_pj_seleccion_mouse_exited"]
+[connection signal="pressed" from="TablaLarga/Control/PJSeleccionado/ButtonPjSeleccion" to="." method="_on_button_pj_seleccion_pressed"]
 [connection signal="pressed" from="TablaLarga/Control/ButtonPjSiguiente" to="." method="_on_button_pj_siguiente_pressed"]
