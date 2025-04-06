@@ -12,7 +12,7 @@ func _ready():
 	textAjustes.visible = false
 
 func _on_boton_jugar_pressed():
-	get_tree().change_scene_to_file("res://scenes/amolenth_dialogue.tscn")
+	get_tree().change_scene_to_file("res://scenes/menu_seleccion_pj.tscn")
 
 func _on_boton_ajustes_pressed():
 	print("Ajustes pulsado")
