@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wr2b5txstp1u"
-path="res://.godot/imported/Cuerno cascos.png-8b6d7b3f4344a23a418845219a917dd0.ctex"
+uid="uid://dsbwg73jy23rq"
+path="res://.godot/imported/Baspiek.png-c23a27e2e0748e6b7f38804ea15855c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/PJS/Galeth/Cuerno cascos.png"
-dest_files=["res://.godot/imported/Cuerno cascos.png-8b6d7b3f4344a23a418845219a917dd0.ctex"]
+source_file="res://assets/PJS/Baspiek/Baspiek.png"
+dest_files=["res://.godot/imported/Baspiek.png-c23a27e2e0748e6b7f38804ea15855c7.ctex"]
 
 [params]
 
@@ -23,7 +23,7 @@ compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false
 mipmaps/limit=-1
-roughness/mode=0
+roughness/mode=1
 roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
