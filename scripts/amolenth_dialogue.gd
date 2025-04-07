@@ -5,6 +5,7 @@ extends Node2D
 @onready var entrada_texto_2 = $HUD/CajaTexto2/Texto
 @onready var caja_texto_3 = $HUD/CajaTexto3
 @onready var entrada_texto_3 = $HUD/CajaTexto3/Texto
+
 @onready var boton_hablar = $HUD/Hablar
 @onready var boton_enviar_texto = $HUD/Enviar
 @onready var boton_retar = $HUD/Retar
@@ -13,6 +14,8 @@ extends Node2D
 @onready var dev_mode = false
 
 func _ready():
+	$HUD/NombrePJ.text = Global.nombre_jugador
+	$PJ.texture = load(Global.rutas_imagenes[Global.pj_jugador])
 	entrada_texto_1.scroll_horizontal = true
 	entrada_texto_2.scroll_horizontal = true
 	entrada_texto_3.scroll_horizontal = true

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://certr8n6yfjgu"
-path="res://.godot/imported/Baspek.png-0130d02c570045af736814bf4a67dce6.ctex"
+uid="uid://x8xrmck5cf1x"
+path="res://.godot/imported/boton_lado_pulsado.png-dd12eb3b81cd0e7dde4424e3be1d64ac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/PJS/Baspek/Baspek.png"
-dest_files=["res://.godot/imported/Baspek.png-0130d02c570045af736814bf4a67dce6.ctex"]
+source_file="res://assets/theme/iconos/boton_lado_pulsado.png"
+dest_files=["res://.godot/imported/boton_lado_pulsado.png-dd12eb3b81cd0e7dde4424e3be1d64ac.ctex"]
 
 [params]
 
@@ -23,7 +23,7 @@ compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=false
 mipmaps/limit=-1
-roughness/mode=0
+roughness/mode=1
 roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
