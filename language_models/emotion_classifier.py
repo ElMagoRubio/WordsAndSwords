@@ -1,21 +1,16 @@
-from transformers import AutoModelForSequenceClassification, AutoTokenizer
-import os, sys, time, torch
+from llm_loader import get_model_and_tokenizer_from_index
+import sys, time, torch
 import torch.nn.functional as F  # Importamos para aplicar softmax
 
 if (len(sys.argv) != 2):
     print("ERROR: Número de argumentos incorrecto.\nFormato: (./emotion_classifier.py) (texto_entrada_usuario)")
     exit(1)
 
-# Obtener la ruta absoluta del directorio donde está este script
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# Detectar si hay GPU disponible
+device = "cuda" if torch.cuda.is_available() else "cpu"
 
-# Rutas locales del modelo y el tokenizador
-model_path = os.path.join(BASE_DIR, "model/lxyuan_distilbert-base-multilingual-cased-sentiments-student")
-tokenizer_path = os.path.join(BASE_DIR, "tokenizer/lxyuan_distilbert-base-multilingual-cased-sentiments-student")
-
-# Cargar el modelo y el tokenizador
-tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
-model = AutoModelForSequenceClassification.from_pretrained(model_path)
+# Cargar modelo y tokenizador
+tokenizer, model = get_model_and_tokenizer_from_index(0)
 
 # Etiquetas de emoción (según la documentación del modelo)
 labels = ["Positivo", "Neutral", "Negativo"]
@@ -27,7 +22,7 @@ text = sys.argv[1].strip()
 #text = "Holy Mother of God, what is that??"
 
 # Tokenizar el texto
-inputs = tokenizer(text, return_tensors="pt")
+inputs = tokenizer(text, return_tensors="pt").to(device)
 
 # Inicio de medición del tiempo de generación de respuesta
 start_time = time.time()
