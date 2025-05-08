@@ -1,5 +1,4 @@
 import os
-import torch
 from transformers import AutoModelForCausalLM, AutoModelForSeq2SeqLM, AutoModelForSequenceClassification, AutoTokenizer
 
 # Obtener las rutas absolutas de modelos y tokenizadores
@@ -23,7 +22,7 @@ for model_name, ModelClass in model_path_list:
     print("Cargando modelo: " + model_name)
 
     try:
-        # Cargar tokenizador correspondiente al modeloactual
+        # Cargar tokenizador correspondiente al modelo actual
         tokenizer = AutoTokenizer.from_pretrained(os.path.join(TOKENIZER_GENERAL_PATH, model_name))
         # Cargar modelo correspondiente
         model = ModelClass.from_pretrained(
