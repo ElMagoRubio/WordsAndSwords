@@ -43,17 +43,23 @@ def detect_emotion(text):
     with torch.no_grad():
         outputs = model(**inputs)
         logits = outputs.logits
-        predicted_class_id = torch.argmax(logits, dim=1).item()
+        probs = torch.nn.functional.softmax(logits, dim=1).cpu().numpy()[0]
 
     # Obtener nombre de la clase predicha
-    label = model.config.id2label.get(predicted_class_id, str(predicted_class_id))
-    
-    if label == "negative":
-        label = "negativa"
-    elif label  == "positive":
-        label = "positiva"
+    predicted_class_id = int(torch.argmax(logits, dim=1).item())
+    predicted_label = model.config.id2label.get(predicted_class_id, str(predicted_class_id))
 
-    return {"emotion": label}
+    if max(probs) < 0.5:
+        label = "neutral"
+    else:
+        if predicted_label == "positive":
+            label = "positiva"
+        elif predicted_label == "negative":
+            label = "negativa"
+        else:
+            label = predicted_label  # fallback
+
+    return label
 
 # Normaliza el texto, quitándole espacios, caracteres extraños y pasándolo a minúscula
 def normalize_text(text):
@@ -93,10 +99,10 @@ def build_prompt(text, task_description, emotion, char_name, char_description, c
     history_section = ""
     if model_name == "google_flan-t5-large":
         for user_input, char_response in history:
-            history_section += f"[user]: {user_input}\n[{char_name}]: {char_response}\n"
+            history_section += f"[user]: {user_input}\n[{char_name}]: {char_response}\n\n"
     elif model_name == "HuggingFaceTB_SmolLM2-360M-Instruct":
         for user_input, char_response in history:
-            history_section += f"[user]: {user_input}\n[{char_name}]: {char_response}\n"
+            history_section += f"[user]: {user_input}\n[{char_name}]: {char_response}\n\n"
 
     # print(f"Historial de conversación: {history_section}")
 
@@ -115,7 +121,7 @@ def build_prompt(text, task_description, emotion, char_name, char_description, c
             f"[system]: Tarea: {task_description}"
             f"\n\n[system]: Responde de manera {emotion}"
             f"\n\n[system]: Personaje:\nNombre: {char_name}\nDescripción: {char_description}"
-            f"\n\n[system]: Contexto:\n{context_section}"
+            f"\n\n[system]: Contexto:{context_section}"
             f"\n\n{history_section}"
             f"[user]: {text}\n[{char_name}]:"
         )

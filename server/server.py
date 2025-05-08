@@ -29,9 +29,18 @@ char_description = context_dict[char_name]
 
 print(f"\n\nDescripción del personaje: {char_description}")
 
-# Historial de conversación del personaje
+# Declaración de constantes de control (número máximo de interacciones, umbral emocional maximo y minimo)
+MAX_DIALOGUE_INTERACTION = 15
+POSITIVE_EMOTION_THRESHOLD = 5
+NEGATIVE_EMOTION_THRESHOLD = -5
+
+
+# Declaración de variables persistentes entre bucles
+interaction_count = 0
+emotion_level = 0
 context_tokens = []
 history = []
+action = "dialogar"
 
 # Se declara la IP y el puerto
 HOST = "127.0.0.1"
@@ -51,13 +60,16 @@ server_socket.listen(1)
 print(f"Servidor en ejecución en {HOST}:{PORT}")
 
 # Bucle del servidor
-while True:
+while interaction_count < MAX_DIALOGUE_INTERACTION:
     # Abrimos el puerto y escuchamos los datos
     client_socket, addr = server_socket.accept()
     data = client_socket.recv(1024).decode()
 
     #Mientras no haya errores
     try:
+        # Se aumenta el contador de interacciones
+        interaction_count += 1
+
         # Se convierte texto a diccionario de python
         request = json.loads(data)
 
@@ -66,10 +78,7 @@ while True:
         text = request["text"]
 
         # Descripción de la tarea que ha de realizar modelo
-        if (model_name == "google_flan-t5-large"):
-            task_description = f"\nImita al personaje como si estuvieras interpretando su papel en una obra de teatro. Sé coherente con su personalidad y conocimientos. Genera una única respuesta autocontenida. El límite es de 4 frases."
-        elif (model_name == "HuggingFaceTB_SmolLM2-360M-Instruct"):
-            task_description = f"\nSimula al personaje de forma coherente con su personalidad y conocimientos. Genera una única respuesta autocontenida. El límite es de 4 frases. No generes conversación adicional."
+        task_description = f"\nSimula al personaje de forma coherente con su personalidad y conocimientos. Genera una única respuesta autocontenida. El límite es de 4 oraciones. No generes conversación adicional."
 
 
         print(f"\nNombre del modelo: {model_name}")
@@ -78,6 +87,28 @@ while True:
 
         emotion = model.detect_emotion(text)
 
+        if emotion == "negativa":
+            emotion_level -= 1
+        elif emotion == "positiva":
+            emotion_level += 1
+
+
+        if emotion_level >= POSITIVE_EMOTION_THRESHOLD:
+            print("\n\nUmbral de emoción positiva alcanzado.")
+            task_description = "Simula al personaje descrito a continuación. Responde a la entrada de usuario como lo haría el personaje, con una frase similar a 'Me rindo. Has demostrado merecer el trono más que yo'. Genera una única respuesta autocontenida. El límite es de 4 oraciones. No generes conversación adicional."
+            action = "rendirse"
+
+        elif emotion_level <= NEGATIVE_EMOTION_THRESHOLD:
+            print("\n\nUmbral de emoción negativa alcanzado.")
+            task_description = "Simula al personaje descrito a continuación. Responde a la entrada de usuario como lo haría el personaje, con una frase similar a '¡Insolente! ¡Acabaré contigo ahora mismo!'. Genera una única respuesta autocontenida. El límite es de 4 oraciones. No generes conversación adicional."
+            action = "retar"
+        
+        elif interaction_count >= MAX_DIALOGUE_INTERACTION:
+            print("\n\nLímite de interacciones máximas alcanzadas.")
+            task_description = "Simula al personaje descrito a continuación. Responde a la entrada de usuario como lo haría el personaje, con una frase similar a 'Ya hemos hablado suficiente. Prepárate para el duelo.'. Genera una única respuesta autocontenida. El límite es de 4 oraciones. No generes conversación adicional."
+            action = "retar"
+            
+        
         # print(f"\nTexto + emocion detectada: {emotion}")
 
         context_tokens = model.add_context(text, context_tokens, token_list, context_dict)
@@ -86,16 +117,23 @@ while True:
         prompt = model.build_prompt(text, task_description, emotion, char_name, char_description, context_tokens, context_dict, history, model_name)
         
         # Se genera la respuesta
-        result = model.generate_response(model_name, prompt)
+        response = model.generate_response(model_name, prompt)
 
         # Sanea la respuesta para Smol, que devuelve también el prompt de entrada
         if model_name == "HuggingFaceTB_SmolLM2-360M-Instruct":
-            result = model.process_response(result, char_name)        
+            response = model.process_response(result, char_name)        
         
-        print(f"\n\nRespuesta: {result}")
+        print(f"\n\nRespuesta: {response}")
+
+        result = {
+            "response": f"{response}",
+            "emotion_level": f"{emotion_level}",
+            "action": f"{action}"
+        }
 
         # Guardar conversación para siguiente iteración
-        history.append((text, result))
+        if (action == "dialogar"):
+            history.append((text, response))
         # print(f"\n\nHistorial: {history}")
     
     # Se devuelve codigo de error
