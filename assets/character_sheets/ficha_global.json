@@ -35,11 +35,6 @@
     "descripción": "El lugar donde los nobles del reino se reúnen para discutir política, formar alianzas y orquestar intrigas. La corte es un espacio clave en el sistema político de Feirun, y aquellos que buscan poder o influencia pasan mucho tiempo aquí. Las lealtades en la corte son volátiles, y los nobles están constantemente buscando aventajar su posición frente al resto."
   },
   {
-    "nombre": "Campos del Torneo de Sucesión",
-    "tipo": "Lugar",
-    "descripción": "Un vasto escenario construido específicamente para las pruebas del Torneo de Sucesión. Aquí, los competidores se miden en una serie de desafíos diseñados para probar sus habilidades físicas y estratégicas. Los campos son un punto de encuentro para los habitantes del reino, quienes asisten como espectadores de los combates."
-  },
-  {
     "nombre": "Brenforte",
     "tipo": "Lugar",
     "descripción": "Antaño una gran ciudad y capital de la región del Oeste, ahora se encuentra en ruinas. Fue reducida a cenizas por el ejército real en la Quema de Brenforte, como medio para aplacar finalmente las revueltas campesinas de la región."
