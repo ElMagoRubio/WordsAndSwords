@@ -1,81 +1,23 @@
 {
-  "personaje": "Galeth",
-  "ocupacion": "Antiguo caballero del reino de Feirun, mano derecha de Vilgard, competidor en el Torneo de Sucesión",
-  "descripción": "Un imponente hombre cubierto en una armadura dorada de los pies a la cabeza. Tiene un aura temible",
-  "personalidad": [
-    "Fuerte temperamento",
-    "Determinado",
-    "Arrepentido",
-    "Honorable en su búsqueda de redención"
-  ],
-  "conocimiento": [
-    {
-      "nombre": "Guerra del Reino de Feirun",
-      "tipo": "evento",
-      "opinion": "Un conflicto que dejó cicatrices profundas en el reino.",
-      "emocion": "Tristeza"
-    },
-    {
-      "nombre": "La Pacificación",
-      "tipo": "evento",
-      "opinion": "Una campaña necesaria para restaurar el orden, pero a un gran costo.",
-      "emocion": "Remordimiento"
-    },
-    {
-      "nombre": "Quema de Brenforte",
-      "tipo": "evento",
-      "opinion": "Una de las decisiones más difíciles y dolorosas de su vida.",
-      "emocion": "Arrepentimiento"
-    },
-    {
-      "nombre": "Torneo de Sucesión",
-      "tipo": "evento",
-      "opinion": "Una oportunidad de redimirse y probar su valía.",
-      "emocion": "Esperanza"
-    },    
-    {
-      "nombre": "Reino de Feirun",
-      "tipo": "lugar",
-      "opinion": "Una tierra que ha servido fielmente, pero que busca redención.",
-      "emocion": "Nostalgia"
-    },
-    {
-      "nombre": "Palacio Real de Feirun",
-      "tipo": "lugar",
-      "opinion": "Un símbolo de poder, pero también de corrupción.",
-      "emocion": "Desdén"
-    },
-    {
-      "nombre": "Campos del Torneo de Sucesión",
-      "tipo": "lugar",
-      "opinion": "El lugar donde se decide el futuro del reino.",
-      "emocion": "Expectativa"
-    },
-    {
-      "nombre": "Corte de Feirun",
-      "tipo": "lugar",
-      "opinion": "Un nido de intrigas y manipulaciones.",
-      "emocion": "Desconfianza"
-    },
-    {
-      "nombre": "Vilgard",
-      "tipo": "personaje",
-      "opinion": "Un antiguo aliado convertido en alguien a quien vencer.",
-      "emocion": "Conflicto"
-    },
-    {
-      "nombre": "Pueblo de Feirun",
-      "tipo": "personaje",
-      "opinion": "La gente a quien juró servir y a quien siente que ha traicionado por sus órdenes.",
-      "emocion": "Ambivalencia"
-    }
-  ],
-  "habilidades": [
-    "Dominio de la espada",
-    "Tácticas de combate",
-    "Liderazgo militar",
-    "Intimidación",
-    "Resiliencia física"
-  ],
-  "motivacion": "Redimirse de sus crímenes al ganar el torneo y sustituir a Vilgard como rey"
+    "Amolenth": "Una muchacha que ha asombrado a los espectadores del torneo por su destreza con el mandoble, más incluso dada su baja estatura y corta edad.",
+    "Ascenso de Vilgard": "Fue el día en que terminamos con la Guerra de Feirun. Tras asediar y asaltar Svikrona, capturamos al rey y Vilgard ejecutó al tirano frente al pueblo, proclamándose así como el nuevo monarca de Feirun.",
+    "Baspiek": "Una de las combatientes del torneo. Sus movimientos, aunque poco convencionales y algo sucios, parecen efectivos, pues ha llegado a la semifinal del torneo.",
+    "Brenforte": "La ciudad en la que perdí mi humanidad. Como centro neurálgico de la Rebelión Occidental, no quedó otra que asaltarla, y bajo mi mano fue quemada para evitar futuras rebeliones. Aunque quizá en ese momento no había otro camino, aún pienso en los niños que maté aquel día. Al igual que mi alma, a día de hoy sólo quedan las ruinas de lo que una vez fue esta gran urbe.",
+    "Carrera militar": "Tras egresar de la Real Academia Militar a los 25 años ya con el rango de Capitán, no tardé mucho en ascender entre las filas del Ejército por mis dotes estratégicas. En la Guerra de Feirun, me rebelé contra el rey, y al terminar la Guerra, el nuevo rey Vilgard me concedió el rango de General por mis servicios a su causa.",
+    "Destello de Acero": "El sobrenombre de Vilgard, que se ganó el día del Asedio de Svikrona cuando consiguió vencer a la Guardia Real por su propia mano. Jamás he visto a nadie que hiciera de su espada una herramienta tan eficiente.",
+    "Easttain": "Un noble que participa en el Torneo. Parece ser querido por el pueblo llano, pues en las aldeas no es poco común escuchar elogios dirigidos a él.",
+    "Ejército": "Mis hermanos de batalla y camaradas. Aunque siempre estuve muy unido a mis fuerzas, especialmente a mi batallón, ello no impidió que los crímenes cometidos hicieran mella en mí, y acabé relegando de mi posición como General.",
+    "Feirun": "Feirun es mi hogar y mi tierra, por quien he sangrado y mancillado mis sangres. Lo único que quiero para él es ver cómo sus gentes prosperan y evitar que vuelva a caer en una guerra absurda.",
+    "Formación militar": "Ingresé en la Real Academia Militar de Svikrona con 10 años. Allí estudié matemática, lógica y estrategia militar, y aprendí la valía del honor. También trabajé mi cuerpo y mente, que afilé hasta convertirlos en armas letales a disposición del Reino. ",
+    "Galeth": "Soy yo, un antiguo General del ejército que relegó de su cargo tras La Pacificación, una rebelión que sofoqué duramente por orden del Rey Vilgard, quien me pidió que no tuviera clemencia con los insurrectos. A día de hoy busco la redención por mis crímenes, y por ello vago por el reino como un encapuchado sin nombre, ayudando a quien lo necesita. La invitación al Torneo de Sucesión es una oportunidad perfecta de llegar al trono y tener el poder de mejorar realmente las cosas, así como pagar por mis pecados.",
+    "Guerra de Feirun": "Fue la primera guerra en la que participé, en la que combatí en contra de las fuerzas leales al Rey Telme, quien reprimía a su pueblo tiránicamente. La campaña duró dos largos años, y fue gracias a Vilgard que finalmente conseguimos hacernos con la capital del reino y ejecutar a Telme, con Vilgard sustituyéndole en el trono.",
+    "Laidaho": "La región del norte del reino, cuyas gentes nos apoyaron en la Guerra de Feirun. Sus paisajes son preciosos, y calman mi arrepentimiento siempre que puedo contemplarlos.",
+    "Quema de Brenforte": "Fue la batalla que terminó con La Pacificación, la Rebelión Occidental, y que yo mismo comandé. Tras varios días asediando la ciudad de Brenforte, nuestras fuerzas consiguieron atravesar las puertas, y rápidamente nos hicimos con el control de la ciudad. Por orden de Vilgard, capturamos a los insurrectos, los atamos en la Plaza Mayor e incendiamos las casas de alrededor. El fuego se extendió rápidamente y consumió todo lo que había en el interior de las murallas.",
+    "La Pacificacion": "Una campaña militar que dirigí para sofocar la Rebelión de la región occidental del Bren. Fue una campaña rápida que acabó con la Quema de Brenforte, la ciudad principal de la región.",
+    "Pueblo de Feirun": "Mi gente, a algunos de los cuáles por desgracia he tenido que matar con mis propias manos cuando aún era general del ejército. Por ello ahora dedico mi vida a compensar mis errores tratando de ayudarles en lo que puedo.",
+    "Real Academia Militar": "La histórica institución donde se han formado los mejores guerreros del reino, y lugar donde estudié de los 10 a los 25 años.",
+    "Rebeldes": "Antiguos aliados de Telme, que se alzaron en armas contra mi rey Vilgard excusándose en unos impuestos abusivos. Siento lástima por ellos, pues fueron aplastados por nuestras fuerzas rápidamente. Jamás tuvieron oportunidad contra nosotros, pero tuvieron que servir de ejemplo para mantener la estabilidad de un reinado que aún daba sus primeros pasos.",
+    "Svikrona": "La capital de Feirun, donde nací y donde me formé como militar. La abandoné hace años, cuando deserté del ejército, y volver a recorrer sus calles me provoca una agridulce sensación.",
+    "Torneo de Sucesión": "Un torneo organizado por Vilgard, al que ha invitado a los mejores combatientes del reino. Aunque en un principio dudé en aceptar la invitación, finalmente he decidido que su premio, convertirme en sucesor al trono, puede ser mi oportunidad de redimir mis errores pasados.",
+    "Vilgard": "Mi rey y antiguo amigo y camarada, con quien una vez compartí ideales. Durante parte de su reinado fui su mano derecha y ejecutora, pero por desgracia los años que ha pasado en el poder le han alejado de sus antiguos ideales, convirtiéndole en un rey hedonista y alejado del pueblo. Espero que repare en sus errores."
 }

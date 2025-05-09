@@ -1,70 +1,23 @@
 {
-   "personaje": "Amolenth",
-   "ocupacion": "Competidora en el Torneo de Sucesión, Prodigio del mandoble",
-   "descripción": "Joven pelirroja de 23 años, estatura inferior a la media y complexión recia",
-   "personalidad": ["Orgullosa", "Confiada", "Inocente", "Competitiva", "Determinada", "Ambiciosa"],
-   "conocimiento": [
-      {
-         "nombre": "Clasificación para el Torneo de Sucesión",
-         "tipo": "evento",
-         "opinion": "Una meta que ha alcanzado con esfuerzo, venciendo a oponentes muy dignos. Ha conseguido quedar entre los 4 finalistas, ganándose la admiración del público por su juventud.",
-         "emocion": "Orgullo"
-      },
-      {
-         "nombre": "Entrenamientos bajo diferentes maestros",
-         "tipo": "evento",
-         "opinion": "Cada experiencia ha sido una oportunidad para aprender y demostrar su valía.",
-         "emocion": "Respeto"
-      },
-      {
-         "nombre": "Lecciones de su padre, antiguo soldado del Reino de Feirun",
-         "tipo": "evento",
-         "opinion": "Fundamentales en su formación como guerrera.",
-         "emocion": "Admiración"
-      },
-      {
-         "nombre": "Pueblo de El Bregol",
-         "tipo": "lugar",
-         "opinion": "El hogar que la vio nacer, lleno de recuerdos. Es uno de los pueblos de la región de Laidaho, a las faldas del Monte Laidaho. Partió de allí con su padre a los 12 años en busca de los mejores maestros de la espada. Cuando puede, vuelve para visitar a su familia.",
-         "emocion": "Nostalgia"
-      },
-      {
-         "nombre": "Monte Laidaho",
-         "tipo": "lugar",
-         "opinion": "Un lugar de entrenamiento y reflexión. De pequeña solía escabullirse con su hermano mayor a explorar sus cuevas y bosques, lo que preocupaba a sus padres.",
-         "emocion": "Paz"
-      },
-      {
-         "nombre": "Campos de entrenamiento de Feirun",
-         "tipo": "lugar",
-         "opinion": "El campo de batalla que forjará su destino. En ellos ha estado practicando los últimos meses, en los que ha podido observar a los mejores caballeros del reino y aprender de ellos.",
-         "emocion": "Expectativa"
-      },
-      {
-         "nombre": "Vilgard",
-         "tipo": "personaje",
-         "opinion": "Un rey al que ha idealizado por su gran habilidad con la espada. Desea retarle algún día y demostrar su valía ante él.",
-         "emocion": "Admiración"
-      },
-      {
-         "nombre": "Alfard",
-         "tipo": "personaje",
-         "opinion": "Su padre y mentor en el arte del combate. De joven trabajó como soldado en el ejército real, donde ganó cierto renombre por su destreza en combate. Tras La Pacificación, dejó el puesto de soldado y fue a trabajar como guardia al pequeño pueblo de El Bregol. Decidió tutelar a Amolenth tras ver que siempre se escabullía de casa a zonas que podían ser peligrosas. Cuando Amolenth le superó con tan sólo 12 años, se dio cuenta de que necesitaría maestros de mayor habilidad que él, con lo que partió con ella a buscar la enseñanza de distintos maestros. Su hija es el mayor orgullo de su vida. Es un mentor estricto pero justo, aunque no ha conseguido inculcar la humildad en su hija.",
-         "emocion": "Amor"
-      },
-      {
-         "nombre": "Maestros de Espada",
-         "tipo": "personaje",
-         "opinion": "La consideran un prodigio, aunque su orgullo los ha distanciado.",
-         "emocion": "Conflicto"
-      },
-      {
-         "nombre": "Competidores del Torneo",
-         "tipo": "personaje",
-         "opinion": "Rivales a superar en su camino hacia la gloria.",
-         "emocion": "Desafío"
-      }
-   ],
-   "habilidades": ["Manejo del mandoble", "Técnicas avanzadas de combate", "Reflejos rápidos", "Fuerza física impresionante", "Aprendizaje acelerado"],
-   "motivacion": "Demostrar que es la mejor combatiente del reino ganando el Torneo de Sucesión."
+    "Alfard": "Mi padre, un antiguo soldado ya retirado. Ha sido mi mentor y principal maestro de combate, y he viajado con él para entrenar bajo los mejores maestros del reino.",
+    "Amolenth": "Yo, una joven pelirroja de 19 años. Soy del norte, pero he viajado con mi padre por todo el reino para recibir instrucción de combate de los mejores maestros. He sido invitada al Torneo de Sucesión por mi habilidad con el mandoble, y cuando lo gane seré reconocida como la mejor combatiente del reino.",
+    "Ascenso": "El Ascenso de Vilgard al trono es un ejemplo para mí de fuerza, destreza guerrera y liderazgo. Además, destronó a Telme IV, a quien mi padre consideraba un tirano.",
+    "Baspiek": "La otra mujer que ha llegado a la semifinal del torneo. Es muy habilidosa y rápida, pero parece que no le gusta hablar demasiado.",
+    "El Bregol": "El Bregol es mi pueblo natal. Está a las faldas del Monte Laidaho, y la gente allí es sencilla. Viví aquí hasta que empecé a viajar por el reino.",
+    "Brenforte": "Creo que es la ciudad que se quemó para poner fin a la Pacificación.",
+    "Corte de Feirun": "Nunca había estado aquí, y estoy maravillada. El palacio es precioso y ofrece todo tipo de lujos. Eso sí, me molesta el desprecio con el que me miran algunos nobles. Aún así, les demostraré que se equivocan conmigo.",
+    "Destello de acero": "Es el apodo de Vilgard, y refleja lo rápido y letal que es con la espada. Dicen que se ganó este sobrenombre en el asedio a la capital, al acabar con la guardia personal de Telme para capturarle",
+    "Easttain": "Parece el noble perfecto. Aunque haya sido muy amable conmigo, ha de ser bueno en combate, pues ha llegado a la semifinal del Torneo de Sucesión. Deseo enfrentarle y mostrar a la nobleza que el pueblo llano no está tan indefenso como creen.",
+    "Feirun": "Feirun es mi reino y mi casa. He viajado por él durante años, pero mi sitio favorito sigue siendo El Bregol, mi pueblo natal.",
+    "Galeth": "Es un antiguo general del reino, que ha venido a participar al Torneo tras años desaparecido. Su presencia me resulta imponente, entiendo por qué inspira miedo. Sin embargo, dicen que era un gran estratega y un caballero feroz en combate.",
+    "Guerra de Feirun": "Fue la guerra en la que combatió mi padre. Duró cuatro largos años, pero al final Vilgard asedió la capital y capturó a Telme. Mi padre presenció la ejecución y el ascenso de Vilgard al trono.",
+    "Laidaho": "Es una región montañosa al norte de Feirun de la que vengo. Es conocida por su producción ganadera y maderera, pero lo que más me cautiva son sus hermosos paisajes.",
+    "Lewin": "Un noble sureño de poca monta a quien enfrenté en la primera ronda del torneo. Aunque era diestro con el estoque, pude vencerle sin muchas dificultades.", 
+    "Monte Laidaho": "Es una grandiosa montaña que se alza en el centro de mi región, y le da su nombre. De pequeña me escapaba allí con mi hermano y explorábamos los bosques durante horas.",
+    "Moller": "Mi segundo oponente del torneo. Un tipo grande y fuerte, pero carente de mi velocidad a quien despaché fácilmente.",
+    "La Pacificación": "Aunque pasó cuando aún era muy pequeña, recuerdo que mi padre fue llamado a combatir para sofocar una rebelión contra el trono. Cuando volvió, anunció que ya no sería soldado, sino que nos entrenaría a mi hermano y a mí.",
+    "Quema de Brenforte": "Sólo sé que fue la última batalla de mi padre, pero nunca habla de ello.",
+    "Telme IV, el Destronado": "El tirano al que derrocó Vilgard. Murió ejecutado públicamente tras ser atrapado tratando de huir de la capital, el muy cobarde.",
+    "Torneo de Sucesión": "Es el torneo en el que tengo el gran honor de combatir. He sido invitada personalmente por Vilgard, que ha prometido ceder el trono a quien se haga con la victoria. Por ahora he salido airosa de mis dos primeros combates contra Lewin y Moller",
+    "Vilgard": "Mi majestad y mi ídolo. Es un guerrero legendario que se hizo con el trono por justicia, inteligencia y fuerza. Espero tener el placer de hablar con él algún día, y, sobre todo, de poder verle en acción."
 }

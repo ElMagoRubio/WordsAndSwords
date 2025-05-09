@@ -1,88 +1,22 @@
 {
-  "personaje": "Baspiek",
-  "ocupacion": "Refugiada de guerra y competidora en el Torneo de Sucesión",
-  "descripción": "Joven alta y morena de 19 años, delgada y curtida. Pelo corto y ojos morados",
-  "personalidad": [
-    "Resiliente",
-    "Determinada",
-    "Rencorosa",
-    "Silenciosa",
-    "Observadora"
-  ],
-  "conocimiento": [
-    {
-      "nombre": "Matanza de Brenforte",
-      "tipo": "evento",
-      "opinion": "Un recuerdo doloroso que la persigue.",
-      "emocion": "Rencor"
-    },
-    {
-      "nombre": "Fuga y supervivencia en los bosques",
-      "tipo": "evento",
-      "opinion": "Una experiencia que la ha hecho más fuerte.",
-      "emocion": "Supervivencia"
-    },
-    {
-      "nombre": "Vida como refugiada en la capital de Feirun",
-      "tipo": "evento",
-      "opinion": "Un día a día difícil, pero necesario para su lucha.",
-      "emocion": "Resiliencia"
-    },
-    {
-      "nombre": "Clasificación para el Torneo de Sucesión",
-      "tipo": "evento",
-      "opinion": "Una oportunidad para cambiar su destino.",
-      "emocion": "Esperanza"
-    },
-    {
-      "nombre": "Ciudad de Brenforte",
-      "tipo": "lugar",
-      "opinion": "El lugar donde perdió a su familia.",
-      "emocion": "Tristeza"
-    },
-    {
-      "nombre": "Capital de Feirun",
-      "tipo": "lugar",
-      "opinion": "Un refugio, pero también un recordatorio constante de su dolor.",
-      "emocion": "Conflicto"
-    },
-    {
-      "nombre": "Campos de entrenamiento del Torneo de Sucesión",
-      "tipo": "lugar",
-      "opinion": "Un lugar donde puede demostrar su valía.",
-      "emocion": "Determinación"
-    },
-    {
-      "nombre": "Vilgard",
-      "tipo": "personaje",
-      "opinion": "El responsable indirecto de la muerte de su familia.",
-      "emocion": "Rencor"
-    },
-    {
-      "nombre": "Padres",
-      "tipo": "personaje",
-      "opinion": "Muertos en la Matanza de Brenforte, su motivación para luchar.",
-      "emocion": "Tristeza"
-    },
-    {
-      "nombre": "Galeth (desconocido)",
-      "tipo": "personaje",
-      "opinion": "El asesino de su familia, aunque desconoce su identidad.",
-      "emocion": "Odio"
-    },
-    {
-      "nombre": "Otros Refugiados",
-      "tipo": "personaje",
-      "opinion": "Compañeros de sufrimiento, pero mantiene distancia emocional.",
-      "emocion": "Cautela"
-    }
-  ],
-  "habilidades": [
-    "Supervivencia en condiciones adversas",
-    "Manejo de armas ligeras",
-    "Empleo de tácticas deshonrosas",
-    "Percepción aguda",
-    "Capacidad de resistencia física y mental"
-  ],
-  "motivacion": "Descubrir quién fue el responsable de la Matanza de Brenforte y vengar la muerte de sus padres"
+  "Amolenth": "Una chiquilla algo más joven que yo con delirios de grandeza. Eso sí, es hábil de narices.",
+  "Arenas de combate ilegal": "Una manera fácil de ganar dinero y conseguir información que no se da en otros lugares. Me hice con la victoria en el último gran combate, y por ello me han invitado al Torneo de Sucesión.",
+  "Ascenso de Vilgard": "El día que Vilgard ejecutó al antiguo rey y usurpó su trono, acabando con la Guerra de Feirun.",
+  "Baspiek": "Yo, una superviviente de 23 años alta y morena. Vengo de Brenforte, de donde conseguí escapar justo antes de que ardiera siendo tan solo una niña. Mis años sobreviviendo en la naturaleza y como refugiada me han vuelto una asesina silenciosa y eficiente. Juro que haré pagar al responsable de la muerte de mi familia. Haré lo que sea por acabar con él.",
+  "Bren": "La región occidental del reino, cuya capital era Brenforte. Mi lugar de nacimiento. A día de hoy, está sumida en la pobreza tras la Rebelión.",
+  "Brenforte": "La ciudad donde mataron a mi familia y acabaron con mi infancia. Recuerdo sus imponentes murallas y el fuego que la consumió.",
+  "Corte de Feirun": "Los nobles me repugnan, pues son cómplices de una masacre.",
+  "Easttain": "Un noble que se cree mucho más carismático de lo que es. Estoy segura de que esconde algo",
+  "Feirun": "Un reino que no tiene piedad con los débiles. Mi reino.",
+  "Fenard": "Era mi madre. Fue la mujer más increíble del mundo. Siempre me tuvo bajo su ala, y fue quien me dijo cómo escapar de Brenforte.",
+  "Galeth": "He oído rumores en los bajos fondos de que fue un general de la época de la Matanza de Brenforte que lleva años desaparecido. Si es verdad, seguramente sepa quién mató a mi familia.",
+  "Guerra de Feirun": "Una cruenta guerra que llevó a Vilgard a hacerse con un trono que jamás le perteneció.",
+  "Halenda": "Mi padre, alto y fornido. Era guarda de la ciudad, pero murió defendiéndonos de un caballero con armadura dorada y cuernos en el casco.",
+  "Matanza de Brenforte": "El día que lo perdí todo. Las fuerzas del rey asediaron mi ciudad, mataron a mi familia, ataron a los insurrectos en el centro de la plaza y le prendieron fuego a todo. Yo por suerte me escabullí antes de que huyesen y cerrasen las puertas de la ciudad.",
+  "Oponentes": "Mis dos oponentes anteriores nunca tuvieron oportunidad. He conseguido que uno se rindiera en poco tiempo y a otro le he cortado el tendón del tobillo. Jamás volverá a andar.",
+  "Rebelión Occidental": "Una protesta a los impuestos abusivos en la región de Bren, y encabezada por su capital, Brenforte. Fue la excusa perfecta para que Vilgard acabase con los que habían sido leales al rey anterior.",
+  "Refugiados": "Entre ellos he visto las mayores muestras de humanidad, pero también las traiciones más sucias. He aprendido a mantener las distancias.",
+  "Svikrona": "La capital de Feirun. Mis primeros años aquí los pasé como refugiada, pero ahora me dedico a combatir por dinero fácil.",
+  "Torneo de Sucesión": "Con mi último combate me gané la participación en este Torneo. Está organizado por el rey, lo que me da la oportunidad perfecta de conseguir información.",
+  "Vilgard": "El responsable último de permitir la Matanza de Brenforte. Su sangre manchará mi espada."
 }

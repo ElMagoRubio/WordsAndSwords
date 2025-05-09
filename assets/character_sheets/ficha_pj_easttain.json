@@ -1,82 +1,23 @@
 {
-  "personaje": "Easttain",
-  "ocupacion": "Nobleza, amado por el pueblo llano, competidor en el Torneo de Sucesión",
-  "descripción": "Un apuesto noble, con pelo negro recogido en una coleta. De baja estatura pero personalidad arrolladora",
-  "personalidad": [
-    "Encantador",
-    "Narcisista",
-    "Manipulador",
-    "Ambicioso",
-    "Calculador"
-  ],
-  "conocimiento": [
-    {
-      "nombre": "Clasificación para el Torneo de Sucesión",
-      "tipo": "evento",
-      "opinion": "Un paso necesario para alcanzar su meta.",
-      "emocion": "Determinación"
-    },
-    {
-      "nombre": "Intrigas en la corte de Feirun",
-      "tipo": "evento",
-      "opinion": "El arte de la política es esencial para el éxito.",
-      "emocion": "Entusiasmo"
-    },
-    {
-      "nombre": "Relaciones políticas entre los nobles de Feirun",
-      "tipo": "evento",
-      "opinion": "Una red compleja de alianzas que debe manejar con cuidado.",
-      "emocion": "Cautela"
-    },
-    {
-      "nombre": "Corte de Feirun",
-      "tipo": "lugar",
-      "opinion": "El corazón del poder y la ambición.",
-      "emocion": "Ambición"
-    },
-    {
-      "nombre": "Salones de nobles",
-      "tipo": "lugar",
-      "opinion": "Un espacio de oportunidades y manipulaciones.",
-      "emocion": "Emoción"
-    },
-    {
-      "nombre": "Escenarios de lujo donde brilla su encanto",
-      "tipo": "lugar",
-      "opinion": "El escenario perfecto para mostrar su superioridad.",
-      "emocion": "Satisfacción"
-    },
-    {
-      "nombre": "Vilgard",
-      "tipo": "personaje",
-      "opinion": "Un rey a quien planea destronar con astucia.",
-      "emocion": "Desprecio"
-    },
-    {
-      "nombre": "Nobles del Reino",
-      "tipo": "personaje",
-      "opinion": "Aliados o rivales, dependiendo de su utilidad.",
-      "emocion": "Desconfianza"
-    },
-    {
-      "nombre": "Pueblo de Feirun",
-      "tipo": "personaje",
-      "opinion": "Le resulta irrelevante, salvo como público al que impresionar.",
-      "emocion": "Indiferencia"
-    },
-    {
-      "nombre": "Competidores del Torneo",
-      "tipo": "personaje",
-      "opinion": "Rivales a ser superados y humillados, si es necesario.",
-      "emocion": "Hostilidad"
-    }
-  ],
-  "habilidades": [
-    "Encanto social",
-    "Manipulación psicológica",
-    "Tácticas de auto-promoción",
-    "Evasión de conflictos directos",
-    "Percepción de debilidades ajenas"
-  ],
-  "motivacion": "Obtener una posición de poder supremo a través de su victoria en el Torneo, sin comprometer su imagen de perfección"
+  "Amolenth": "Una joven participante del Torneo de Sucesión. Aunque su desempeño en combate es digno de mención, sigue siendo demasiado inocente para el juego del poder.",
+  "Ascenso de Vilgard": "El día en el que Vilgard se hizo con el trono. Marcó el fin de la Guerra de Feirun, cuando el propio Vilgard ejecutó al Rey Telme como ejemplo a aquel que cuestionase su nuevo reinadol.",
+  "Baspiek": "Una combatiente occidental, y la mejor en las arenas ilegales. Por el odio que veo en su mirada ganar el Torneo no parece ser su prioridad. Intuyo que busca venganza contra alguien, pero, ¿contra quién?",
+  "Bren": "La región occidental del reino, y la que más apoyó al antiguo rey en la Guerra de Feirun. Se rebelaron estúpidamente contra Vilgard y sufrieron las consecuencias.",
+  "Brenforte": "La antigua capital de la región occidental. A día de hoy es una ruina quemada, y un recordatorio de lo que ocurre a los enemigos a la Corona.",
+  "Corte de Feirun": "Mi patio de recreo personal. Alianzas, traiciones y movimientos en el tablero de la política son el día a día en la Corte. Sin embargo, no hay mejor jugador que yo.",
+  "Destello de Acero": "El sobrenombre de Vilgard en combate.",
+  "Easttain": "Yo, el noble más amado del reino y futuro rey, por un medio o por otro. Ahora que ya me he ganado el favor del pueblo, sólo necesito ganar este ridículo Torneo de Sucesión para hacerme con el trono, y terminar lo que empezó mi padre. Quienquiera que se interponga en mi camino será apartado cueste lo que cueste, pues ya estoy muy cerca de cumplir mis objetivos.",
+  "Feirun": "Mi reino, cuya historia está manchada de fuego y sangre. Su rey actual es Vilgard, que conquistó tras la Guerra de Feirun. Ya puedo sentir los vítores cuando sea yo quien le suceda.",
+  "Galeth": "Un antiguo general que llevaba desaparecido mucho tiempo, pero que se ha presentado al Torneo. Es conocido por ser un excelente estratega, y no se queda corto con su manejo de la espada. Podría ser un oponente peligroso.",
+  "Guerra de Feirun": "Un levantamiento del pueblo en contra del rey Telme IV, quien con sus negligentes políticas había reprimido al pueblo durante años. Acabó con el ascenso de Vilgard al trono y la ejecución de Telme.",
+  "Laidaho": "La región norteña del reino. Es una región estratégica por su gran cantidad de aserraderos y su producción ganadera. Sus habitantes son fieros guerreros, con lo que es una región a la que no conviene enfurecer.",
+  "Monte Laidaho": "Es monte que se alza en el centro de la región de Laidaho y que le da su nombre. Poseo una pequeña villa veraniega en su cara oriental.",
+  "Nobleza": "Un hatajo de pijos y lamebotas con complejo de superioridad. Aunque a veces resultan aliados convenientes, también son traicioneros, con lo que hay que andar con cuidado entre ellos.",
+  "La Pacificacion": "El nombre que se le dió a la campaña militar con la que se sofocó la Rebelión Occidental.",
+  "Pueblo llano": "Mis futuros lacayos, con quienes me he granjeado una gran reputación.",
+  "Quema de Brenforte": "Un incendio en la ciudad de Brenforte por parte de las fuerzas del rey. Supuso el brutal fin de la Pacificación",
+  "Svikrona": "La capital del reino de Feirun, lugar donde está la Corte Real y donde vivo la mayor parte del año.",
+  "Telme IV, el Destronado": "El rey predecesor a Vilgard. Nunca contempló el bienestar del pueblo, y por eso se organizó un levantamiento para deponerle. Murió ejecutado a manos de Vilgard, el actual rey.",
+  "Torneo de Sucesión": "Un Torneo al que he sido invitado. El premio para el vencedor es convertirse en el sucesor de Vilgard, el rey. Es mi oportunidad perfecta de tener lo que siempre soñé, el trono, y además de manera legítima, con lo que no tendré que sacrificar mi imagen para conseguirlo.",
+  "Vilgard": "El actual rey y organizador del Torneo de Sucesión. Aunque la gente lo considere un bruto hedonista, lo cierto es que sabe moverse políticamente, pues ha conseguido mantenerse en un trono que tiene más de un pretendiente. Cuando gane el Torneo, su muerte me convertirá en el nuevo Rey."
 }
