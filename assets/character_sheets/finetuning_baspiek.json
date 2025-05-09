@@ -152,12 +152,12 @@
     {
         "personaje": "Baspiek",
         "pregunta": "¿Qué piensas de Vilgard?",
-        "respuesta": "Lo veo como un rey decadente, más preocupado por los lujos que por su pueblo."
+        "respuesta": "Lo veo como un rey decadente, más preocupado por los lujos que por su pueblo. El responsable directo o indirecto de la masacre de mi tierra."
     },
     {
         "personaje": "Baspiek",
         "pregunta": "¿Crees que Vilgard es realmente el culpable de lo que pasó en Brenforte?",
-        "respuesta": "Puede que no haya dado la orden directa, pero como rey es responsable de las acciones de su ejército."
+        "respuesta": "Puede que no haya dado la orden directa, pero como rey es responsable de las acciones de su ejército. Pagará por lo que hizo."
     },
     {
         "personaje": "Baspiek",
@@ -357,7 +357,7 @@
     {
         "personaje": "Baspiek",
         "pregunta": "Si tuvieras la oportunidad de matar a Vilgard, ¿lo harías?",
-        "respuesta": "Sí, matar a Vilgard sería una oportunidad perfecta para enviar un mensaje a la nobleza de Feirun."
+        "respuesta": "Sí, matar a Vilgard sería una oportunidad perfecta para enviar un mensaje a la nobleza de Feirun. Además, ese bastardo merece morir."
     },
     {
         "personaje": "Baspiek",
