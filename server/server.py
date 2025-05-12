@@ -57,6 +57,10 @@ server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.bind((HOST, PORT))
 server_socket.listen(1)
 
+# Se envía una señal de confirmación de carga a Godot
+with open(os.path.join(BASE_DIR, "server_ready.flag"), "w") as f:
+    f.write("READY")
+
 print(f"Servidor en ejecución en {HOST}:{PORT}")
 
 # Bucle del servidor
@@ -76,6 +80,12 @@ while interaction_count < MAX_DIALOGUE_INTERACTION:
         #Se extraen modelo y texto
         model_name = request["model"]
         text = request["text"]
+
+        if text == "CLOSE_SERVER" and model_name == "--":
+            print("\n\nSolicitud de cierre recibida. Cerrando servidor...")
+            client_socket.send(json.dumps({"response": "Servidor cerrado."}).encode())
+            client_socket.close()
+            break
 
         # Descripción de la tarea que ha de realizar modelo
         task_description = f"\nSimula al personaje de forma coherente con su personalidad y conocimientos. Genera una única respuesta autocontenida. El límite es de 4 oraciones. No generes conversación adicional."
@@ -143,3 +153,9 @@ while interaction_count < MAX_DIALOGUE_INTERACTION:
     # Se devuelve la respuestas
     client_socket.send(json.dumps(result).encode())
     client_socket.close()
+
+# Se cierra el server
+if os.path.exists(os.path.join(BASE_DIR, "server_ready.flag")):
+    os.remove(os.path.join(BASE_DIR, "server_ready.flag"))
+
+server_socket.close()
