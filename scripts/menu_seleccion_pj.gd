@@ -68,4 +68,4 @@ func _on_button_pj_seleccion_button_down():
 func _on_button_pj_seleccion_pressed():
 	Global.pj_jugador = Global.pj_jugador
 	print("PJ seleccionado: ", Global.pj_jugador)
-	get_tree().change_scene_to_file("res://scenes/amolenth_dialogue.tscn")
+	get_tree().change_scene_to_file("res://scenes/pj_dialogue.tscn")

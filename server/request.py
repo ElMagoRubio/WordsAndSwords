@@ -6,6 +6,7 @@ import model_manager as model
 # Dirección del servidor
 HOST = "127.0.0.1"
 PORT = 5005
+DEBUG_MODE = False
 
 MODELOS = [
     "google_flan-t5-large",
@@ -14,30 +15,36 @@ MODELOS = [
 ]
 
 # Texto de ejemplo para las pruebas
-TEXTO_EJEMPLO = "Hola, ¿cómo estás hoy? Estoy un poco nervioso por el examen."
+TEXTO_EJEMPLO = "Texto de ejemplo"
 
-print(f"\nArgumentos: {sys.argv}")
+if (DEBUG_MODE):
+    print(f"\nArgumentos: {sys.argv}")
 i = 0
 for a in sys.argv:
-    print(f"Argumento {i}: {a}")
+    if (DEBUG_MODE):
+        print(f"Argumento {i}: {a}")
     i += 1
 
 if (len(sys.argv) == 2):
     model_name = MODELOS[int(sys.argv[1])]
-    print(f"\nSólo un argumento, pasando prompt de ejemplo al modelo {model_name}.")
+    if (DEBUG_MODE):
+        print(f"\nSólo un argumento, pasando prompt de ejemplo al modelo {model_name}.")
     text = TEXTO_EJEMPLO
 
 
 elif (len(sys.argv) == 3):
     model_name = MODELOS[int(sys.argv[1])]
-    print(f"\nPasando prompt al modelo {model_name}.")
+    if (DEBUG_MODE):
+        print(f"\nPasando prompt al modelo {model_name}.")
     text = sys.argv[2]
 
 else:
     print(f"\nERROR: Número de argumentos incorrecto. Ejecutar como: './prueba_server.py numero_modelo prompt_entrada'")
     exit(1)
 
-print(f"\nProbando generate_response con modelo: {model_name}")
+if (DEBUG_MODE):
+    print(f"\nProbando generate_response con modelo: {model_name}")
+
 try:
     # Crear socket de cliente
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -49,9 +56,11 @@ try:
         "text": text
     }
 
-    print(f"\nRequest: {request}")
+    if (DEBUG_MODE):
+        print(f"\nRequest: {request}")
     
-    print(f"\nEnviando petición...")
+    if (DEBUG_MODE):
+        print(f"\nEnviando petición...")
     client_socket.send(json.dumps(request).encode())
 
     # Recibir respuesta
@@ -59,6 +68,15 @@ try:
     client_socket.close()
 
     result = json.loads(response)
-    print(f"Respuesta del modelo: {result}")
+
+    if (DEBUG_MODE):
+        print("Respuesta del servidor: ")
+
+    print(json.dumps(result))
+          
 except Exception as e:
-    print("Error:", e)
+    print(json.dumps({
+        "response": "Error de conexion",
+        "emotion_level": "0",
+        "action": "dialogar"
+    }))

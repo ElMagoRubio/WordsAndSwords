@@ -1,12 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://cipkij5ijbqj4"]
+[gd_scene load_steps=11 format=3 uid="uid://by66xj4sayfm"]
 
-[ext_resource type="Script" path="res://scripts/amolenth_dialogue.gd" id="1_uvtav"]
-[ext_resource type="Texture2D" uid="uid://dgrhusqhn3ut8" path="res://assets/Escenarios/Nubes dia.png" id="2_hf0lq"]
-[ext_resource type="Texture2D" uid="uid://rf6j4c3qmupj" path="res://assets/PJS/Amolenth/Amolenth.png" id="2_u7xtf"]
-[ext_resource type="Theme" uid="uid://cjkmwoyjf2bu5" path="res://assets/theme/WordsNSwords.tres" id="4_inv3k"]
-[ext_resource type="FontFile" uid="uid://ctgf5qs6g1evf" path="res://assets/Escenarios/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="4_xphsx"]
-[ext_resource type="Texture2D" uid="uid://du18bk1hy4o5i" path="res://assets/theme/iconos/Caja texto.png" id="5_suekk"]
-[ext_resource type="PackedScene" uid="uid://bg3qlae7pdaw3" path="res://scenes/menu_pausa.tscn" id="9_8m2yt"]
+[ext_resource type="Script" path="res://scripts/pj_dialogue.gd" id="1_pvcjg"]
+[ext_resource type="Texture2D" uid="uid://dgrhusqhn3ut8" path="res://assets/Escenarios/Nubes dia.png" id="2_xrkr7"]
+[ext_resource type="Texture2D" uid="uid://rf6j4c3qmupj" path="res://assets/PJS/Amolenth/Amolenth.png" id="3_oqahd"]
+[ext_resource type="Theme" uid="uid://cjkmwoyjf2bu5" path="res://assets/theme/WordsNSwords.tres" id="4_b7w6r"]
+[ext_resource type="Texture2D" uid="uid://du18bk1hy4o5i" path="res://assets/theme/iconos/Caja texto.png" id="5_34o06"]
+[ext_resource type="FontFile" uid="uid://ctgf5qs6g1evf" path="res://assets/Escenarios/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="6_e8rtu"]
+[ext_resource type="PackedScene" uid="uid://bg3qlae7pdaw3" path="res://scenes/menu_pausa.tscn" id="7_jphu4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8k8h4"]
 
@@ -15,17 +15,17 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xq5t7"]
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_uvtav")
+script = ExtResource("1_pvcjg")
 
 [node name="Fondo" type="Sprite2D" parent="."]
 position = Vector2(640, 360)
 scale = Vector2(4, 4)
-texture = ExtResource("2_hf0lq")
+texture = ExtResource("2_xrkr7")
 
 [node name="PJ" type="Sprite2D" parent="."]
 position = Vector2(625, 353)
 scale = Vector2(8, 8)
-texture = ExtResource("2_u7xtf")
+texture = ExtResource("3_oqahd")
 
 [node name="HUD" type="Control" parent="."]
 layout_mode = 3
@@ -33,12 +33,12 @@ anchors_preset = 0
 offset_top = 24.0
 offset_right = 40.0
 offset_bottom = 64.0
-theme = ExtResource("4_inv3k")
+theme = ExtResource("4_b7w6r")
 
 [node name="CajaTexto1" type="Sprite2D" parent="HUD"]
 position = Vector2(624, 601)
 scale = Vector2(0.735, 0.735)
-texture = ExtResource("5_suekk")
+texture = ExtResource("5_34o06")
 
 [node name="Texto" type="TextEdit" parent="HUD/CajaTexto1"]
 anchors_preset = -1
@@ -57,7 +57,7 @@ theme_override_colors/font_placeholder_color = Color(0.286275, 0.286275, 0.28627
 theme_override_colors/caret_color = Color(0, 0, 0, 1)
 theme_override_colors/caret_background_color = Color(0.807843, 0.752941, 0.576471, 1)
 theme_override_constants/caret_width = 2
-theme_override_fonts/font = ExtResource("4_xphsx")
+theme_override_fonts/font = ExtResource("6_e8rtu")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxEmpty_8k8h4")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_v3hgm")
@@ -71,7 +71,7 @@ text_direction = 1
 visible = false
 position = Vector2(624, 459)
 scale = Vector2(0.735, 0.735)
-texture = ExtResource("5_suekk")
+texture = ExtResource("5_34o06")
 
 [node name="Texto" type="TextEdit" parent="HUD/CajaTexto2"]
 anchors_preset = -1
@@ -90,7 +90,7 @@ theme_override_colors/font_placeholder_color = Color(0.286275, 0.286275, 0.28627
 theme_override_colors/caret_color = Color(0, 0, 0, 1)
 theme_override_colors/caret_background_color = Color(0.807843, 0.752941, 0.576471, 1)
 theme_override_constants/caret_width = 2
-theme_override_fonts/font = ExtResource("4_xphsx")
+theme_override_fonts/font = ExtResource("6_e8rtu")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxEmpty_8k8h4")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_v3hgm")
@@ -104,7 +104,7 @@ text_direction = 1
 visible = false
 position = Vector2(624, 312)
 scale = Vector2(0.735, 0.735)
-texture = ExtResource("5_suekk")
+texture = ExtResource("5_34o06")
 
 [node name="Texto" type="TextEdit" parent="HUD/CajaTexto3"]
 anchors_preset = -1
@@ -123,7 +123,7 @@ theme_override_colors/font_placeholder_color = Color(0.286275, 0.286275, 0.28627
 theme_override_colors/caret_color = Color(0, 0, 0, 1)
 theme_override_colors/caret_background_color = Color(0.807843, 0.752941, 0.576471, 1)
 theme_override_constants/caret_width = 2
-theme_override_fonts/font = ExtResource("4_xphsx")
+theme_override_fonts/font = ExtResource("6_e8rtu")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxEmpty_8k8h4")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_v3hgm")
@@ -140,13 +140,12 @@ offset_left = 492.0
 offset_top = -16.0
 offset_right = 788.0
 offset_bottom = 60.0
-theme = ExtResource("4_inv3k")
+theme = ExtResource("4_b7w6r")
 theme_type_variation = &"HeaderMedium"
 text = "Amolenth"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
-uppercase = true
 
 [node name="Hablar" type="Button" parent="HUD"]
 layout_mode = 1
@@ -163,6 +162,7 @@ text = "Hablar"
 icon_alignment = 1
 
 [node name="Enviar" type="Button" parent="HUD"]
+visible = false
 layout_mode = 0
 offset_left = 977.0
 offset_top = 8.0
@@ -217,7 +217,7 @@ text = "Modo desarrollador"
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="MenuJuego" parent="." instance=ExtResource("9_8m2yt")]
+[node name="MenuJuego" parent="." instance=ExtResource("7_jphu4")]
 offset_left = 1.0
 offset_right = 41.0
 

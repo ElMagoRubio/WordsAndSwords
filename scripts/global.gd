@@ -1,14 +1,14 @@
 extends Node
 
 var _lista_nombres = [
-	"AMOLENTH",
-	"BASPIEK",
-	"EASTTAIN",
-	"GALETH",
-	"VILGARD"
+	"Amolenth",
+	"Baspiek",
+	"Easttain",
+	"Galeth",
+	"Vilgard"
 ]
 
-var _nombre_jugador = "AMOLENTH"
+var _nombre_jugador = "Amolenth"
 var nombre_jugador:
 	get:
 		return _nombre_jugador
