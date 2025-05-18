@@ -1,6 +1,8 @@
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, TrainingArguments, Trainer, DataCollatorForSeq2Seq
 from datasets import load_dataset
 import gc, os, threading, time 
+
+# Optimización de la gestión de memoria de PyTorch
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 import torch
 
@@ -8,7 +10,7 @@ model_name = "google_flan-t5-large"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Rutas
-dataset_path = os.path.join(BASE_DIR, "../finetuning_ready_dataset_1.jsonl")
+dataset_path = os.path.join(BASE_DIR, "../finetuning_ready_dataset_1_flant5.jsonl")
 tokenizer_path = os.path.join(BASE_DIR, f"../tokenizer/{model_name}")
 model_path = os.path.join(BASE_DIR, f"../model/{model_name}")
 
