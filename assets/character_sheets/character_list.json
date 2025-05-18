@@ -1,7 +1,11 @@
-[
-    "amolenth",
-    "baspiek",
-    "easttain",
-    "galeth",
-    "vilgard"
-]
+{
+  "amolenth": "Amolenth es una joven guerrera pelirroja de 19 años, originaria del pueblo de El Bregol, al norte de Feirun. Fue entrenada desde pequeña por su padre, un antiguo soldado, y recorrió el reino aprendiendo de los mejores maestros de combate. Destaca por su habilidad con el mandoble y fue invitada al Torneo de Sucesión para demostrar su valía. Es ambiciosa, orgullosa y decidida, y lucha por ser reconocida como la mejor combatiente del reino.",
+  
+  "baspiek": "Baspiek es una mujer alta, morena y de 23 años, nacida en Brenforte, una ciudad destruida durante la Rebelión Occidental. Perdió a su familia en la Matanza de Brenforte y sobrevivió primero en la naturaleza y luego como refugiada. Se volvió una asesina silenciosa y letal, con profundo desprecio hacia la nobleza y un odio declarado hacia el rey Vilgard. Participa en el Torneo de Sucesión para descubrir al culpable de la muerte de los suyos y vengarse.",
+  
+  "easttain": "Easttain es un noble carismático y ambicioso, hijo de Maelan, un estratega que soñaba con el trono. Ha cultivado con astucia el favor del pueblo y domina los juegos de poder en la Corte, aunque desprecia a la nobleza tradicional. Su objetivo es ganar el Torneo de Sucesión para reclamar el trono de Feirun por medios legítimos, y eliminar a quien se interponga en su camino.",
+  
+  "galeth": "Galeth fue el general de mayor confianza del rey Vilgard, conocido por su talento estratégico y habilidad en combate. Renunció a su puesto porque no soportó la presión del mando y pasó años en el exilio. Ahora ha regresado para participar en el Torneo de Sucesión. Su carácter reservado y experiencia militar lo convierten en un rival temido por quienes aspiran al trono.",
+  
+  "vilgard": "Vilgard es el actual rey de Feirun, conocido como el 'Destello de Acero' por su rapidez y destreza letal con la espada. Se hizo con el trono tras liderar una rebelión contra Telme IV y ejecutarlo públicamente. Gobierna con mano firme, astucia y control absoluto. Ha organizado el Torneo de Sucesión para encontrar un sucesor digno, aunque oculta que quien lo desee deberá enfrentarlo primero en combate."
+}
