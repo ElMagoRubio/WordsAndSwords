@@ -21,6 +21,15 @@ model_path_list = [
 # Diccionario con tokenizador y modelo.
 tokenizer_model_dict = {}
 
+
+# Abre archivos .json a partir de una ruta
+def load_json(filepath):
+    with open(filepath, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+# Rango de emociones
+emotion_range = load_json(os.path.join(BASE_DIR, f"../assets/character_sheets/emotion_levels.json"))
+
 # Detecta la emoción del texto de entrada del usuario
 def detect_emotion(text):
     """Detecta la emoción en un texto usando el modelo de clasificación de emociones."""
@@ -91,7 +100,7 @@ def build_prompt(text, task_description, emotion, char_name, char_description, c
     # Adición de tokens a contexto
     context_section = ""
     for token_key in context_tokens:
-        context_section += f"\t\n{token_key}: {context_dict[token_key]}\n"
+        context_section += f"\n\t{token_key}: {context_dict[token_key]}\n"
 
     # print(f"Explicación de los contextos: {context_section}")
 
@@ -102,7 +111,7 @@ def build_prompt(text, task_description, emotion, char_name, char_description, c
             history_section += f"[user]: {user_input}\n[{char_name}]: {char_response}\n\n"
     elif model_name == "HuggingFaceTB_SmolLM2-360M-Instruct":
         for user_input, char_response in history:
-            history_section += f"[user]: {user_input}\n[{char_name}]: {char_response}\n\n"
+            history_section += f"\t[user]: {user_input}\n\t[{char_name}]: {char_response}\n\n"
 
     # print(f"Historial de conversación: {history_section}")
 
@@ -110,20 +119,20 @@ def build_prompt(text, task_description, emotion, char_name, char_description, c
     if model_name == "google_flan-t5-large":
         prompt = (
             f"Tarea: {task_description}"
-            f"\n\nResponde de manera {emotion}"
-            f"\n\nPersonaje:\nNombre: {char_name}\nDescripción: {char_description}"
+            f"\n\nNivel de emocion: {emotion} ({emotion_range[emotion+5]})"
+            f"\n\nDatos del personaje:\n\tNombre: {char_name}\n\tDescripción: {char_description}"
             f"\n\nContexto:\n{context_section}"
             f"\n\nHistorial:\n{history_section}"
-            f"[user]: {text}\n[{char_name}]:"
+            f"\t[user]: {text}\n\t[{char_name}]: "
         )
     elif model_name == "HuggingFaceTB_SmolLM2-360M-Instruct":
         prompt = (
             f"[system]: Tarea: {task_description}"
             f"\n\n[system]: Responde de manera {emotion}"
-            f"\n\n[system]: Personaje:\nNombre: {char_name}\nDescripción: {char_description}"
+            f"\n\n[system]: Datos del personaje:\nNombre: {char_name}\nDescripción: {char_description}"
             f"\n\n[system]: Contexto:{context_section}"
             f"\n\n{history_section}"
-            f"[user]: {text}\n[{char_name}]:"
+            f"\t[user]: {text}\n\t[{char_name}]: "
         )
     else:
         raise ValueError("Modelo no soportado.")
@@ -207,11 +216,6 @@ def measure_generation_time(model_name, text):
         "response": response_text,
         "time_seconds": generation_time
     }
-
-# Abre archivos .json a partir de una ruta
-def load_json(filepath):
-    with open(filepath, "r", encoding="utf-8") as f:
-        return json.load(f)
 
 # Carga los modelos de lenguaje
 def load_models():

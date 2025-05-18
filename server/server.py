@@ -10,11 +10,16 @@ char_name = sys.argv[1]
 #Se carga la lista de personajes
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 char_list = model.load_json(os.path.join(BASE_DIR, "../assets/character_sheets/character_list.json"))
-
+task_descriptions = model.load_json(os.path.join(BASE_DIR, "../assets/character_sheets/prompts.json"))
+# print(f"\n\nTareas asignadas al modelo: \n{task_descriptions["DEFAULT_PROMPT"]}\n\n{task_descriptions["INTERACTION_LIMIT_PROMPT"]}\n\n{task_descriptions["EMOTION_UPPER_THRESHOLD"]}\n\n{task_descriptions["EMOTION_LOWER_THRESHOLD"]}")
 
 #Validación de nombre de personaje
 normalized_char_name = model.normalize_text(char_name)
-if normalized_char_name not in char_list:
+if normalized_char_name in char_list:
+    #Descripción del personaje
+    char_description = char_list[normalized_char_name]
+    #print(f"\n\n[{char_name}]: {char_description}")
+else:
     raise ValueError(f"ERROR: Personaje '{sys.argv}' no encontrado en character_list.json.")
 
 print(f"\n\nCargando archivos del personaje {char_name}")
@@ -25,9 +30,6 @@ print(f"\nCargado archivo de lista de tokens para {char_name}")
 context_dict = model.load_json(os.path.join(BASE_DIR, f"../assets/character_sheets/ficha_pj_{normalized_char_name}.json"))
 print(f"\nCargado archivo de contexto.")
 
-char_description = context_dict[char_name]
-
-print(f"\n\nDescripción del personaje: {char_description}")
 
 # Declaración de constantes de control (número máximo de interacciones, umbral emocional maximo y minimo)
 MAX_DIALOGUE_INTERACTION = 15
@@ -87,15 +89,14 @@ while interaction_count < MAX_DIALOGUE_INTERACTION:
             client_socket.close()
             break
 
-        # Descripción de la tarea que ha de realizar modelo
-        task_description = f"\nSimula al personaje de forma coherente con su personalidad y conocimientos. Genera una única respuesta autocontenida. El límite es de 4 oraciones. No generes conversación adicional."
-
 
         print(f"\nNombre del modelo: {model_name}")
         print(f"\nTexto: {text}")
         print(f"PJ: {char_name}")
 
-        emotion = model.detect_emotion(text)
+        emotion = model.detect_emotion(text)        
+        # print(f"\nTexto + emocion detectada: {emotion}")
+
 
         if emotion == "negativa":
             emotion_level -= 1
@@ -105,21 +106,23 @@ while interaction_count < MAX_DIALOGUE_INTERACTION:
 
         if emotion_level >= POSITIVE_EMOTION_THRESHOLD:
             print("\n\nUmbral de emoción positiva alcanzado.")
-            task_description = "Simula al personaje descrito a continuación. Responde a la entrada de usuario como lo haría el personaje, con una frase similar a 'Me rindo. Has demostrado merecer el trono más que yo'. Genera una única respuesta autocontenida. El límite es de 4 oraciones. No generes conversación adicional."
+            task_description = task_descriptions["EMOTION_UPPER_THRESHOLD"]
             action = "rendirse"
 
         elif emotion_level <= NEGATIVE_EMOTION_THRESHOLD:
             print("\n\nUmbral de emoción negativa alcanzado.")
-            task_description = "Simula al personaje descrito a continuación. Responde a la entrada de usuario como lo haría el personaje, con una frase similar a '¡Insolente! ¡Acabaré contigo ahora mismo!'. Genera una única respuesta autocontenida. El límite es de 4 oraciones. No generes conversación adicional."
+            task_description = task_descriptions["EMOTION_LOWER_THRESHOLD"]
             action = "retar"
         
         elif interaction_count >= MAX_DIALOGUE_INTERACTION:
             print("\n\nLímite de interacciones máximas alcanzadas.")
-            task_description = "Simula al personaje descrito a continuación. Responde a la entrada de usuario como lo haría el personaje, con una frase similar a 'Ya hemos hablado suficiente. Prepárate para el duelo.'. Genera una única respuesta autocontenida. El límite es de 4 oraciones. No generes conversación adicional."
+            task_description = task_descriptions["INTERACTION_LIMIT_PROMPT"]
             action = "retar"
-            
         
-        # print(f"\nTexto + emocion detectada: {emotion}")
+        else:            
+            # Descripción de la tarea que ha de realizar modelo
+            task_description = task_descriptions["DEFAULT_PROMPT"]
+        
 
         context_tokens = model.add_context(text, context_tokens, token_list, context_dict)
         # print(f"\n\nTokens de contexto: {context_tokens}")
