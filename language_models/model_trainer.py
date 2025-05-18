@@ -1,6 +1,6 @@
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, TrainingArguments, Trainer, DataCollatorForSeq2Seq
 from datasets import load_dataset
-import os, torch
+import os, threading, time, torch
 
 model_name = "google_flan-t5-large"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -41,6 +41,7 @@ def preprocess(example):
 
 # Aplicar preprocesamiento al dataset
 tokenized_dataset = dataset.map(preprocess, batched=False)
+tokenized_dataset = tokenized_dataset.remove_columns(["input", "target"])  # <– línea nueva
 
 # Configurar entrenamiento
 args = TrainingArguments(   
@@ -63,6 +64,22 @@ trainer = Trainer(
     tokenizer=tokenizer,
     data_collator=DataCollatorForSeq2Seq(tokenizer, model=model),
 )
+
+# Función que imprime el tiempo de entrenamiento cada 30 segundos, comprobación de que está ejecutando
+def mostrar_tiempo_entrenamiento():
+    inicio = time.time()
+    while not entrenamiento_finalizado:
+        tiempo = int(time.time() - inicio)
+        print(f"********************************** [Tiempo transcurrido]: {tiempo // 60} min {tiempo % 60} seg **********************************")
+        time.sleep(30)
+
+entrenamiento_finalizado = False
+contador_thread = threading.Thread(target=mostrar_tiempo_entrenamiento)
+contador_thread.start()
+
+# Finalizar el temporizador
+entrenamiento_finalizado = True
+contador_thread.join()
 
 # Entrenamiento
 trainer.train()
