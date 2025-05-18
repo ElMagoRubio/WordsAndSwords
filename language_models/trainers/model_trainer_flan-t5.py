@@ -1,6 +1,6 @@
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, TrainingArguments, Trainer, DataCollatorForSeq2Seq
 from datasets import load_dataset
-import os, threading, time 
+import gc, os, threading, time 
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 import torch
 
@@ -8,9 +8,9 @@ model_name = "google_flan-t5-large"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Rutas
-dataset_path = os.path.join(BASE_DIR, "./finetuning_ready_dataset_1.jsonl")
-tokenizer_path = os.path.join(BASE_DIR, f"./tokenizer/{model_name}")
-model_path = os.path.join(BASE_DIR, f"./model/{model_name}")
+dataset_path = os.path.join(BASE_DIR, "../finetuning_ready_dataset_1.jsonl")
+tokenizer_path = os.path.join(BASE_DIR, f"../tokenizer/{model_name}")
+model_path = os.path.join(BASE_DIR, f"../model/{model_name}")
 
 # Cargar tokenizer y modelo desde disco
 tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
@@ -47,9 +47,9 @@ tokenized_dataset = tokenized_dataset.remove_columns(["input", "target"])
 
 # Configurar entrenamiento
 args = TrainingArguments(
-    output_dir=os.path.join(BASE_DIR, "./model/flan-t5-finetuned_v1"),
-    per_device_train_batch_size=4,
-    gradient_accumulation_steps=12,         # simula un batch_size de 48
+    output_dir=os.path.join(BASE_DIR, "../model/flan-t5-finetuned_v1"),
+    per_device_train_batch_size=1,
+    gradient_accumulation_steps=48,         # simula un batch_size de 48
     num_train_epochs=5,
     logging_steps=10,
     save_strategy="epoch",
@@ -80,7 +80,10 @@ entrenamiento_finalizado = False
 contador_thread = threading.Thread(target=mostrar_tiempo_entrenamiento)
 contador_thread.start()
 
+# Liberamos memoria antes del entrenamiento
+gc.collect()
 torch.cuda.empty_cache()
+
 # Entrenamiento
 trainer.train()
 
@@ -89,5 +92,5 @@ entrenamiento_finalizado = True
 contador_thread.join()
 
 # Guardar modelo
-trainer.save_model(os.path.join(BASE_DIR, "./model/flan-t5-finetuned_v1"))
-tokenizer.save_pretrained(os.path.join(BASE_DIR, "./tokenizer/flan-t5-finetuned_v1"))
+trainer.save_model(os.path.join(BASE_DIR, "../model/flan-t5-finetuned_v1"))
+tokenizer.save_pretrained(os.path.join(BASE_DIR, "../tokenizer/flan-t5-finetuned_v1"))
