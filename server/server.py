@@ -15,7 +15,11 @@ task_descriptions = model.load_json(os.path.join(BASE_DIR, "../assets/character_
 
 #Validación de nombre de personaje
 normalized_char_name = model.normalize_text(char_name)
-if normalized_char_name not in char_list:
+if normalized_char_name in char_list:
+    #Descripción del personaje
+    char_description = char_list[normalized_char_name]
+    #print(f"\n\n[{char_name}]: {char_description}")
+else:
     raise ValueError(f"ERROR: Personaje '{sys.argv}' no encontrado en character_list.json.")
 
 print(f"\n\nCargando archivos del personaje {char_name}")
@@ -26,9 +30,6 @@ print(f"\nCargado archivo de lista de tokens para {char_name}")
 context_dict = model.load_json(os.path.join(BASE_DIR, f"../assets/character_sheets/ficha_pj_{normalized_char_name}.json"))
 print(f"\nCargado archivo de contexto.")
 
-char_description = context_dict[char_name]
-
-# print(f"\n\nDescripción del personaje: {char_description}")
 
 # Declaración de constantes de control (número máximo de interacciones, umbral emocional maximo y minimo)
 MAX_DIALOGUE_INTERACTION = 15
