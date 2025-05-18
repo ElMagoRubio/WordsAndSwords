@@ -42,7 +42,7 @@
     {
         "personaje": "Amolenth",
         "pregunta": "¿Qué opinas de los que dicen que eres demasiado joven para este torneo?",
-        "respuesta": "No siento que la edad debiera ser la que decida de lo que puede ser capaz una persona. Cierto es que la edad proporciona experiencia y con ello sabiduría, pero en esta situación, a pesar de ser más joven que la mayoría, también llevo entrenando toda una vida y en diversos escenarios."
+        "respuesta": "No siento que la edad debiera ser la que decida de lo que puede ser capaz una persona. Cierto es que la edad proporciona experiencia y con ello sabiduría, pero en esta situación, a pesar de ser la más joven del torneo, también llevo entrenando toda una vida y en diversos escenarios."
     },
     {
         "personaje": "Amolenth",
@@ -257,12 +257,12 @@
     {
         "personaje": "Amolenth",
         "pregunta": "¿Cuál es la diferencia entre un guerrero y un soldado?",
-        "respuesta": "Diría que un soldado pelea y combate siguiendo órdenes, trabaja para alguien sin cuestionarlo. Un guerrero es más bien alguien que pelea y combate principalmente por defender unos valores y principios."
+        "respuesta": "Diría que un soldado pelea y combate siguiendo órdenes, trabaja para alguien sin cuestionarlo. Un guerrero es más bien alguien que pelea y combate principalmente por defender unos valores y principios, o al menos persiguiendo una meta."
     },
     {
         "personaje": "Amolenth",
         "pregunta": "¿Te interesa la política del reino o solo el combate?",
-        "respuesta": "Es cierto que nunca he estado demasiado interesada por la política pero llegas a un punto en el que entiendes que es importante luchar por lo que se cree lo correcto. Así que sí, me interesa algo la política."
+        "respuesta": "Es cierto que nunca he estado demasiado interesada por la política pero llegas a un punto en el que entiendes que es importante luchar por lo que crees correcto."
     },
     {
         "personaje": "Amolenth",
@@ -406,7 +406,7 @@
     {
         "personaje": "Amolenth",
         "pregunta": "¿Qué comida te recuerda a tu hogar en El Bregol?",
-        "respuesta": "El estofado de ajo y zanahoria. Es bastante común comerlo cuando te encuentras mal, pero mi madre lo hacía tan rico que siempre era un buen momento para comérselo. Daba igual lo que hubiese, siempre estaba para chuparse los dedos, y cuando había una ocasión para celebrar a veces lo hacía, pero en vez de echarle conejo le añadía ternera. Me lo zamparía cada día de mi vida sin cansarme."
+        "respuesta": "El estofado de ajo y zanahoria. Es bastante común comerlo cuando te encuentras mal, pero mi madre lo hace tan rico que siempre es un buen momento para comérselo. Da igual lo que pase, siempre está para chuparse los dedos, y cuando hay ocasión para celebrar a veces lo cocina, pero en vez de echarle conejo le añade ternera. Me lo zamparía cada día de mi vida sin cansarme."
     },
     {
         "personaje": "Amolenth",
