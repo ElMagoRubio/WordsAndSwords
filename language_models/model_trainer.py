@@ -1,6 +1,8 @@
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, TrainingArguments, Trainer, DataCollatorForSeq2Seq
 from datasets import load_dataset
-import os, threading, time, torch
+import os, threading, time 
+os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
+import torch
 
 model_name = "google_flan-t5-large"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -41,12 +43,13 @@ def preprocess(example):
 
 # Aplicar preprocesamiento al dataset
 tokenized_dataset = dataset.map(preprocess, batched=False)
-tokenized_dataset = tokenized_dataset.remove_columns(["input", "target"])  # <– línea nueva
+tokenized_dataset = tokenized_dataset.remove_columns(["input", "target"])
 
 # Configurar entrenamiento
-args = TrainingArguments(   
+args = TrainingArguments(
     output_dir=os.path.join(BASE_DIR, "./model/flan-t5-finetuned_v1"),
-    per_device_train_batch_size=48,
+    per_device_train_batch_size=4,
+    gradient_accumulation_steps=12,         # simula un batch_size de 48
     num_train_epochs=5,
     logging_steps=10,
     save_strategy="epoch",
@@ -71,18 +74,19 @@ def mostrar_tiempo_entrenamiento():
     while not entrenamiento_finalizado:
         tiempo = int(time.time() - inicio)
         print(f"********************************** [Tiempo transcurrido]: {tiempo // 60} min {tiempo % 60} seg **********************************")
-        time.sleep(30)
+        time.sleep(10)
 
 entrenamiento_finalizado = False
 contador_thread = threading.Thread(target=mostrar_tiempo_entrenamiento)
 contador_thread.start()
 
+torch.cuda.empty_cache()
+# Entrenamiento
+trainer.train()
+
 # Finalizar el temporizador
 entrenamiento_finalizado = True
 contador_thread.join()
-
-# Entrenamiento
-trainer.train()
 
 # Guardar modelo
 trainer.save_model(os.path.join(BASE_DIR, "./model/flan-t5-finetuned_v1"))
