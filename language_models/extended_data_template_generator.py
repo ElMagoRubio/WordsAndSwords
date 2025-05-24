@@ -57,7 +57,7 @@ for entry in original_data:
 
 # Nombre del archivo de salida
 base, ext = os.path.splitext(dataset_path)
-output_path = f"{base}_extended{ext}"
+output_path = f"{base}_extended_template{ext}"
 
 with open(output_path, "w", encoding="utf-8") as f:
     json.dump(extended_data, f, ensure_ascii=False, indent=2)
