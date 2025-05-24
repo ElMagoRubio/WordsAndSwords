@@ -17,13 +17,15 @@ if (len(sys.argv) != 2):
 
 char_name = sys.argv[1]
 
-template_dataset_path = os.path.join(BASE_DIR, f"../assets/character_sheets/finetuning_{char_name}_extended.json")
+template_dataset_path = os.path.join(BASE_DIR, f"../assets/character_sheets/finetuning_{char_name}_extended_template.json")
 
 with open(template_dataset_path, "r", encoding="utf-8") as f:
     template_dataset = json.load(f)
 
 #Se guarda el bloque de variaciones de ejemplo del archivo, las 11 primeras (corresponden a una entrada con todas sus variaciones emocionales)
 variation_example_block = template_dataset[0:11]
+
+extended_data = []
 
 total_iterations = 0
 for i in range(11, len(template_dataset), 11):
@@ -70,12 +72,15 @@ for i in range(11, len(template_dataset), 11):
                 variation["Respuesta"] = response.choices[0].message.content.strip()
 
                 print(variation)
-                
+                extended_data.append(variation)
                 print(f"\n\n********************** FIN VARIACION **********************\n")
 
             except Exception as e:
                 print(f"Error al generar la respuesta: {e}")
-    
-    total_iterations = i/11
 
-print(f"\n\nIteraciones totales: {total_iterations}")
+print(f"\n\nGeneración de respuestas completa: {total_iterations}")
+
+output_path = os.path.join(BASE_DIR, f"../assets/character_sheets/finetuning_{char_name}_extended.json")
+
+with open(output_path, "w", encoding="utf-8") as f:
+    json.dump(extended_data, f, ensure_ascii=False, indent=2)
