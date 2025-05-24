@@ -25,10 +25,10 @@ for model_name, ModelClass in model_list:
 
     #Descarga y guardado del tokenizador
     tokenizer = AutoTokenizer.from_pretrained(model_name)
-    tokenizer.save_pretrained(os.path.join(BASE_DIR,"tokenizer", safe_model_name))
+    tokenizer.save_pretrained(os.path.join(BASE_DIR,"../tokenizer", safe_model_name))
     
     #Descarga y guardado del modelo con su tipo específico
     model = ModelClass.from_pretrained(model_name)
-    model.save_pretrained(os.path.join(BASE_DIR, "model/", safe_model_name))
+    model.save_pretrained(os.path.join(BASE_DIR, "../model/", safe_model_name))
 
-    print(f"Modelo {model_name} guardado en './model/{safe_model_name}' y su tokenizador en './tokenizer/{safe_model_name}'\n")
+    print(f"Modelo {model_name} guardado en '../model/{safe_model_name}' y su tokenizador en '../tokenizer/{safe_model_name}'\n")
