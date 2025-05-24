@@ -127,12 +127,12 @@ def build_prompt(text, task_description, emotion, char_name, char_description, c
         )
     elif model_name == "HuggingFaceTB_SmolLM2-360M-Instruct":
         prompt = (
-            f"[system]: Tarea: {task_description}"
-            f"\n\n[system]: Responde de manera {emotion}"
-            f"\n\n[system]: Datos del personaje:\nNombre: {char_name}\nDescripción: {char_description}"
-            f"\n\n[system]: Contexto:{context_section}"
+            f"<|system|> Tarea: {task_description}"
+            f"\n\nNivel de emocion: {emotion} ({emotion_range[emotion+5]})"
+            f"\n\nDatos del personaje:\nNombre: {char_name}\nDescripción: {char_description}"
+            f"\n\nContexto:{context_section}"
             f"\n\n{history_section}"
-            f"\t[user]: {text}\n\t[{char_name}]: "
+            f"\t<|user|> {text}\n\t<|assistant|> [{char_name}]: "
         )
     else:
         raise ValueError("Modelo no soportado.")
