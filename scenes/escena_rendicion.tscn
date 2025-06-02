@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=5 format=3 uid="uid://dbapgx1lp1f2h"]
 
 [ext_resource type="Script" path="res://scripts/escena_rendicion.gd" id="1_0efll"]
 [ext_resource type="Texture2D" uid="uid://dgrhusqhn3ut8" path="res://assets/Escenarios/Nubes dia.png" id="1_8s1d1"]
