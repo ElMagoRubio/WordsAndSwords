@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/escena_rendicion.gd" id="1_0efll"]
+[ext_resource type="Texture2D" uid="uid://dgrhusqhn3ut8" path="res://assets/Escenarios/Nubes dia.png" id="1_8s1d1"]
+[ext_resource type="Texture2D" uid="uid://du18bk1hy4o5i" path="res://assets/theme/iconos/Caja texto.png" id="2_wby1n"]
+[ext_resource type="Theme" uid="uid://cjkmwoyjf2bu5" path="res://assets/theme/WordsNSwords.tres" id="4_so76v"]
+
+[node name="escena_rendicion" type="Node2D"]
+script = ExtResource("1_0efll")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_as_relative = false
+offset_right = 320.0
+offset_bottom = 180.0
+scale = Vector2(4, 4)
+texture = ExtResource("1_8s1d1")
+
+[node name="CajaTexto1" type="Sprite2D" parent="."]
+position = Vector2(640, 360)
+scale = Vector2(0.735, 0.735)
+texture = ExtResource("2_wby1n")
+
+[node name="Texto" type="RichTextLabel" parent="CajaTexto1"]
+layout_direction = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -600.0
+offset_top = -100.0
+offset_right = -600.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_so76v")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+bbcode_enabled = true
+fit_content = true
+context_menu_enabled = true
+metadata/_edit_use_anchors_ = true

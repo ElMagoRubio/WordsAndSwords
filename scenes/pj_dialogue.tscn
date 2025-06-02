@@ -217,6 +217,18 @@ text = "Modo desarrollador"
 layout_mode = 2
 size_flags_horizontal = 8
 
+[node name="SiguienteEscena" type="Label" parent="HUD"]
+visible = false
+offset_left = 797.0
+offset_top = 463.0
+offset_right = 1240.0
+offset_bottom = 570.0
+scale = Vector2(0.6, 0.6)
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "Pulsa ENTER"
+horizontal_alignment = 1
+
 [node name="MenuJuego" parent="." instance=ExtResource("7_jphu4")]
 offset_left = 1.0
 offset_right = 41.0

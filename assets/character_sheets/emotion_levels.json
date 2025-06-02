@@ -1,13 +1,14 @@
-[
-    "Furioso",
-    "Muy enojado",
-    "Enfadado",
-    "Irritado",
-    "Molesto",
-    "Neutral",
-    "Agradable",
-    "Contento",
-    "Alegre",
-    "Muy alegre",
-    "Emocionado"
-]
+{
+    "-5": "Furioso",
+    "-4": "Muy enojado",
+    "-3": "Enfadado",
+    "-2": "Irritado",
+    "-1": "Molesto",
+    "0": "Neutral",
+    "1": "Agradable",
+    "2": "Contento",
+    "3": "Alegre",
+    "4": "Muy alegre",
+    "5": "Emocionado" 
+}
+    
