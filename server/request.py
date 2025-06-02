@@ -6,12 +6,14 @@ import model_manager as model
 # Dirección del servidor
 HOST = "127.0.0.1"
 PORT = 5005
-DEBUG_MODE = False
+DEBUG_MODE = True
 
 MODELOS = [
     "google_flan-t5-large",
     "HuggingFaceTB_SmolLM2-360M-Instruct",
-    "microsoft_Phi-4-mini-instruct"
+    "microsoft_Phi-4-mini-instruct",
+    "flan-t5-finetuned_v1",
+    "smol-finetuned-v1"
 ]
 
 # Texto de ejemplo para las pruebas
@@ -26,20 +28,32 @@ for a in sys.argv:
     i += 1
 
 if (len(sys.argv) == 2):
-    model_name = MODELOS[int(sys.argv[1])]
+    code = sys.argv[1]
+    model_name = "--"
+    text = ""
     if (DEBUG_MODE):
-        print(f"\nSólo un argumento, pasando prompt de ejemplo al modelo {model_name}.")
-    text = TEXTO_EJEMPLO
+        print(f"\nSólo un argumento, mandando PING o CERRANDO SERVER.")
+    
+
+elif (len(sys.argv) == 3):    
+    code = sys.argv[1]
+    if (code == "GENERATE"):
+        model_name = MODELOS[int(sys.argv[2])]
+        if (DEBUG_MODE):
+            print(f"\nSólo un argumento, pasando prompt de ejemplo al modelo {model_name}.")
+        text = TEXTO_EJEMPLO
 
 
-elif (len(sys.argv) == 3):
-    model_name = MODELOS[int(sys.argv[1])]
-    if (DEBUG_MODE):
-        print(f"\nPasando prompt al modelo {model_name}.")
-    text = sys.argv[2]
+elif (len(sys.argv) == 4):    
+    code = sys.argv[1]
+    if (code == "GENERATE"):
+        model_name = MODELOS[int(sys.argv[2])]
+        if (DEBUG_MODE):
+            print(f"\nPasando prompt al modelo {model_name}.")
+        text = sys.argv[3]
 
 else:
-    print(f"\nERROR: Número de argumentos incorrecto. Ejecutar como: './prueba_server.py numero_modelo prompt_entrada'")
+    print(f"\nERROR: Número de argumentos incorrecto. Ejecutar como: './prueba_server.py codigo (numero_modelo) (prompt_entrada)'")
     exit(1)
 
 if (DEBUG_MODE):
@@ -52,6 +66,7 @@ try:
 
     # Crear petición
     request = {
+        "code": code,
         "model": model_name,
         "text": text
     }
