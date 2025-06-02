@@ -21,6 +21,7 @@ const PORT = 5005
 
 
 @onready var flag_path = ProjectSettings.globalize_path("res://server/server_ready.flag")
+@onready var next_scene_path = ""
 
 @onready var procesando_texto = false
 @onready var borrando_prompt = false
@@ -28,7 +29,6 @@ const PORT = 5005
 @onready var dev_mode = false
 @onready var servidor_abierto = false
 
-signal enter_pressed
 
 func _ready():
 	$HUD/NombrePJ.text = Global.nombre_jugador
@@ -79,8 +79,8 @@ func _process(_delta):
 			servidor_abierto = false
 			print("SERVIDOR CERRADO")
 	
-	if Input.is_action_just_pressed("ui_accept"):
-		emit_signal("enter_pressed")
+	if Input.is_action_just_pressed("ui_accept") and next_scene_path != "":
+		get_tree().change_scene_to_file(next_scene_path)
 
 
 func _exit_tree():
@@ -159,15 +159,11 @@ func _on_enviar_pressed():
 		
 		if (result["action"] == "retar"):
 			siguiente_escena.visible = true
-			var timer = get_tree().create_timer(5)
-			await [enter_pressed, timer.timeout]
-			get_tree().change_scene_to_file("res://scenes/escenario.tscn")
+			next_scene_path = ProjectSettings.globalize_path("res://scenes/escenario.tscn")
 		
 		elif(result["action"] == "rendirse"):
 			siguiente_escena.visible = true
-			var timer = get_tree().create_timer(5)
-			await [enter_pressed, timer.timeout]
-			get_tree().change_scene_to_file("res://scenes/escena_rendicion.tscn")
+			next_scene_path = ProjectSettings.globalize_path("res://scenes/escena_rendicion.tscn")
 		
 	else:
 		print("Error al parsear la respuesta JSON: ", err)

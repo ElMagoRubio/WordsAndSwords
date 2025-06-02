@@ -1,5 +1,5 @@
 import model_manager as model
-import json, os, socket, sys
+import json, os, socket, sys, time
 
 DEBUG_MODE = True
 
@@ -41,7 +41,7 @@ NEGATIVE_EMOTION_THRESHOLD = -5
 
 
 # Declaración de variables persistentes entre bucles
-interaction_count = 0
+interaction_count = 14
 emotion_level = 0
 context_tokens = []
 history = []
@@ -126,9 +126,11 @@ while interaction_count < MAX_DIALOGUE_INTERACTION:
                 print(f"\n\nEmoción detectada: {emotion}")
 
             if emotion == "negativa":
-                emotion_level -= 1
+                if emotion_level > -5:
+                    emotion_level -= 1
             elif emotion == "positiva":
-                emotion_level += 1
+                if emotion_level < 5:
+                    emotion_level += 1
 
             if (DEBUG_MODE):
                 print(f"\n\nNivel de emoción: {emotion_level}")
@@ -192,20 +194,20 @@ while interaction_count < MAX_DIALOGUE_INTERACTION:
         if DEBUG_MODE:
             print("[INFO] Cliente desconectado inesperadamente.")
         client_socket = None 
-
-        if os.path.exists(os.path.join(BASE_DIR, "server_ready.flag")):
-            os.remove(os.path.join(BASE_DIR, "server_ready.flag"))
+        
+        continue
             
     except Exception as e:
         result = {"error": str(e)}
-          
-        if os.path.exists(os.path.join(BASE_DIR, "server_ready.flag")):
-            os.remove(os.path.join(BASE_DIR, "server_ready.flag"))
+        continue
     
     # Se devuelve la respuestas
     client_socket.send(json.dumps(result).encode())
 
-client_socket.send(json.dumps("SERVIDOR CERRADO").encode())
+
+time.sleep(1)
+
+client_socket.send(json.dumps("\nSERVIDOR CERRADO").encode())
 client_socket.close()
 
 if os.path.exists(os.path.join(BASE_DIR, "server_ready.flag")):

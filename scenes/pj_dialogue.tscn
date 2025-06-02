@@ -219,6 +219,7 @@ size_flags_horizontal = 8
 
 [node name="SiguienteEscena" type="Label" parent="HUD"]
 visible = false
+layout_mode = 0
 offset_left = 797.0
 offset_top = 463.0
 offset_right = 1240.0
