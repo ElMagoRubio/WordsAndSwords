@@ -1,6 +1,10 @@
 extends Node2D
 
-@onready var python_cmd = "python"
+const python_cmd = "python"
+const HOST = "127.0.0.1"
+const PORT = 5005
+
+@onready var peer = StreamPeerTCP.new()
 
 @onready var caja_texto_1 = $HUD/CajaTexto1
 @onready var entrada_texto_1 = $HUD/CajaTexto1/Texto
@@ -8,14 +12,23 @@ extends Node2D
 @onready var entrada_texto_2 = $HUD/CajaTexto2/Texto
 @onready var caja_texto_3 = $HUD/CajaTexto3
 @onready var entrada_texto_3 = $HUD/CajaTexto3/Texto
+@onready var siguiente_escena = $HUD/SiguienteEscena
 
 @onready var boton_hablar = $HUD/Hablar
 @onready var boton_enviar_texto = $HUD/Enviar
 @onready var boton_retar = $HUD/Retar
 @onready var boton_rendirse = $HUD/Rendirse
 
+
+@onready var flag_path = ProjectSettings.globalize_path("res://server/server_ready.flag")
+
 @onready var procesando_texto = false
+@onready var borrando_prompt = false
+@onready var respuesta_generada = false
 @onready var dev_mode = false
+@onready var servidor_abierto = false
+
+signal enter_pressed
 
 func _ready():
 	$HUD/NombrePJ.text = Global.nombre_jugador
@@ -33,18 +46,18 @@ func _ready():
 	boton_hablar.disabled = true
 	boton_enviar_texto.visible = false
 	
-	iniciar_server()
+	if !FileAccess.file_exists(flag_path):
+		iniciar_server()
+		var i = 0
+		while !FileAccess.file_exists(flag_path):
+			i += 1
+			print("Esperando al servidor (",i,")...")
+			await get_tree().create_timer(1).timeout
 	
-	var flag_path = ProjectSettings.globalize_path("res://server/server_ready.flag")
-	var i = 0
-	while !FileAccess.file_exists(flag_path):
-		i += 1
-		print("Esperando al servidor (",i,")...")
-		await get_tree().create_timer(1).timeout
-		
-	DirAccess.remove_absolute(flag_path)
-	print("Confirmado inicio del servidor, esperando peticiones")
+	servidor_abierto = true
+	print("Confirmado inicio del servidor")
 	
+	conexion_server()
 	
 	boton_hablar.disabled = false
 	entrada_texto_1.editable = true
@@ -60,6 +73,14 @@ func _process(_delta):
 		boton_enviar_texto.disabled = false
 	else:
 		boton_enviar_texto.disabled = true
+	
+	if servidor_abierto:
+		if !FileAccess.file_exists(flag_path):
+			servidor_abierto = false
+			print("SERVIDOR CERRADO")
+	
+	if Input.is_action_just_pressed("ui_accept"):
+		emit_signal("enter_pressed")
 
 
 func _exit_tree():
@@ -97,6 +118,10 @@ func _on_texto_focus_entered():
 			entrada_texto_2.caret_blink = true
 			entrada_texto_3.placeholder_text = "Escriba aquí"
 			entrada_texto_3.caret_blink = true
+	
+	if !procesando_texto:
+		respuesta_generada = false
+		entrada_texto_1.text = ""
 
 
 func _on_enviar_pressed():
@@ -106,51 +131,48 @@ func _on_enviar_pressed():
 	boton_hablar.disabled = true
 	boton_retar.disabled = true
 	boton_rendirse.disabled = true
-	entrada_texto_1.text = "..."
 	entrada_texto_1.editable = false
+	procesando_texto = true
+	var request = {
+		"code": "GENERATE",
+		"text": texto_envio,
+		"model": "flan-t5-finetuned_v1"
+	}
 	if (dev_mode):
 		entrada_texto_2.text = "..."
 		entrada_texto_3.text = "..."
 	
-	enviar_texto_a_script(texto_envio)
-
-
-func enviar_texto_a_script(texto):
-	print("Iniciando generación de texto 1. Prompt: " + texto)
-	var script_path = "res://server/request.py"
-	var global_path = ProjectSettings.globalize_path(script_path)
-	var args = [global_path, 0, texto]
-	var output = []
-	var exit_code = OS.execute(python_cmd, args, output, true, true)
+	borrar_prompt()
 	
-	print("Salida del servidor: ", exit_code)
+	var response = await enviar_request(request)
+	respuesta_generada = true
 	
-	if exit_code == 0:
-		var raw_json = "".join(output).strip_edges()
-		var json = JSON.new()
-		var parse_result = json.parse(raw_json)
+	var json = JSON.new()
+	var err = json.parse(response)
+
+	if err == OK:
+		var result = json.get_data()
+		print("Respuesta del modelo: ", result["response"])
+		print("Nivel de emoción: ", result["emotion_level"])
+		print("Acción: ", result["action"])
+		await mostrar_respuesta(result["response"])
 		
-		if parse_result == OK:
-			var result = json.get_data()
-			print("Respuesta del modelo: ", result["response"])
-			print("Nivel de emoción: ", result["emotion_level"])
-			print("Acción: ", result["action"])
-			
-			entrada_texto_1.text = result["response"]
-			
-			# Aquí podrías usar el valor de result["action"] si necesitas reaccionar
-			# Por ejemplo:
-			# if result["action"] == "rendirse":
-			#     mostrar_victoria()
-		else:
-			print("Error al parsear JSON: ", parse_result)
-			entrada_texto_1.text = "Error al procesar respuesta"
+		if (result["action"] == "retar"):
+			siguiente_escena.visible = true
+			var timer = get_tree().create_timer(5)
+			await [enter_pressed, timer.timeout]
+			get_tree().change_scene_to_file("res://scenes/escenario.tscn")
+		
+		elif(result["action"] == "rendirse"):
+			siguiente_escena.visible = true
+			var timer = get_tree().create_timer(5)
+			await [enter_pressed, timer.timeout]
+			get_tree().change_scene_to_file("res://scenes/escena_rendicion.tscn")
 		
 	else:
-		print("Error al ejecutar el script")
-		entrada_texto_1.text = "Error al procesar respuesta"
+		print("Error al parsear la respuesta JSON: ", err)
+		entrada_texto_1.text = "Error al procesar respuesta del servidor."
 	
-	#Habilitar botones tras hablar
 	boton_hablar.disabled = false
 	boton_retar.disabled = false
 	boton_rendirse.disabled = false
@@ -200,8 +222,100 @@ func iniciar_server():
 
 func cerrar_server():
 	print("Cerrando servidor...")
-	var script_path = ProjectSettings.globalize_path("res://server/close_server_request.py")
-	var exit_code = OS.execute(python_cmd, [script_path])
+	
+	var request = { "code": "CLOSE" }
+	var exit_code = await enviar_request(request)
+	print (exit_code)
+	
+	await get_tree().create_timer(1).timeout
 	
 	if exit_code == OK:
 		print("Servidor cerrado.")
+
+
+func conexion_server() -> String:
+	var salida = ""
+	if await enviar_request({"code": "PING"}) != "PONG":
+		print("Conectando al servidor...")
+		var err = peer.connect_to_host(HOST, PORT)
+		if err != OK:
+			return "[ERROR] No se pudo conectar al servidor."
+		
+		var timeout = 0.0
+		while peer.get_status() == StreamPeerTCP.STATUS_CONNECTING and timeout < 10.0:
+			print("Intentando conectar (", timeout,")")
+			await get_tree().create_timer(0.1).timeout
+			peer.poll()
+			timeout += 0.1
+		
+		peer.poll()
+		
+		if peer.get_status() != StreamPeerTCP.STATUS_CONNECTED:
+			if timeout >= 10.0:
+				salida += "Tiempo de espera agotado.\n"
+			salida += "Conexión fallida."
+		else:
+			salida += ("Conexión establecida.")
+	else: 
+		salida = "Conexión establecida"
+	return salida
+
+
+func enviar_request(request: Dictionary) -> String:
+	print("Enviando petición: \n", request)
+	if peer.get_status() != StreamPeerTCP.STATUS_CONNECTED:
+		print("[ERROR]: Servidor no conectado")
+		return "ERROR"
+	
+	var data = JSON.stringify(request).to_utf8_buffer()
+	var err = peer.put_data(data)
+	if err != OK:
+		print("[ERROR]: Envío de datos erróneo")
+		return "ERROR: Envío de datos erróneo"
+	
+	# Esperar una respuesta durante hasta 2 segundos
+	var timeout = 15.0
+	var time_elapsed = 0.0
+	var interval = 0.1
+	
+	while true:
+		await get_tree().create_timer(interval).timeout
+		peer.poll()
+		time_elapsed += interval
+		if peer.get_available_bytes() > 0:
+			var response = peer.get_utf8_string(peer.get_available_bytes())
+			print("RESPUESTA OBTENIDA: \n", response)
+			return response
+	
+	print("[ERROR]: Tiempo de espera agotado")
+	return "ERROR: Tiempo de espera agotado"
+
+
+func mostrar_respuesta(response: String):
+	while borrando_prompt == true:
+		await get_tree().create_timer(1).timeout
+	
+	entrada_texto_1.text = ""
+	var counter_letra = 0
+	while entrada_texto_1.text != response:
+		entrada_texto_1.text += response[counter_letra]
+		counter_letra += 1
+		await get_tree().create_timer(0.1).timeout
+	
+	procesando_texto = false
+
+
+func borrar_prompt():
+	borrando_prompt = true
+	var letra_final = entrada_texto_1.text.length() -1
+	while entrada_texto_1.text != "" and letra_final >= 0:
+		await get_tree().create_timer(0.1).timeout
+		entrada_texto_1.text[letra_final] = ""
+		letra_final -= 1
+	entrada_texto_1.text = "."
+	while !respuesta_generada:
+		await get_tree().create_timer(0.5).timeout
+		if (entrada_texto_1.text == "..."):
+			entrada_texto_1.text = ""
+		entrada_texto_1.text += "."
+	borrando_prompt = false
