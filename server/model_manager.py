@@ -1,9 +1,4 @@
-import json
-import os
-import re
-import time
-import torch
-import unicodedata
+import json, os, re, socket, time, torch, unicodedata
 from transformers import AutoModelForCausalLM, AutoModelForSeq2SeqLM, AutoModelForSequenceClassification, AutoTokenizer
 
 # Obtener las rutas absolutas de modelos y tokenizadores
@@ -15,7 +10,9 @@ TOKENIZER_GENERAL_PATH = os.path.join(BASE_DIR, "../language_models/tokenizer")
 model_path_list = [
     ("lxyuan_distilbert-base-multilingual-cased-sentiments-student", AutoModelForSequenceClassification),
     ("google_flan-t5-large", AutoModelForSeq2SeqLM),
-    ("HuggingFaceTB_SmolLM2-360M-Instruct", AutoModelForCausalLM)
+    ("flan-t5-finetuned_v1", AutoModelForSeq2SeqLM),
+    ("HuggingFaceTB_SmolLM2-360M-Instruct", AutoModelForCausalLM),
+    ("smol-finetuned-v1", AutoModelForCausalLM)
 ]
 
 # Diccionario con tokenizador y modelo.
@@ -94,38 +91,42 @@ def normalize_text(text):
     return text
 
 # Construye el prompt completo, con la instrucción, emoción buscada, contexto e historial conversacional.
-def build_prompt(text, task_description, emotion, char_name, char_description, context_tokens, context_dict, history, model_name="google_flan-t5-large"):
-    print(f"\nConstruyendo prompt para {model_name}...")
+def build_prompt(text, task_description, emotion, char_name, char_description, context_tokens, context_dict, history, model_name="google_flan-t5-large", debug_mode=False):
+    print(f"\nEntrada a la función de construcción de prompt mediante el modelo {model_name}...")
 
     # Adición de tokens a contexto
     context_section = ""
     for token_key in context_tokens:
         context_section += f"\n\t{token_key}: {context_dict[token_key]}\n"
 
-    # print(f"Explicación de los contextos: {context_section}")
+    if (debug_mode):
+        print(f"Explicación de los contextos: {context_section}")
 
     # Historial formateado
     history_section = ""
-    if model_name == "google_flan-t5-large":
+    if model_name == "google_flan-t5-large" or "flan-t5-finetuned_v1":
         for user_input, char_response in history:
             history_section += f"[user]: {user_input}\n[{char_name}]: {char_response}\n\n"
-    elif model_name == "HuggingFaceTB_SmolLM2-360M-Instruct":
+    elif model_name == "HuggingFaceTB_SmolLM2-360M-Instruct" or "smol-finetuned-v1":
         for user_input, char_response in history:
             history_section += f"\t[user]: {user_input}\n\t[{char_name}]: {char_response}\n\n"
 
-    # print(f"Historial de conversación: {history_section}")
+    if (debug_mode):
+        print(f"Historial de conversación: {history_section}")
 
     # Ensamblado final del prompt según el modelo
-    if model_name == "google_flan-t5-large":
+
+    print(f"Construyendo prompt...")
+    if model_name == "google_flan-t5-large" or "flan-t5-finetuned_v1":
         prompt = (
             f"Tarea: {task_description}"
-            f"\n\nNivel de emocion: {emotion} ({emotion_range[emotion+5]})"
+            f"\n\nNivel de emocion: {emotion} ({emotion_range[str(emotion)]})"
             f"\n\nDatos del personaje:\n\tNombre: {char_name}\n\tDescripción: {char_description}"
             f"\n\nContexto:\n{context_section}"
             f"\n\nHistorial:\n{history_section}"
             f"\t[user]: {text}\n\t[{char_name}]: "
         )
-    elif model_name == "HuggingFaceTB_SmolLM2-360M-Instruct":
+    elif model_name == "HuggingFaceTB_SmolLM2-360M-Instruct" or "smol-finetuned-v1":
         prompt = (
             f"<|system|> Tarea: {task_description}"
             f"\n\nNivel de emocion: {emotion} ({emotion_range[emotion+5]})"
@@ -137,7 +138,8 @@ def build_prompt(text, task_description, emotion, char_name, char_description, c
     else:
         raise ValueError("Modelo no soportado.")
 
-    print(f"Prompt: {prompt}")
+    if (debug_mode):
+        print(f"Prompt: {prompt}")
     return prompt
 
 # Añade el contexto al personaje.
@@ -234,3 +236,4 @@ def load_models():
             print(f"Modelo {model_name} cargado correctamente.")
         except Exception as e:
             print(f"Error al cargar {model_name}: {e}")
+            

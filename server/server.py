@@ -1,6 +1,8 @@
 import model_manager as model
 import json, os, socket, sys
 
+DEBUG_MODE = True
+
 # Se validan los argumentos
 if (len(sys.argv) != 2):
     raise ValueError(f"ERROR: Número de argumentos incorrecto.\nFormato: (./server.py) (nombre_personaje)")
@@ -18,7 +20,8 @@ normalized_char_name = model.normalize_text(char_name)
 if normalized_char_name in char_list:
     #Descripción del personaje
     char_description = char_list[normalized_char_name]
-    #print(f"\n\n[{char_name}]: {char_description}")
+    if (DEBUG_MODE):
+        print(f"\n\n[{char_name}]: {char_description}")
 else:
     raise ValueError(f"ERROR: Personaje '{sys.argv}' no encontrado en character_list.json.")
 
@@ -65,99 +68,146 @@ with open(os.path.join(BASE_DIR, "server_ready.flag"), "w") as f:
 
 print(f"Servidor en ejecución en {HOST}:{PORT}")
 
+
+# Abrimos el puerto y escuchamos los datos
+
+client_socket = None
+
 # Bucle del servidor
 while interaction_count < MAX_DIALOGUE_INTERACTION:
-    # Abrimos el puerto y escuchamos los datos
-    client_socket, addr = server_socket.accept()
-    data = client_socket.recv(1024).decode()
+    if not client_socket:
+        try:
+            client_socket, addr = server_socket.accept()
+            if (DEBUG_MODE):
+                print(f"Cliente conectado en el socket {client_socket} con dirección {addr}")
+        
+        except Exception as e:
+            if (DEBUG_MODE):
+                print(f"[ERROR] Aceptando cliente: {e}")
+            continue
 
     #Mientras no haya errores
     try:
-        # Se aumenta el contador de interacciones
-        interaction_count += 1
+        data = client_socket.recv(1024).decode()
 
-        # Se convierte texto a diccionario de python
+        if not data:
+            if (DEBUG_MODE):
+                print("[INFO] Cliente desconectado.")
+            client_socket.close()
+            client_socket = None
+            continue
+
         request = json.loads(data)
 
-        #Se extraen modelo y texto
-        model_name = request["model"]
-        text = request["text"]
+        request_code = request["code"]
 
-        if text == "CLOSE_SERVER" and model_name == "--":
-            print("\n\nSolicitud de cierre recibida. Cerrando servidor...")
-            client_socket.send(json.dumps({"response": "Servidor cerrado."}).encode())
-            client_socket.close()
+        if (request_code == "PING"):
+            if (DEBUG_MODE):
+                print("\n\nPONG")
+            result = "PONG"
+        
+        elif (request_code == "GENERATE"):
+            if (DEBUG_MODE):
+                print("\n\nGENERANDO RESPUESTA...")
+
+            interaction_count += 1
+
+            model_name = request["model"]
+            text = request["text"]
+
+            if (DEBUG_MODE):
+                print(f"\n\nNombre del modelo: {model_name}")
+                print(f"\nTexto: {text}")
+                print(f"\nPJ: {char_name}")
+
+            emotion = model.detect_emotion(text)
+
+            if (DEBUG_MODE):
+                print(f"\n\nEmoción detectada: {emotion}")
+
+            if emotion == "negativa":
+                emotion_level -= 1
+            elif emotion == "positiva":
+                emotion_level += 1
+
+            if (DEBUG_MODE):
+                print(f"\n\nNivel de emoción: {emotion_level}")
+
+            if emotion_level >= POSITIVE_EMOTION_THRESHOLD:
+                if (DEBUG_MODE):
+                    print("\n\nUmbral de emoción positiva alcanzado.")
+                task_description = task_descriptions["EMOTION_UPPER_THRESHOLD"]
+                action = "rendirse"
+
+            elif emotion_level <= NEGATIVE_EMOTION_THRESHOLD:
+                if (DEBUG_MODE):
+                    print("\n\nUmbral de emoción negativa alcanzado.")
+                task_description = task_descriptions["EMOTION_LOWER_THRESHOLD"]
+                action = "retar"
+            
+            elif interaction_count >= MAX_DIALOGUE_INTERACTION:
+                if (DEBUG_MODE):
+                    print("\n\nLímite de interacciones máximas alcanzadas.")
+                task_description = task_descriptions["INTERACTION_LIMIT_PROMPT"]
+                action = "retar"
+            
+            else:            
+                # Descripción de la tarea que ha de realizar modelo
+                task_description = task_descriptions["DEFAULT_PROMPT"]
+            
+            if (DEBUG_MODE):
+                print(f"\n\nDescripción de la tarea:\n{task_description}")
+            
+            context_tokens = model.add_context(text, context_tokens, token_list, context_dict)
+            if (DEBUG_MODE):
+                print(f"\n\nTokens de contexto:\n{context_tokens}")
+
+            prompt = model.build_prompt(text, task_description, emotion_level, char_name, char_description, context_tokens, context_dict, history, model_name, DEBUG_MODE)
+            if (DEBUG_MODE):
+                print(f"\n\nPrompt generado:\n{prompt}")
+            
+            # Se genera la respuesta
+            response = model.generate_response(model_name, prompt)
+            if (DEBUG_MODE):
+                print(f"\n\nRespuesta generada:\n{response}")
+
+            # Guardar conversación para siguiente iteración
+            if (action == "dialogar"):
+                history.append((text, response))                
+                if (DEBUG_MODE):
+                    print(f"\n\nHistorial: {history}")
+
+            result = {
+                "response": f"{response}",
+                "emotion_level": f"{emotion_level}",
+                "action": f"{action}"
+            }
+
+        elif (request_code == "CLOSE"):
+            if (DEBUG_MODE):
+                print("\n\nCERRANDO SERVER")
             break
 
+    except (ConnectionResetError, BrokenPipeError):
+        if DEBUG_MODE:
+            print("[INFO] Cliente desconectado inesperadamente.")
+        client_socket = None 
 
-        print(f"\nNombre del modelo: {model_name}")
-        print(f"\nTexto: {text}")
-        print(f"PJ: {char_name}")
-
-        emotion = model.detect_emotion(text)        
-        # print(f"\nTexto + emocion detectada: {emotion}")
-
-
-        if emotion == "negativa":
-            emotion_level -= 1
-        elif emotion == "positiva":
-            emotion_level += 1
-
-
-        if emotion_level >= POSITIVE_EMOTION_THRESHOLD:
-            print("\n\nUmbral de emoción positiva alcanzado.")
-            task_description = task_descriptions["EMOTION_UPPER_THRESHOLD"]
-            action = "rendirse"
-
-        elif emotion_level <= NEGATIVE_EMOTION_THRESHOLD:
-            print("\n\nUmbral de emoción negativa alcanzado.")
-            task_description = task_descriptions["EMOTION_LOWER_THRESHOLD"]
-            action = "retar"
-        
-        elif interaction_count >= MAX_DIALOGUE_INTERACTION:
-            print("\n\nLímite de interacciones máximas alcanzadas.")
-            task_description = task_descriptions["INTERACTION_LIMIT_PROMPT"]
-            action = "retar"
-        
-        else:            
-            # Descripción de la tarea que ha de realizar modelo
-            task_description = task_descriptions["DEFAULT_PROMPT"]
-        
-
-        context_tokens = model.add_context(text, context_tokens, token_list, context_dict)
-        # print(f"\n\nTokens de contexto: {context_tokens}")
-
-        prompt = model.build_prompt(text, task_description, emotion, char_name, char_description, context_tokens, context_dict, history, model_name)
-        
-        # Se genera la respuesta
-        response = model.generate_response(model_name, prompt)
-
-        # Sanea la respuesta para Smol, que devuelve también el prompt de entrada
-        if model_name == "HuggingFaceTB_SmolLM2-360M-Instruct":
-            response = model.process_response(result, char_name)        
-        
-        print(f"\n\nRespuesta: {response}")
-
-        result = {
-            "response": f"{response}",
-            "emotion_level": f"{emotion_level}",
-            "action": f"{action}"
-        }
-
-        # Guardar conversación para siguiente iteración
-        if (action == "dialogar"):
-            history.append((text, response))
-        # print(f"\n\nHistorial: {history}")
-    
-    # Se devuelve codigo de error
+        if os.path.exists(os.path.join(BASE_DIR, "server_ready.flag")):
+            os.remove(os.path.join(BASE_DIR, "server_ready.flag"))
+            
     except Exception as e:
         result = {"error": str(e)}
-
+          
+        if os.path.exists(os.path.join(BASE_DIR, "server_ready.flag")):
+            os.remove(os.path.join(BASE_DIR, "server_ready.flag"))
+    
     # Se devuelve la respuestas
     client_socket.send(json.dumps(result).encode())
-    client_socket.close()
 
-# Se cierra el server
+client_socket.send(json.dumps("SERVIDOR CERRADO").encode())
+client_socket.close()
+
 if os.path.exists(os.path.join(BASE_DIR, "server_ready.flag")):
     os.remove(os.path.join(BASE_DIR, "server_ready.flag"))
 
