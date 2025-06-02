@@ -11,8 +11,7 @@ try:
 
     # Crear petición
     request = {
-        "text": "CLOSE_SERVER",
-        "model": "--"
+        "code": "CLOSE_SERVER"
     }
 
     client_socket.send(json.dumps(request).encode())
