@@ -199,7 +199,7 @@ text = "Rendirse
 "
 icon_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
+[node name="DevMode" type="HBoxContainer" parent="HUD"]
 layout_mode = 0
 offset_left = 171.0
 offset_top = 3.0
@@ -207,13 +207,13 @@ offset_right = 658.0
 offset_bottom = 110.0
 scale = Vector2(0.632335, 0.632335)
 
-[node name="DevModeLabel" type="Label" parent="HUD/HBoxContainer"]
+[node name="DevModeLabel" type="Label" parent="HUD/DevMode"]
 layout_mode = 2
 size_flags_horizontal = 2
 theme_override_font_sizes/font_size = 24
 text = "Modo desarrollador"
 
-[node name="DevMode" type="CheckBox" parent="HUD/HBoxContainer"]
+[node name="DevMode" type="CheckBox" parent="HUD/DevMode"]
 layout_mode = 2
 size_flags_horizontal = 8
 
@@ -231,8 +231,10 @@ text = "Pulsa ENTER"
 horizontal_alignment = 1
 
 [node name="MenuJuego" parent="." instance=ExtResource("7_jphu4")]
-offset_left = 1.0
-offset_right = 41.0
+offset_left = -45.0
+offset_top = -4.0
+offset_right = -5.0
+offset_bottom = 36.0
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
@@ -242,5 +244,5 @@ offset_right = 41.0
 [connection signal="pressed" from="HUD/Enviar" to="." method="_on_enviar_pressed"]
 [connection signal="pressed" from="HUD/Retar" to="." method="_on_retar_pressed"]
 [connection signal="pressed" from="HUD/Rendirse" to="." method="_on_rendirse_pressed"]
-[connection signal="toggled" from="HUD/HBoxContainer/DevMode" to="." method="_on_dev_mode_toggled"]
+[connection signal="toggled" from="HUD/DevMode/DevMode" to="." method="_on_dev_mode_toggled"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
