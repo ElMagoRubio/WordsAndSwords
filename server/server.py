@@ -74,7 +74,7 @@ print(f"Servidor en ejecución en {HOST}:{PORT}")
 client_socket = None
 
 # Bucle del servidor
-while interaction_count < MAX_DIALOGUE_INTERACTION:
+while interaction_count < MAX_DIALOGUE_INTERACTION and action == 'dialogar':
     if client_socket == None:
         try:
             client_socket, addr = server_socket.accept()
