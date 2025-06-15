@@ -39,3 +39,14 @@ bbcode_enabled = true
 fit_content = true
 context_menu_enabled = true
 metadata/_edit_use_anchors_ = true
+
+[node name="BotonSalir" type="Button" parent="."]
+custom_minimum_size = Vector2(240, 64)
+offset_left = 520.0
+offset_top = 504.0
+offset_right = 760.0
+offset_bottom = 568.0
+theme = ExtResource("4_so76v")
+text = "Ir al menú"
+
+[connection signal="pressed" from="BotonSalir" to="." method="_on_boton_salir_pressed"]
