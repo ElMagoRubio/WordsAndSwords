@@ -41,7 +41,7 @@ NEGATIVE_EMOTION_THRESHOLD = -5
 
 
 # Declaración de variables persistentes entre bucles
-interaction_count = 14
+interaction_count = 0
 emotion_level = 0
 context_tokens = []
 history = []
@@ -75,7 +75,7 @@ client_socket = None
 
 # Bucle del servidor
 while interaction_count < MAX_DIALOGUE_INTERACTION:
-    if not client_socket:
+    if client_socket == None:
         try:
             client_socket, addr = server_socket.accept()
             if (DEBUG_MODE):
@@ -95,7 +95,7 @@ while interaction_count < MAX_DIALOGUE_INTERACTION:
                 print("[INFO] Cliente desconectado.")
             client_socket.close()
             client_socket = None
-            continue
+            break
 
         request = json.loads(data)
 
@@ -173,6 +173,11 @@ while interaction_count < MAX_DIALOGUE_INTERACTION:
             if (DEBUG_MODE):
                 print(f"\n\nRespuesta generada:\n{response}")
 
+            response = model.process_response(response, char_name)
+
+            if(DEBUG_MODE):
+                print(f"\n\nRespuesta procesada:\n{response}")
+
             # Guardar conversación para siguiente iteración
             if (action == "dialogar"):
                 history.append((text, response))                
@@ -202,15 +207,19 @@ while interaction_count < MAX_DIALOGUE_INTERACTION:
         continue
     
     # Se devuelve la respuestas
-    client_socket.send(json.dumps(result).encode())
+    client_socket.send(json.dumps(result).encode('utf-8'))
 
 
 time.sleep(1)
 
-client_socket.send(json.dumps("\nSERVIDOR CERRADO").encode())
-client_socket.close()
+if client_socket:
+    client_socket.send(json.dumps("SERVIDOR CERRADO").encode())
+    client_socket.close()
 
 if os.path.exists(os.path.join(BASE_DIR, "server_ready.flag")):
     os.remove(os.path.join(BASE_DIR, "server_ready.flag"))
 
 server_socket.close()
+
+if(DEBUG_MODE):
+    print("SERVIDOR CERRADO")

@@ -11,9 +11,8 @@ DEBUG_MODE = True
 MODELOS = [
     "google_flan-t5-large",
     "HuggingFaceTB_SmolLM2-360M-Instruct",
-    "microsoft_Phi-4-mini-instruct",
-    "flan-t5-finetuned_v1",
-    "smol-finetuned-v1"
+    "ElMagoRubio_flan-t5-large-lora",
+    "ElMagoRubio_SmolLM2-360M-Instruct-lora"
 ]
 
 # Texto de ejemplo para las pruebas
@@ -87,7 +86,7 @@ try:
     if (DEBUG_MODE):
         print("Respuesta del servidor: ")
 
-    print(json.dumps(result))
+    print(json.dumps(result, ensure_ascii=False))
           
 except Exception as e:
     print(json.dumps({
