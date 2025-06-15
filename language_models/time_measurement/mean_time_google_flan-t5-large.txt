@@ -1,0 +1,2 @@
+google_flan-t5-large
+Tiempo medio: 0.6314 segundos

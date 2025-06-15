@@ -1,0 +1,2 @@
+lxyuan_distilbert-base-multilingual-cased-sentiments-student
+Tiempo medio: 0.0304 segundos
