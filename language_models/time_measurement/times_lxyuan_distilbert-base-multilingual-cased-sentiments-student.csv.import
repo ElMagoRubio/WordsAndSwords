@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://ckral26nstdy"
+
+[deps]
+
+files=["res://language_models/time_measurement/times_lxyuan_distilbert-base-multilingual-cased-sentiments-student.Tiempo (segundos).translation"]
+
+source_file="res://language_models/time_measurement/times_lxyuan_distilbert-base-multilingual-cased-sentiments-student.csv"
+dest_files=["res://language_models/time_measurement/times_lxyuan_distilbert-base-multilingual-cased-sentiments-student.Tiempo (segundos).translation"]
+
+[params]
+
+compress=true
+delimiter=0

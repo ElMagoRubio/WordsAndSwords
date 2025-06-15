@@ -45,6 +45,8 @@ func _ready():
 	boton_hablar.visible = true
 	boton_hablar.disabled = true
 	boton_enviar_texto.visible = false
+	boton_rendirse.disabled = true
+	boton_retar.disabled = true
 	
 	if !FileAccess.file_exists(flag_path):
 		iniciar_server()
@@ -75,6 +77,8 @@ func _process(_delta):
 		boton_enviar_texto.disabled = true
 	
 	if servidor_abierto:
+		boton_rendirse.disabled = false
+		boton_retar.disabled = false
 		if !FileAccess.file_exists(flag_path):
 			servidor_abierto = false
 			print("SERVIDOR CERRADO")
@@ -94,12 +98,16 @@ func _notification(what):
 
 
 func _on_retar_pressed():
-	get_tree().change_scene_to_file("res://scenes/escenario.tscn")
+	cerrar_server()
+	Global.combate = true
+	#Cambiar cuando escena de combate sea funcional
+	get_tree().change_scene_to_file("res://scenes/escena_rendicion.tscn")
 	
 
 func _on_rendirse_pressed():
-	pass # Replace with function body.
-
+	cerrar_server()
+	Global.rendicion_jugador = true
+	get_tree().change_scene_to_file("res://scenes/escena_rendicion.tscn")
 
 func _on_hablar_pressed():
 	_on_texto_focus_entered()
@@ -136,7 +144,7 @@ func _on_enviar_pressed():
 	var request = {
 		"code": "GENERATE",
 		"text": texto_envio,
-		"model": "flan-t5-finetuned_v1"
+		"model": "ElMagoRubio_SmolLM2-360M-Instruct-lora"
 	}
 	if (dev_mode):
 		entrada_texto_2.text = "..."
@@ -159,7 +167,7 @@ func _on_enviar_pressed():
 		
 		if (result["action"] == "retar"):
 			siguiente_escena.visible = true
-			next_scene_path = ProjectSettings.globalize_path("res://scenes/escenario.tscn")
+			next_scene_path = ProjectSettings.globalize_path("res://scenes/escena_rendicion.tscn")
 		
 		elif(result["action"] == "rendirse"):
 			siguiente_escena.visible = true
@@ -238,7 +246,7 @@ func conexion_server() -> String:
 			return "[ERROR] No se pudo conectar al servidor."
 		
 		var timeout = 0.0
-		while peer.get_status() == StreamPeerTCP.STATUS_CONNECTING and timeout < 10.0:
+		while peer.get_status() == StreamPeerTCP.STATUS_CONNECTING and timeout < 60.0:
 			print("Intentando conectar (", timeout,")")
 			await get_tree().create_timer(0.1).timeout
 			peer.poll()
@@ -269,8 +277,8 @@ func enviar_request(request: Dictionary) -> String:
 		print("[ERROR]: Envío de datos erróneo")
 		return "ERROR: Envío de datos erróneo"
 	
-	# Esperar una respuesta durante hasta 2 segundos
-	var timeout = 15.0
+	# Esperar una respuesta durante hasta 1 minuto
+	var timeout = 60.0
 	var time_elapsed = 0.0
 	var interval = 0.1
 	

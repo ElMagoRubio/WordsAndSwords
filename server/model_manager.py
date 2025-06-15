@@ -179,7 +179,7 @@ def generate_response(model_name, text):
         with torch.no_grad():
             outputs = model.generate(
                 **inputs,
-                max_new_tokens=100,
+                max_new_tokens=50,
                 do_sample=True,
                 temperature=0.8,
                 top_p=0.9,

@@ -32,3 +32,21 @@ var _rutas_imagenes = [
 var rutas_imagenes:
 	get:
 		return _rutas_imagenes
+
+var _rendicion_jugador = false
+var rendicion_jugador:
+	get:
+		return _rendicion_jugador
+	
+	set(value):
+		_rendicion_jugador = value
+		_combate = !value
+
+var _combate = false
+var combate:
+	get:
+		return _combate
+	
+	set(value):
+		_combate = value
+		_rendicion_jugador = !value

@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://67kw1wcyy2je"
+
+[deps]
+
+files=["res://language_models/time_measurement/times_tabularisai_multilingual-sentiment-analysis.Tiempo (segundos).translation"]
+
+source_file="res://language_models/time_measurement/times_tabularisai_multilingual-sentiment-analysis.csv"
+dest_files=["res://language_models/time_measurement/times_tabularisai_multilingual-sentiment-analysis.Tiempo (segundos).translation"]
+
+[params]
+
+compress=true
+delimiter=0
