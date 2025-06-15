@@ -1,27 +1,45 @@
-from transformers import AutoTokenizer, AutoModelForSeq2SeqLM, TrainingArguments, Trainer, DataCollatorForSeq2Seq
+from transformers import (
+    AutoTokenizer, AutoModelForSeq2SeqLM,
+    TrainingArguments, Trainer, DataCollatorForSeq2Seq
+)
+from peft import LoraConfig, get_peft_model, TaskType, prepare_model_for_kbit_training
 from datasets import load_dataset
-import gc, os, threading, time 
-
-# Optimización de la gestión de memoria de PyTorch
-os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
+import gc, os, threading, time
 import torch
 
 model_name = "google_flan-t5-large"
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Rutas
-dataset_path = os.path.join(BASE_DIR, "../finetuning_ready_dataset_1_flant5.jsonl")
-tokenizer_path = os.path.join(BASE_DIR, f"../tokenizer/{model_name}")
-model_path = os.path.join(BASE_DIR, f"../model/{model_name}")
+# Rutas absolutas
+tokenizer_path = os.path.abspath(os.path.join(BASE_DIR, f"../tokenizer/{model_name}"))
+model_path = os.path.abspath(os.path.join(BASE_DIR, f"../model/{model_name}"))
+dataset_path = os.path.abspath(os.path.join(BASE_DIR, "../datasets/finetuning_ready_dataset_1_flant5.jsonl"))
 
-# Cargar tokenizer y modelo desde disco
+# Cargar tokenizer y modelo
 tokenizer = AutoTokenizer.from_pretrained(tokenizer_path)
-model = AutoModelForSeq2SeqLM.from_pretrained(model_path)
+model = AutoModelForSeq2SeqLM.from_pretrained(model_path, device_map="auto")
 
-# Cargar dataset
+# Preparar modelo para LoRA
+model = prepare_model_for_kbit_training(model)
+
+lora_config = LoraConfig(
+    r=8,
+    lora_alpha=16,
+    target_modules=["q", "v"],
+    lora_dropout=0.1,
+    bias="none",
+    task_type=TaskType.SEQ_2_SEQ_LM
+)
+
+model = get_peft_model(model, lora_config)
+
+# Cargar y dividir dataset
 dataset = load_dataset("json", data_files={"train": dataset_path})["train"]
+split_dataset = dataset.train_test_split(test_size=0.1, seed=42)
+train_dataset = split_dataset["train"]
+eval_dataset = split_dataset["test"]
 
-# Función de preprocesamiento
+# Preprocesamiento
 def preprocess(example):
     model_input = tokenizer(
         example["input"],
@@ -36,63 +54,62 @@ def preprocess(example):
         padding="max_length"
     )
     model_input["labels"] = target["input_ids"]
-
     return {
         "input_ids": model_input["input_ids"],
         "attention_mask": model_input["attention_mask"],
         "labels": model_input["labels"]
     }
 
-# Aplicar preprocesamiento al dataset
-tokenized_dataset = dataset.map(preprocess, batched=False)
-tokenized_dataset = tokenized_dataset.remove_columns(["input", "target"])
+tokenized_train = train_dataset.map(preprocess).remove_columns(["input", "target"])
+tokenized_eval = eval_dataset.map(preprocess).remove_columns(["input", "target"])
 
-# Configurar entrenamiento
+# Argumentos de entrenamiento con correcciones
 args = TrainingArguments(
-    output_dir=os.path.join(BASE_DIR, "../model/flan-t5-finetuned_v1"),
+    output_dir=os.path.abspath(os.path.join(BASE_DIR, "../model/flan-t5-lora")),
     per_device_train_batch_size=1,
-    gradient_accumulation_steps=48,         # simula un batch_size de 48
-    num_train_epochs=5,
-    logging_steps=10,
+    gradient_accumulation_steps=48,
+    num_train_epochs=250,
+    eval_strategy="steps",  
+    eval_steps=10,
     save_strategy="epoch",
     save_total_limit=1,
+    logging_steps=1,
     fp16=torch.cuda.is_available(),
     remove_unused_columns=False,
-    report_to="none"
+    report_to="none",
+    label_names=["labels"],  
 )
 
-# Crear trainer
+# Trainer (sin el parámetro 'tokenizer')
 trainer = Trainer(
     model=model,
     args=args,
-    train_dataset=tokenized_dataset,
-    tokenizer=tokenizer,
+    train_dataset=tokenized_train,
+    eval_dataset=tokenized_eval,
     data_collator=DataCollatorForSeq2Seq(tokenizer, model=model),
 )
 
-# Función que imprime el tiempo de entrenamiento cada 30 segundos, comprobación de que está ejecutando
+# Mostrar tiempo cada 10 segundos
 def mostrar_tiempo_entrenamiento():
     inicio = time.time()
     while not entrenamiento_finalizado:
         tiempo = int(time.time() - inicio)
-        print(f"********************************** [Tiempo transcurrido]: {tiempo // 60} min {tiempo % 60} seg **********************************")
+        print(f"***** [Tiempo transcurrido]: {tiempo // 60} min {tiempo % 60} seg *****")
         time.sleep(10)
 
 entrenamiento_finalizado = False
 contador_thread = threading.Thread(target=mostrar_tiempo_entrenamiento)
 contador_thread.start()
 
-# Liberamos memoria antes del entrenamiento
 gc.collect()
 torch.cuda.empty_cache()
 
-# Entrenamiento
+# Entrenar
 trainer.train()
 
-# Finalizar el temporizador
 entrenamiento_finalizado = True
 contador_thread.join()
 
-# Guardar modelo
-trainer.save_model(os.path.join(BASE_DIR, "../model/flan-t5-finetuned_v1"))
-tokenizer.save_pretrained(os.path.join(BASE_DIR, "../tokenizer/flan-t5-finetuned_v1"))
+# Guardar modelo LoRA y tokenizer
+model.save_pretrained(os.path.abspath(os.path.join(BASE_DIR, "../model/flan-t5-lora")))
+tokenizer.save_pretrained(os.path.abspath(os.path.join(BASE_DIR, "../tokenizer/flan-t5-lora")))

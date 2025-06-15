@@ -1,0 +1,2 @@
+HuggingFaceTB_SmolLM2-360M-Instruct
+Tiempo medio: 14.0919 segundos
