@@ -1,2 +1,0 @@
-tabularisai_multilingual-sentiment-analysis
-Tiempo medio: 0.0222 segundos
