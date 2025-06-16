@@ -247,35 +247,13 @@ def load_models(model_list=model_list):
             model_path = os.path.normpath(os.path.join(MODEL_GENERAL_PATH, model_name))
             tokenizer = AutoTokenizer.from_pretrained(tokenizer_path, local_files_only=True)
 
-            if model_name.endswith("-lora"):
-                # Derivar nombre del modelo base eliminando el sufijo "-lora"
-                base_model_name = base_tokenizer
-                base_model_path = os.path.normpath(os.path.join(MODEL_GENERAL_PATH, base_model_name))
-
-                if ModelClass is None:
-                    raise ValueError(f"No se ha especificado la clase del modelo base para {model_name}")
-
-
-                # Cargar modelo base usando la clase especificada en model_list
-                base_model = ModelClass.from_pretrained(
-                    base_model_path,
-                    device_map="cuda" if torch.cuda.is_available() else "cpu",
-                    low_cpu_mem_usage=True,
-                    local_files_only=True
-                )
-
-                # Aplicar adaptador LoRA
-                model = PeftModel.from_pretrained(base_model, model_path)
-                model.to("cuda" if torch.cuda.is_available() else "cpu")
-
-            else:
-                model = ModelClass.from_pretrained(
-                    model_path,
-                    device_map="cuda" if torch.cuda.is_available() else "cpu",
-                    offload_buffers=True,
-                    low_cpu_mem_usage=True,
-                    local_files_only=True                    
-                )
+            model = ModelClass.from_pretrained(
+                model_path,
+                device_map="cuda" if torch.cuda.is_available() else "cpu",
+                offload_buffers=True,
+                low_cpu_mem_usage=True,
+                local_files_only=True                    
+            )
 
             tokenizer_model_dict[model_name] = (tokenizer, model)
             print(f"Modelo {model_name} cargado correctamente.\n")
