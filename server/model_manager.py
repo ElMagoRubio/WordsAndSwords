@@ -1,4 +1,4 @@
-import json, os, re, time, torch, unicodedata
+import json, os, re, requests, time, torch, unicodedata
 from peft import PeftModel
 from transformers import AutoModelForCausalLM, AutoModelForSeq2SeqLM, AutoModelForSequenceClassification, AutoTokenizer
 
@@ -260,4 +260,21 @@ def load_models(model_list=model_list):
 
         except Exception as e:
             print(f"Error al cargar {model_name}: {e}")
-            
+
+# Función de inferencia con Ollama
+def generate_response_with_ollama(prompt, model_name):
+    try:
+        response = requests.post(
+            "http://localhost:11434/api/generate",
+            headers={"Content-Type": "application/json"},
+            json={
+                "model": model_name,
+                "prompt": prompt,
+                "stream": False
+            }
+        )
+        response.raise_for_status()
+        response_json = response.json()
+        return response_json.get("response", "[ERROR] Respuesta vacía de Ollama.")
+    except Exception as e:
+        return f"[ERROR] Fallo al llamar a Ollama: {e}"
