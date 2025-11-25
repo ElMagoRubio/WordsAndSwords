@@ -69,3 +69,8 @@ func _on_button_pj_seleccion_pressed():
 	Global.pj_jugador = Global.pj_jugador
 	print("PJ seleccionado: ", Global.pj_jugador)
 	get_tree().change_scene_to_file("res://scenes/pj_dialogue.tscn")
+
+
+func _on_boton_volver_pressed() -> void:
+	print("DEBUG: pressed EXIT menu button")
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

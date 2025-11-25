@@ -1,19 +1,19 @@
 [gd_scene load_steps=47 format=3 uid="uid://b45eyfvnep5ci"]
 
-[ext_resource type="Shader" path="res://assets/scroll.gdshader" id="1_1pd6g"]
+[ext_resource type="Shader" uid="uid://dub36cjdsmdoc" path="res://assets/scroll.gdshader" id="1_1pd6g"]
 [ext_resource type="Texture2D" uid="uid://dv7nwuh0mmsc8" path="res://assets/Escenarios/Main Menu.png" id="1_12iol"]
-[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_kmyl3"]
+[ext_resource type="Script" uid="uid://he786gfh8ow7" path="res://scripts/main_menu.gd" id="1_kmyl3"]
 [ext_resource type="Texture2D" uid="uid://doq54p0gwnmho" path="res://assets/theme/iconos/Pantalla principal.png" id="2_cum5h"]
 [ext_resource type="FontFile" uid="uid://ctgf5qs6g1evf" path="res://assets/Escenarios/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="3_17nh6"]
 [ext_resource type="Texture2D" uid="uid://c7ivoiw42k4yp" path="res://assets/theme/iconos/Boton.png" id="4_lcadq"]
 [ext_resource type="Texture2D" uid="uid://e8x6a5cd1m7r" path="res://assets/theme/iconos/tablaLarga.png" id="4_thi3y"]
 [ext_resource type="Texture2D" uid="uid://cwcgrc7aihbcb" path="res://assets/theme/iconos/BotonPulsado.png" id="5_svqtn"]
 [ext_resource type="Theme" uid="uid://cjkmwoyjf2bu5" path="res://assets/theme/WordsNSwords.tres" id="6_pa6ep"]
-[ext_resource type="Script" path="res://scripts/controladores_menu.gd" id="10_027hu"]
+[ext_resource type="Script" uid="uid://djf0pg2l00uo3" path="res://scripts/controladores_menu.gd" id="10_027hu"]
 [ext_resource type="AudioStream" uid="uid://cyn5nwcwloa7o" path="res://assets/Musica/main_menu.ogg" id="11_lvfvv"]
-[ext_resource type="Script" path="res://scripts/loop_cancion.gd" id="12_g5w4g"]
+[ext_resource type="Script" uid="uid://dushwuigjoid8" path="res://scripts/loop_cancion.gd" id="12_g5w4g"]
 [ext_resource type="Texture2D" uid="uid://m3bo6tuo0gq5" path="res://assets/theme/iconos/icono selector.png" id="12_v87e6"]
-[ext_resource type="Script" path="res://scripts/slider_sonido.gd" id="13_10n71"]
+[ext_resource type="Script" uid="uid://bnpjgtotchtj5" path="res://scripts/slider_sonido.gd" id="13_10n71"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_pdgh0"]
 shader = ExtResource("1_1pd6g")
@@ -23,24 +23,19 @@ content_margin_left = 20.0
 content_margin_right = 20.0
 texture = ExtResource("4_lcadq")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aectu"]
-content_margin_left = 20.0
-content_margin_right = 20.0
-texture = ExtResource("4_lcadq")
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a5wbs"]
 content_margin_left = 20.0
 content_margin_right = 20.0
 texture = ExtResource("5_svqtn")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xw7a6"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_po5if"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_aectu"]
 content_margin_left = 20.0
 content_margin_right = 20.0
 texture = ExtResource("4_lcadq")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3nvrb"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xw7a6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_po5if"]
 content_margin_left = 20.0
 content_margin_right = 20.0
 texture = ExtResource("4_lcadq")
@@ -50,14 +45,14 @@ content_margin_left = 20.0
 content_margin_right = 20.0
 texture = ExtResource("5_svqtn")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xp2xh"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ch3ct"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3nvrb"]
 content_margin_left = 20.0
 content_margin_right = 20.0
 texture = ExtResource("4_lcadq")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_suf5x"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xp2xh"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ch3ct"]
 content_margin_left = 20.0
 content_margin_right = 20.0
 texture = ExtResource("4_lcadq")
@@ -66,6 +61,11 @@ texture = ExtResource("4_lcadq")
 content_margin_left = 20.0
 content_margin_right = 20.0
 texture = ExtResource("5_svqtn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_suf5x"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("4_lcadq")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fp5vu"]
 
@@ -78,24 +78,19 @@ content_margin_left = 20.0
 content_margin_right = 20.0
 texture = ExtResource("4_lcadq")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k2um0"]
-content_margin_left = 20.0
-content_margin_right = 20.0
-texture = ExtResource("4_lcadq")
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pehgx"]
 content_margin_left = 20.0
 content_margin_right = 20.0
 texture = ExtResource("5_svqtn")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uhdp5"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0f2bi"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k2um0"]
 content_margin_left = 20.0
 content_margin_right = 20.0
 texture = ExtResource("4_lcadq")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mj5pj"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uhdp5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0f2bi"]
 content_margin_left = 20.0
 content_margin_right = 20.0
 texture = ExtResource("4_lcadq")
@@ -105,14 +100,14 @@ content_margin_left = 20.0
 content_margin_right = 20.0
 texture = ExtResource("5_svqtn")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t6av7"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qpbjs"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mj5pj"]
 content_margin_left = 20.0
 content_margin_right = 20.0
 texture = ExtResource("4_lcadq")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qe0oo"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t6av7"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qpbjs"]
 content_margin_left = 20.0
 content_margin_right = 20.0
 texture = ExtResource("4_lcadq")
@@ -121,6 +116,11 @@ texture = ExtResource("4_lcadq")
 content_margin_left = 20.0
 content_margin_right = 20.0
 texture = ExtResource("5_svqtn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qe0oo"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("4_lcadq")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ixidq"]
 
@@ -133,15 +133,15 @@ content_margin_left = 20.0
 content_margin_right = 20.0
 texture = ExtResource("4_lcadq")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sjicd"]
-content_margin_left = 20.0
-content_margin_right = 20.0
-texture = ExtResource("4_lcadq")
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1rpde"]
 content_margin_left = 20.0
 content_margin_right = 20.0
 texture = ExtResource("5_svqtn")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_sjicd"]
+content_margin_left = 20.0
+content_margin_right = 20.0
+texture = ExtResource("4_lcadq")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7d0fp"]
 
@@ -198,14 +198,14 @@ theme_override_constants/separation = 60
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 0
 theme_override_fonts/font = ExtResource("3_17nh6")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxTexture_ioro7")
-theme_override_styles/hover = SubResource("StyleBoxTexture_aectu")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_a5wbs")
+theme_override_styles/hover = SubResource("StyleBoxTexture_aectu")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_xw7a6")
 text = "Jugar
 "
@@ -215,13 +215,13 @@ icon_alignment = 1
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_17nh6")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxTexture_po5if")
-theme_override_styles/hover = SubResource("StyleBoxTexture_3nvrb")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_jkcf4")
+theme_override_styles/hover = SubResource("StyleBoxTexture_3nvrb")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_xp2xh")
 text = "Opciones"
 
@@ -229,19 +229,18 @@ text = "Opciones"
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_17nh6")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxTexture_ch3ct")
-theme_override_styles/hover = SubResource("StyleBoxTexture_suf5x")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_m4ftn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_suf5x")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_fp5vu")
 theme_override_styles/focus = SubResource("StyleBoxTexture_42nju")
 text = "Salir"
 
 [node name="MenuContenedor" type="Control" parent="."]
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -249,6 +248,7 @@ theme = ExtResource("6_pa6ep")
 script = ExtResource("10_027hu")
 
 [node name="MenuOpciones" type="VBoxContainer" parent="MenuContenedor"]
+visible = false
 layout_mode = 0
 offset_left = 520.0
 offset_top = 248.0
@@ -261,13 +261,13 @@ theme_override_constants/separation = 60
 custom_minimum_size = Vector2(240, 64)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_17nh6")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxTexture_rxds1")
-theme_override_styles/hover = SubResource("StyleBoxTexture_k2um0")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_pehgx")
+theme_override_styles/hover = SubResource("StyleBoxTexture_k2um0")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_uhdp5")
 text = "Audio"
 
@@ -276,14 +276,14 @@ custom_minimum_size = Vector2(240, 64)
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_constants/h_separation = 0
 theme_override_fonts/font = ExtResource("3_17nh6")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxTexture_0f2bi")
-theme_override_styles/hover = SubResource("StyleBoxTexture_mj5pj")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_bx5w5")
+theme_override_styles/hover = SubResource("StyleBoxTexture_mj5pj")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_t6av7")
 text = "Vídeo
 "
@@ -388,20 +388,19 @@ custom_minimum_size = Vector2(240, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_17nh6")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxTexture_qpbjs")
-theme_override_styles/hover = SubResource("StyleBoxTexture_qe0oo")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_juora")
+theme_override_styles/hover = SubResource("StyleBoxTexture_qe0oo")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_ixidq")
 theme_override_styles/focus = SubResource("StyleBoxTexture_fe2hh")
 text = "Volver"
 
 [node name="MenuVideo" type="VBoxContainer" parent="MenuContenedor"]
-visible = false
-layout_mode = 2
+layout_mode = 0
 offset_left = 413.0
 offset_top = 206.0
 offset_right = 867.0
@@ -457,19 +456,19 @@ custom_minimum_size = Vector2(240, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("3_17nh6")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxTexture_67v7f")
-theme_override_styles/hover = SubResource("StyleBoxTexture_sjicd")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_1rpde")
+theme_override_styles/hover = SubResource("StyleBoxTexture_sjicd")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_7d0fp")
 theme_override_styles/focus = SubResource("StyleBoxTexture_ghwdb")
 text = "Volver"
 
 [node name="TextPausa" type="Label" parent="MenuContenedor"]
-layout_mode = 2
+layout_mode = 0
 offset_left = 474.0
 offset_top = 57.0
 offset_right = 917.0
@@ -503,11 +502,11 @@ script = ExtResource("12_g5w4g")
 [connection signal="pressed" from="MenuPrincipal/BotonJugar" to="." method="_on_boton_jugar_pressed"]
 [connection signal="pressed" from="MenuPrincipal/BotonAjustes" to="." method="_on_boton_ajustes_pressed"]
 [connection signal="pressed" from="MenuPrincipal/BotonSalir" to="." method="_on_boton_salir_pressed"]
-[connection signal="pressed" from="MenuContenedor/MenuOpciones/BotonAudio" to="MenuContenedor" method="_on_boton_audio_pressed" flags=18]
-[connection signal="pressed" from="MenuContenedor/MenuOpciones/BotonResolucion" to="MenuContenedor" method="_on_boton_resolucion_pressed" flags=18]
-[connection signal="pressed" from="MenuContenedor/MenuOpciones/BotonSalir" to="MenuContenedor" method="_on_boton_salir_pressed" flags=18]
-[connection signal="pressed" from="MenuContenedor/MenuAudio/BotonVolver" to="MenuContenedor" method="_on_boton_volver_pressed" flags=18]
-[connection signal="pressed" from="MenuContenedor/MenuVideo/HBoxContainer/Fullscreen" to="MenuContenedor" method="_on_fullscreen_pressed" flags=18]
-[connection signal="pressed" from="MenuContenedor/MenuVideo/HBoxContainer2/Borderless" to="MenuContenedor" method="_on_borderless_pressed" flags=18]
-[connection signal="pressed" from="MenuContenedor/MenuVideo/HBoxContainer3/VSync" to="MenuContenedor" method="_on_v_sync_pressed" flags=18]
-[connection signal="pressed" from="MenuContenedor/MenuVideo/BotonVolver" to="MenuContenedor" method="_on_boton_volver_pressed" flags=18]
+[connection signal="pressed" from="MenuContenedor/MenuOpciones/BotonAudio" to="MenuContenedor" method="_on_boton_audio_pressed"]
+[connection signal="pressed" from="MenuContenedor/MenuOpciones/BotonResolucion" to="MenuContenedor" method="_on_boton_resolucion_pressed"]
+[connection signal="pressed" from="MenuContenedor/MenuOpciones/BotonSalir" to="MenuContenedor" method="_on_boton_salir_pressed"]
+[connection signal="pressed" from="MenuContenedor/MenuAudio/BotonVolver" to="MenuContenedor" method="_on_boton_volver_pressed"]
+[connection signal="pressed" from="MenuContenedor/MenuVideo/HBoxContainer/Fullscreen" to="MenuContenedor" method="_on_fullscreen_pressed"]
+[connection signal="pressed" from="MenuContenedor/MenuVideo/HBoxContainer2/Borderless" to="MenuContenedor" method="_on_borderless_pressed"]
+[connection signal="pressed" from="MenuContenedor/MenuVideo/HBoxContainer3/VSync" to="MenuContenedor" method="_on_v_sync_pressed"]
+[connection signal="pressed" from="MenuContenedor/MenuVideo/BotonVolver" to="MenuContenedor" method="_on_boton_volver_pressed"]
