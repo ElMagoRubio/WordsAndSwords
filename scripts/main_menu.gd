@@ -1,5 +1,7 @@
 extends Control
 
+
+
 @onready var logo = $Logo
 @onready var menuPrincipal = $MenuPrincipal
 @onready var menuContenedor = $MenuContenedor
@@ -10,6 +12,8 @@ func _ready():
 	menuPrincipal.visible = true
 	menuContenedor.visible = false
 	textAjustes.visible = false
+	if not GlobalAudio.audios["audio_menu"].playing:
+		GlobalAudio.play_segment("audio_menu")
 
 func _on_boton_jugar_pressed():
 	get_tree().change_scene_to_file("res://scenes/menu_seleccion_pj.tscn")

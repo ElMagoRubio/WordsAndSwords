@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://b45eyfvnep5ci"]
+[gd_scene load_steps=45 format=3 uid="uid://b45eyfvnep5ci"]
 
 [ext_resource type="Shader" uid="uid://dub36cjdsmdoc" path="res://assets/scroll.gdshader" id="1_1pd6g"]
 [ext_resource type="Texture2D" uid="uid://dv7nwuh0mmsc8" path="res://assets/Escenarios/Main Menu.png" id="1_12iol"]
@@ -10,8 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://cwcgrc7aihbcb" path="res://assets/theme/iconos/BotonPulsado.png" id="5_svqtn"]
 [ext_resource type="Theme" uid="uid://cjkmwoyjf2bu5" path="res://assets/theme/WordsNSwords.tres" id="6_pa6ep"]
 [ext_resource type="Script" uid="uid://djf0pg2l00uo3" path="res://scripts/controladores_menu.gd" id="10_027hu"]
-[ext_resource type="AudioStream" uid="uid://cyn5nwcwloa7o" path="res://assets/Musica/main_menu.ogg" id="11_lvfvv"]
-[ext_resource type="Script" uid="uid://dushwuigjoid8" path="res://scripts/loop_cancion.gd" id="12_g5w4g"]
 [ext_resource type="Texture2D" uid="uid://m3bo6tuo0gq5" path="res://assets/theme/iconos/icono selector.png" id="12_v87e6"]
 [ext_resource type="Script" uid="uid://bnpjgtotchtj5" path="res://scripts/slider_sonido.gd" id="13_10n71"]
 
@@ -512,12 +510,6 @@ text = "OPCIONES"
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="MenuContenedor"]
-stream = ExtResource("11_lvfvv")
-autoplay = true
-bus = &"Musica"
-script = ExtResource("12_g5w4g")
 
 [connection signal="pressed" from="MenuPrincipal/BotonJugar" to="." method="_on_boton_jugar_pressed"]
 [connection signal="pressed" from="MenuPrincipal/BotonAjustes" to="." method="_on_boton_ajustes_pressed"]
