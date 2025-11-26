@@ -16,7 +16,7 @@ func _ready():
 func _on_boton_audio_pressed():
 	print("DEBUG: pressed AUDIO MENU button")
 	menuOpciones.visible = false
-	headerText.text = "AUDIO"
+	headerText.text = "Prueba"
 	menuAudio.visible = true
 	menuVideo.visible = false
 

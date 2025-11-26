@@ -251,22 +251,27 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_42nju")
 text = "Salir"
 
 [node name="MenuContenedor" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("6_pa6ep")
 script = ExtResource("10_027hu")
 
 [node name="MenuOpciones" type="VBoxContainer" parent="MenuContenedor"]
-visible = false
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 32.0
-anchor_bottom = 18.0
-offset_left = 520.0
-offset_top = 232.0
-offset_right = -520.0
-offset_bottom = -176.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -128.0
+offset_right = 120.0
+offset_bottom = 184.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
@@ -314,16 +319,19 @@ text = "Volver
 [node name="MenuAudio" type="VBoxContainer" parent="MenuContenedor"]
 visible = false
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 5.6
-anchor_top = 5.25
-anchor_right = 26.2
-anchor_bottom = 15.625
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -412.0
+offset_top = -187.0
+offset_right = 412.0
+offset_bottom = 187.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 theme = ExtResource("6_pa6ep")
 theme_override_constants/separation = 15
-metadata/_edit_use_anchors_ = true
 
 [node name="MasterContainer" type="VBoxContainer" parent="MenuContenedor/MenuAudio"]
 layout_mode = 2
@@ -418,11 +426,18 @@ text = "Volver"
 
 [node name="MenuVideo" type="VBoxContainer" parent="MenuContenedor"]
 visible = false
-layout_mode = 0
-offset_left = 416.0
-offset_top = 160.0
-offset_right = 870.0
-offset_bottom = 593.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -227.0
+offset_top = -180.0
+offset_right = 227.0
+offset_bottom = 226.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/separation = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MenuContenedor/MenuVideo"]
@@ -430,7 +445,7 @@ layout_mode = 2
 
 [node name="FullscreenLabel" type="Label" parent="MenuContenedor/MenuVideo/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 2
+size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 24
 text = "Pantalla completa"
 
@@ -444,7 +459,7 @@ layout_mode = 2
 [node name="BorderlessLabel" type="Label" parent="MenuContenedor/MenuVideo/HBoxContainer2"]
 custom_minimum_size = Vector2(410, 40)
 layout_mode = 2
-size_flags_horizontal = 2
+size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 24
 text = "Sin bordes"
 horizontal_alignment = 1
@@ -461,8 +476,7 @@ custom_minimum_size = Vector2(410, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 24
-text = "VSync
-"
+text = "VSync"
 horizontal_alignment = 1
 
 [node name="VSync" type="CheckBox" parent="MenuContenedor/MenuVideo/HBoxContainer3"]
@@ -487,25 +501,13 @@ text = "Volver"
 
 [node name="TextPausa" type="Label" parent="MenuContenedor"]
 layout_mode = 0
-offset_left = 474.0
-offset_top = 57.0
-offset_right = 917.0
-offset_bottom = 171.0
+offset_left = 460.00003
+offset_top = 27.000002
+offset_right = 940.0
+offset_bottom = 147.0
 scale = Vector2(0.75, 0.75)
 theme = ExtResource("6_pa6ep")
-text = "OPCIONES"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
-
-[node name="TextAjustes" type="Label" parent="MenuContenedor"]
-layout_mode = 0
-offset_left = 474.0
-offset_top = 57.0
-offset_right = 917.0
-offset_bottom = 171.0
-scale = Vector2(0.75, 0.75)
-theme = ExtResource("6_pa6ep")
+theme_override_font_sizes/font_size = 32
 text = "OPCIONES"
 horizontal_alignment = 1
 vertical_alignment = 1

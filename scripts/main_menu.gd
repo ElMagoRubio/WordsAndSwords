@@ -3,7 +3,7 @@ extends Control
 @onready var logo = $Logo
 @onready var menuPrincipal = $MenuPrincipal
 @onready var menuContenedor = $MenuContenedor
-@onready var textAjustes = $MenuContenedor/TextAjustes
+@onready var textAjustes = $MenuContenedor/TextPausa
 
 func _ready():
 	logo.visible = true

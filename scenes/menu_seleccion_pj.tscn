@@ -67,13 +67,14 @@ texture = ExtResource("4_tqu2c")
 [node name="NombrePJ" type="Label" parent="."]
 top_level = true
 clip_contents = true
-offset_left = 494.0
-offset_top = 200.0
-offset_right = 790.0
-offset_bottom = 309.0
+offset_left = 400.0
+offset_top = 152.0
+offset_right = 880.0
+offset_bottom = 272.0
 size_flags_horizontal = 4
 theme = ExtResource("6_nukc8")
 theme_type_variation = &"HeaderMedium"
+theme_override_font_sizes/font_size = 24
 text = "Amolenth"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -81,7 +82,7 @@ autowrap_mode = 3
 uppercase = true
 
 [node name="TablaLarga" type="Sprite2D" parent="."]
-position = Vector2(641, 422)
+position = Vector2(640, 384)
 scale = Vector2(4, 4)
 texture = ExtResource("5_v1hen")
 
